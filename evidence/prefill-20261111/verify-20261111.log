@@ -1,0 +1,14 @@
+[PASS] S1 config.json is the certified source — sha256 4804e0d97e2727fd…
+[PASS] S2 every consumed source tensor matches its certified hash — 286 tensors
+[PASS] G1 semantic.json / plan.json match certified hashes — file hashes
+[PASS] G2 source program is well typed and has the certified structural hash — 1642 nodes, hash a8e91b723df64d2a…
+[PASS] G3 the source program reads only certified source tensors — ok
+[PASS] A1 artifact files match certified hashes — all packages
+[PASS] A2 every package re-parses and is well typed (types re-derived per op) — 2 packages, 119 norm idioms lifted
+[PASS] W1 every weight blob is the declared function of a certified source tensor — 286 blob refs, 792 MB, 0 constant tables checked by E1 instead, 143 palettized (worst relL2 0.13016959, recomputed)
+[PASS] E1 lifted artifact pipeline == source program, bit for bit, on verifier-chosen inputs — 2 trials, 8192000 output elements bit-identical, 35 persistent states identical after 2 chained calls (nonce ad1c11efeb65fcc6)
+[PASS] H1 hardware evidence is bound to these artifacts — per-segment oracle records match artifact hashes
+[PASS] H2 hardware evidence is current for the expected OS build — build matches
+[PASS] H3 placement recomputed from evidence rows — 1764/1765 compute ops ANE-preferred (99.9%)
+[SKIP] H4 device executed every segment (ANE vs CPU-only outputs recorded) — no execution evidence
+VERIFIED: 12 pass, 0 fail, 1 skipped

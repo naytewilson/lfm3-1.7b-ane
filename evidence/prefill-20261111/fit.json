@@ -1,0 +1,38 @@
+{
+  "chosenBudgetBytes" : 471859200,
+  "largestEligibleSegmentBytes" : 466988544,
+  "model" : "\/Users\/nayte\/ane-hot\/scratch\/lfm3-release-20261111\/prefill\/model-src",
+  "schema" : "anec.fit.v2",
+  "seqLen" : 32,
+  "stateForm" : "ioDelta",
+  "trials" : [
+    {
+      "budgetBytes" : 471859200,
+      "eligible" : true,
+      "planError" : false,
+      "segments" : [
+        {
+          "anePreferred" : 1161,
+          "aneSupported" : 1161,
+          "assigned" : 1161,
+          "computeOps" : 1161,
+          "modelSHA256" : "006e4c847a8130c07821c36dd60f685bb66ff3c75f51a1ce715ee05a33d01e05",
+          "name" : "seg01_dev",
+          "osBuild" : "26C5035r",
+          "weightBytes" : 466988544
+        },
+        {
+          "anePreferred" : 603,
+          "aneSupported" : 603,
+          "assigned" : 604,
+          "computeOps" : 604,
+          "modelSHA256" : "4f76f018a26b3f60f1d57b7a20032388e233319e24e15af575f7ee4bd7f85f63",
+          "name" : "seg02_dev",
+          "osBuild" : "26C5035r",
+          "weightBytes" : 363522048
+        }
+      ],
+      "stateForm" : "ioDelta"
+    }
+  ]
+}
