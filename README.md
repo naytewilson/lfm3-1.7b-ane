@@ -21,15 +21,17 @@ All measured on one machine: MacBook Neo (`Mac17,5`), Apple A18 Pro, 8 GB, macOS
 | | 64-position bundle | 288-position bundle |
 |---|---|---|
 | Operations planned on the ANE | 1582 of 1583 | 1582 of 1583 |
-| Decode speed, tokens per second (3 runs) | 37.8 / 39.7 / 38.6 | 37.3 / 35.0 / 35.2 |
-| Time per token, ms (3 runs) | 26.45 / 25.19 / 25.89 | 26.82 / 28.60 / 28.42 |
+| Decode speed from the median step, tokens per second (3 runs) | 37.8 / 39.7 / 38.6 | 37.3 / 35.0 / 35.2 |
+| Decode speed from the mean step, tokens per second (3 runs) | 35.9 / 37.6 / 35.6 | 35.8 / 31.9 / 33.1 |
+| Median time per token, ms (3 runs) | 26.45 / 25.19 / 25.89 | 26.82 / 28.60 / 28.42 |
 | Stored weights on the ANE | 791 MB in 2 functions | 791 MB in 2 functions |
-| Peak resident memory of the runner process | 75–82 MB | 97–112 MB |
+| Peak resident memory of the runner process (not the system memory holding the model, which was not measured) | 75–82 MB | 97–112 MB |
 
-The speed rows are from one controlled session (03:33Z–03:40Z) with the machine at thermal
+Each run decodes for about 24 seconds (783–923 steps) and the benchmark reports the median
+step; the mean row is total steps divided by total time in the same runs. The speed rows are from one controlled session (03:33Z–03:40Z) with the machine at thermal
 state "fair" and a one-minute load average of 5–7. The same bundles measured earlier that evening:
 
-| Session (UTC) | Runtime | 64 positions, tok/s | 288 positions, tok/s |
+| Session (UTC) | Runtime | 64 positions, tok/s (median step) | 288 positions, tok/s (median step) |
 |---|---|---|---|
 | 01:17Z–01:42Z | first | 34.5 / 34.0 / 32.3 | 29.7 / 29.4 / 29.6 |
 | 02:04Z–02:07Z | current | 43.6 / 42.7 / 43.1 | 37.7 / 36.1 / 37.2 |
@@ -60,8 +62,8 @@ build, recorded per operation in `evidence/*/seg0{1,2}_dev.oracle.json`:
 - This is the planner's assignment. This release contains no hardware-interval trace of
   these bundles, so physical dispatch is inferred from the plan and the timings, not
   separately observed.
-- Core ML's built-in model state could not be used: both state forms failed ANE compilation
-  (error `-14`) on this OS build. The key/value caches and convolution windows are therefore
+- Core ML's built-in model state could not be used: both state forms produced no execution
+  plan (error `-14`) on this OS build. The key/value caches and convolution windows are therefore
   explicit inputs and outputs, carried by the host between calls (35 states: 22 attention
   caches updated by row copy, 13 convolution windows). That carry costs about 0.1 ms per
   token.
@@ -111,9 +113,10 @@ Read plainly:
   accuracy number above compares against the pruned checkpoint, not against Liquid AI's
   model. The pruning was not followed by any recovery training.
 - **No task or chat evaluation.** Only next-token agreement on one 270-token passage.
-- **No long-run or thermal measurement.** Each speed run repeats a 28-step decode for at
-  least 20 seconds. The longest single decode timed was 270 steps, on the first runtime
-  (33.4 ms per token median, 29.9 tokens per second).
+- **No long-run or thermal measurement.** Each speed run repeats a 28-step decode (13
+  prompt tokens, then generation) from an empty cache for about 24 seconds. The longest
+  single decode timed was 270 steps, on the first runtime (33.4 ms per token median, 29.9
+  tokens per second). Nothing was run for minutes, and nothing at a full cache.
 - **No energy measurement, no CPU or GPU comparison** for this model.
 - **One device, one OS build.** ANE placement is decided by the OS at load time and can
   differ on other chips or OS versions.
@@ -129,7 +132,7 @@ In this repository:
 
 | Path | Contents |
 |---|---|
-| `evidence/c64/`, `evidence/c288/` | For each bundle: `fit.json` (state-form and partition search against the hardware), `certificate.json`, `plan.json`, `semantic.json`, per-operation placement evidence (`seg0*_dev.oracle.json`), and three benchmark sessions (`bench-*/results.tsv`, `receipt.json`, `guard.log`) |
+| `evidence/c64/`, `evidence/c288/` | For each bundle: `fit.json` (state-form and partition search against the hardware), `certificate.json`, `plan.json`, `semantic.json`, per-operation placement evidence (`seg0*_dev.oracle.json`), and three benchmark sessions (`bench-*/results.tsv`, `receipt.json`, `guard.log`, and the raw per-step record of each run, `ane_{1,2,3}.json`) |
 | `evidence/logs/` | Job logs of the teacher check, the accuracy runs and the three timing sessions |
 | `evidence/PRUNING_RECEIPT.json` | What the pruning changed |
 | `tokenizer/` | Tokenizer, chat template and model configuration from the upstream release |
@@ -184,7 +187,8 @@ load of each function on a machine includes on-device compilation and took 17.6 
   each of the 286 source tensors, the 213 rewrites applied, and for each palettized tensor
   its error against the fp16 source.
 - `evidence/*/bench-*/results.tsv` holds the three timing runs of each session with wall
-  time, CPU time, major faults and peak resident memory; `receipt.json` holds the verdict.
+  time, CPU time, major faults and peak resident memory; `receipt.json` holds the verdict;
+  `ane_N.json` holds every step time (`stepMS`), the step count and the total seconds.
 
 ## License
 
