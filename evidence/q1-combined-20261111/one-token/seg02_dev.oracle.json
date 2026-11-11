@@ -1,0 +1,6641 @@
+{
+  "artifact" : {
+    "modelSHA256" : "b4b839b4d610765455b59b4067af2ed46d34c806290ba97567b006ba062ff29f",
+    "path" : "\/Users\/nayte\/ane-hot\/scratch\/lfm3-release-20261111\/q1\/s1\/try_450mb\/seg02_dev.mlpackage",
+    "weightBytes" : 363531520,
+    "weightSHA256" : "3711cbcb47288812d6cd9700981d2dcedfd6a5e4279e64e8dc14f0209f08b0c3"
+  },
+  "compile" : {
+    "ok" : true,
+    "seconds" : 0.18029391765594482
+  },
+  "env" : {
+    "chip" : "Apple A18 Pro",
+    "host" : "naytes-macbook-neo.local",
+    "hwModel" : "Mac17,5",
+    "os" : "27.3.0",
+    "osBuild" : "26C5035r"
+  },
+  "nonce" : "",
+  "plan" : {
+    "byType" : {
+      "ANE" : {
+        "ios16.reduce_sum" : 4,
+        "ios18.add" : 36,
+        "ios18.concat" : 53,
+        "ios18.conv" : 53,
+        "ios18.layer_norm" : 41,
+        "ios18.matmul" : 16,
+        "ios18.mul" : 142,
+        "ios18.reshape" : 85,
+        "ios18.sigmoid" : 4,
+        "ios18.silu" : 8,
+        "ios18.slice_by_index" : 73,
+        "ios18.softmax" : 4,
+        "ios18.transpose" : 20,
+        "tile" : 8
+      },
+      "CPU" : {
+        "ios18.reshape" : 1
+      },
+      "none" : {
+        "const" : 1141,
+        "ios18.constexpr_lut_to_dense" : 49
+      }
+    },
+    "ok" : true,
+    "ops" : [
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1,
+        "op" : "ios18.mul",
+        "out" : "L16_norm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 4,
+        "op" : "ios18.concat",
+        "out" : "L16_norm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 7,
+        "op" : "ios18.layer_norm",
+        "out" : "L16_norm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 14,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_norm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 16,
+        "op" : "ios18.mul",
+        "out" : "L16_norm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 19,
+        "op" : "ios18.reshape",
+        "out" : "L16_norm1_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 25,
+        "op" : "ios18.conv",
+        "out" : "L16_q_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2847407917051489e-06,
+        "fn" : "main",
+        "i" : 27,
+        "op" : "ios18.reshape",
+        "out" : "L16_q_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.0912777401011207e-06,
+        "fn" : "main",
+        "i" : 29,
+        "op" : "ios18.transpose",
+        "out" : "L16_q_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00015182049920233349,
+        "fn" : "main",
+        "i" : 36,
+        "op" : "ios18.conv",
+        "out" : "L16_k_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.2478864345594906e-07,
+        "fn" : "main",
+        "i" : 38,
+        "op" : "ios18.reshape",
+        "out" : "L16_k_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.0273076724290969e-06,
+        "fn" : "main",
+        "i" : 40,
+        "op" : "ios18.transpose",
+        "out" : "L16_k_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00015182049920233349,
+        "fn" : "main",
+        "i" : 47,
+        "op" : "ios18.conv",
+        "out" : "L16_v_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.2478864345594906e-07,
+        "fn" : "main",
+        "i" : 49,
+        "op" : "ios18.reshape",
+        "out" : "L16_v_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.0273076724290969e-06,
+        "fn" : "main",
+        "i" : 51,
+        "op" : "ios18.transpose",
+        "out" : "L16_v_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 53,
+        "op" : "ios18.mul",
+        "out" : "L16_qn_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 56,
+        "op" : "ios18.concat",
+        "out" : "L16_qn_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 59,
+        "op" : "ios18.layer_norm",
+        "out" : "L16_qn_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.937921524146709e-06,
+        "fn" : "main",
+        "i" : 66,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_qn_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 68,
+        "op" : "ios18.mul",
+        "out" : "L16_qn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.1978691502192149e-07,
+        "fn" : "main",
+        "i" : 70,
+        "op" : "ios18.mul",
+        "out" : "L16_kn_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 5.674018643837083e-07,
+        "fn" : "main",
+        "i" : 73,
+        "op" : "ios18.concat",
+        "out" : "L16_kn_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.6399680988327997e-06,
+        "fn" : "main",
+        "i" : 76,
+        "op" : "ios18.layer_norm",
+        "out" : "L16_kn_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2479933017729094e-06,
+        "fn" : "main",
+        "i" : 83,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_kn_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 85,
+        "op" : "ios18.mul",
+        "out" : "L16_kn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.4779693758975096e-06,
+        "fn" : "main",
+        "i" : 92,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_q_lo",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.4779693758975096e-06,
+        "fn" : "main",
+        "i" : 99,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_q_hi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3895046373775746e-07,
+        "fn" : "main",
+        "i" : 101,
+        "op" : "ios18.mul",
+        "out" : "L16_q_nhi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1348037287674166e-06,
+        "fn" : "main",
+        "i" : 104,
+        "op" : "ios18.concat",
+        "out" : "L16_q_rot",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 105,
+        "op" : "ios18.mul",
+        "out" : "L16_q_cos",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 106,
+        "op" : "ios18.mul",
+        "out" : "L16_q_sin",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 107,
+        "op" : "ios18.add",
+        "out" : "L16_q_rope",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3300526471060945e-07,
+        "fn" : "main",
+        "i" : 114,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_k_lo",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3300526471060945e-07,
+        "fn" : "main",
+        "i" : 121,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_k_hi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.6020514066400358e-07,
+        "fn" : "main",
+        "i" : 122,
+        "op" : "ios18.mul",
+        "out" : "L16_k_nhi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8370093219185415e-07,
+        "fn" : "main",
+        "i" : 125,
+        "op" : "ios18.concat",
+        "out" : "L16_k_rot",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 126,
+        "op" : "ios18.mul",
+        "out" : "L16_k_cos",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 127,
+        "op" : "ios18.mul",
+        "out" : "L16_k_sin",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.7022055931511247e-06,
+        "fn" : "main",
+        "i" : 128,
+        "op" : "ios18.add",
+        "out" : "L16_k_rope",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.2098631526313393e-05,
+        "fn" : "main",
+        "i" : 129,
+        "op" : "ios18.mul",
+        "out" : "L16_kc_kept",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00011871831565456817,
+        "fn" : "main",
+        "i" : 132,
+        "op" : "ios18.matmul",
+        "out" : "L16_kc_placed",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00049023521082752395,
+        "fn" : "main",
+        "i" : 133,
+        "op" : "ios18.add",
+        "out" : "L16_kc_upd",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.2098631526313393e-05,
+        "fn" : "main",
+        "i" : 134,
+        "op" : "ios18.mul",
+        "out" : "L16_vc_kept",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00011871831565456817,
+        "fn" : "main",
+        "i" : 137,
+        "op" : "ios18.matmul",
+        "out" : "L16_vc_placed",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00049023521082752395,
+        "fn" : "main",
+        "i" : 138,
+        "op" : "ios18.add",
+        "out" : "L16_vc_upd",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023616181235730927,
+        "fn" : "main",
+        "i" : 140,
+        "op" : "ios18.reshape",
+        "out" : "L16_k_g1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0005903949217051941,
+        "fn" : "main",
+        "i" : 142,
+        "op" : "tile",
+        "out" : "L16_k_gt",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00094462642952173226,
+        "fn" : "main",
+        "i" : 144,
+        "op" : "ios18.reshape",
+        "out" : "L16_k_gqa",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023616181235730927,
+        "fn" : "main",
+        "i" : 146,
+        "op" : "ios18.reshape",
+        "out" : "L16_v_g1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0005903949217051941,
+        "fn" : "main",
+        "i" : 148,
+        "op" : "tile",
+        "out" : "L16_v_gt",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00094462642952173226,
+        "fn" : "main",
+        "i" : 150,
+        "op" : "ios18.reshape",
+        "out" : "L16_v_gqa",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00047764070878505288,
+        "fn" : "main",
+        "i" : 153,
+        "op" : "ios18.matmul",
+        "out" : "L16_scores",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8730953047486085e-06,
+        "fn" : "main",
+        "i" : 155,
+        "op" : "ios18.mul",
+        "out" : "L16_scaled",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.1386704922538158e-06,
+        "fn" : "main",
+        "i" : 156,
+        "op" : "ios18.add",
+        "out" : "L16_masked",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 7.3814579760941168e-06,
+        "fn" : "main",
+        "i" : 158,
+        "op" : "ios18.softmax",
+        "out" : "L16_probs",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00047764070878505288,
+        "fn" : "main",
+        "i" : 161,
+        "op" : "ios18.matmul",
+        "out" : "L16_attn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.7443906000729215e-06,
+        "fn" : "main",
+        "i" : 168,
+        "op" : "ios18.conv",
+        "out" : "L16_hgate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5624501544262495e-08,
+        "fn" : "main",
+        "i" : 169,
+        "op" : "ios18.sigmoid",
+        "out" : "L16_hgate_s_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8827564237295312e-08,
+        "fn" : "main",
+        "i" : 171,
+        "op" : "ios18.reshape",
+        "out" : "L16_hgate_s",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.5905899230531539e-08,
+        "fn" : "main",
+        "i" : 173,
+        "op" : "ios18.transpose",
+        "out" : "L16_hgate_t",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.0429095583811716e-08,
+        "fn" : "main",
+        "i" : 175,
+        "op" : "ios18.reshape",
+        "out" : "L16_hgate_r",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2866280557607134e-06,
+        "fn" : "main",
+        "i" : 176,
+        "op" : "ios18.mul",
+        "out" : "L16_attn_gated",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.0912777401011207e-06,
+        "fn" : "main",
+        "i" : 178,
+        "op" : "ios18.transpose",
+        "out" : "L16_attn_t",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 181,
+        "op" : "ios18.reshape",
+        "out" : "L16_attn_flat_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 187,
+        "op" : "ios18.conv",
+        "out" : "L16_o_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 189,
+        "op" : "ios18.reshape",
+        "out" : "L16_o",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 191,
+        "op" : "ios18.mul",
+        "out" : "L16_postnorm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 194,
+        "op" : "ios18.concat",
+        "out" : "L16_postnorm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 197,
+        "op" : "ios18.layer_norm",
+        "out" : "L16_postnorm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 204,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_postnorm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 206,
+        "op" : "ios18.mul",
+        "out" : "L16_postnorm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 207,
+        "op" : "ios18.add",
+        "out" : "L16_res1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 209,
+        "op" : "ios18.mul",
+        "out" : "L16_norm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 212,
+        "op" : "ios18.concat",
+        "out" : "L16_norm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 215,
+        "op" : "ios18.layer_norm",
+        "out" : "L16_norm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 222,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_norm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 224,
+        "op" : "ios18.mul",
+        "out" : "L16_norm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 227,
+        "op" : "ios18.reshape",
+        "out" : "L16_norm2_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 233,
+        "op" : "ios18.conv",
+        "out" : "L16_gate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1479776691829598e-05,
+        "fn" : "main",
+        "i" : 234,
+        "op" : "ios18.silu",
+        "out" : "L16_gate_act_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 241,
+        "op" : "ios18.conv",
+        "out" : "L16_up_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.9365793640434064e-06,
+        "fn" : "main",
+        "i" : 242,
+        "op" : "ios18.mul",
+        "out" : "L16_gated_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 249,
+        "op" : "ios18.conv",
+        "out" : "L16_down_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 251,
+        "op" : "ios18.reshape",
+        "out" : "L16_down",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 253,
+        "op" : "ios18.mul",
+        "out" : "L16_postnorm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 256,
+        "op" : "ios18.concat",
+        "out" : "L16_postnorm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 259,
+        "op" : "ios18.layer_norm",
+        "out" : "L16_postnorm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 266,
+        "op" : "ios18.slice_by_index",
+        "out" : "L16_postnorm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 268,
+        "op" : "ios18.mul",
+        "out" : "L16_postnorm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 269,
+        "op" : "ios18.add",
+        "out" : "L16_res2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 271,
+        "op" : "ios18.mul",
+        "out" : "L17_norm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 274,
+        "op" : "ios18.concat",
+        "out" : "L17_norm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 277,
+        "op" : "ios18.layer_norm",
+        "out" : "L17_norm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 284,
+        "op" : "ios18.slice_by_index",
+        "out" : "L17_norm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 286,
+        "op" : "ios18.mul",
+        "out" : "L17_norm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 289,
+        "op" : "ios18.reshape",
+        "out" : "L17_norm1_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0018218459904280021,
+        "fn" : "main",
+        "i" : 295,
+        "op" : "ios18.conv",
+        "out" : "L17_inproj_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.843011655689833e-06,
+        "fn" : "main",
+        "i" : 297,
+        "op" : "ios18.reshape",
+        "out" : "L17_inproj",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 304,
+        "op" : "ios18.slice_by_index",
+        "out" : "L17_gateB",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 311,
+        "op" : "ios18.slice_by_index",
+        "out" : "L17_x",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 312,
+        "op" : "ios18.mul",
+        "out" : "L17_bx",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 319,
+        "op" : "ios18.slice_by_index",
+        "out" : "L17_gateC",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 7.9436261013719163e-06,
+        "fn" : "main",
+        "i" : 322,
+        "op" : "ios18.concat",
+        "out" : "L17_cv_ext",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.1331596769925271e-05,
+        "fn" : "main",
+        "i" : 329,
+        "op" : "ios18.slice_by_index",
+        "out" : "L17_cv_next",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2964357977698746e-05,
+        "fn" : "main",
+        "i" : 331,
+        "op" : "ios18.reshape",
+        "out" : "L17_window",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.7873158728086813e-05,
+        "fn" : "main",
+        "i" : 333,
+        "op" : "ios18.mul",
+        "out" : "L17_taps",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2501185806020282e-05,
+        "fn" : "main",
+        "i" : 336,
+        "op" : "ios16.reduce_sum",
+        "out" : "L17_conv",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 337,
+        "op" : "ios18.mul",
+        "out" : "L17_cy",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 340,
+        "op" : "ios18.reshape",
+        "out" : "L17_cy_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 346,
+        "op" : "ios18.conv",
+        "out" : "L17_outproj_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 348,
+        "op" : "ios18.reshape",
+        "out" : "L17_outproj",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 350,
+        "op" : "ios18.mul",
+        "out" : "L17_postnorm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 353,
+        "op" : "ios18.concat",
+        "out" : "L17_postnorm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 356,
+        "op" : "ios18.layer_norm",
+        "out" : "L17_postnorm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 363,
+        "op" : "ios18.slice_by_index",
+        "out" : "L17_postnorm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 365,
+        "op" : "ios18.mul",
+        "out" : "L17_postnorm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 366,
+        "op" : "ios18.add",
+        "out" : "L17_res1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 368,
+        "op" : "ios18.mul",
+        "out" : "L17_norm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 371,
+        "op" : "ios18.concat",
+        "out" : "L17_norm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 374,
+        "op" : "ios18.layer_norm",
+        "out" : "L17_norm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 381,
+        "op" : "ios18.slice_by_index",
+        "out" : "L17_norm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 383,
+        "op" : "ios18.mul",
+        "out" : "L17_norm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 386,
+        "op" : "ios18.reshape",
+        "out" : "L17_norm2_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 392,
+        "op" : "ios18.conv",
+        "out" : "L17_gate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1479776691829598e-05,
+        "fn" : "main",
+        "i" : 393,
+        "op" : "ios18.silu",
+        "out" : "L17_gate_act_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 400,
+        "op" : "ios18.conv",
+        "out" : "L17_up_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.9365793640434064e-06,
+        "fn" : "main",
+        "i" : 401,
+        "op" : "ios18.mul",
+        "out" : "L17_gated_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 408,
+        "op" : "ios18.conv",
+        "out" : "L17_down_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 410,
+        "op" : "ios18.reshape",
+        "out" : "L17_down",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 412,
+        "op" : "ios18.mul",
+        "out" : "L17_postnorm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 415,
+        "op" : "ios18.concat",
+        "out" : "L17_postnorm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 418,
+        "op" : "ios18.layer_norm",
+        "out" : "L17_postnorm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 425,
+        "op" : "ios18.slice_by_index",
+        "out" : "L17_postnorm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 427,
+        "op" : "ios18.mul",
+        "out" : "L17_postnorm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 428,
+        "op" : "ios18.add",
+        "out" : "L17_res2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 430,
+        "op" : "ios18.mul",
+        "out" : "L18_norm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 433,
+        "op" : "ios18.concat",
+        "out" : "L18_norm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 436,
+        "op" : "ios18.layer_norm",
+        "out" : "L18_norm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 443,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_norm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 445,
+        "op" : "ios18.mul",
+        "out" : "L18_norm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 448,
+        "op" : "ios18.reshape",
+        "out" : "L18_norm1_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 454,
+        "op" : "ios18.conv",
+        "out" : "L18_q_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2847407917051489e-06,
+        "fn" : "main",
+        "i" : 456,
+        "op" : "ios18.reshape",
+        "out" : "L18_q_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.0912777401011207e-06,
+        "fn" : "main",
+        "i" : 458,
+        "op" : "ios18.transpose",
+        "out" : "L18_q_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00015182049920233349,
+        "fn" : "main",
+        "i" : 465,
+        "op" : "ios18.conv",
+        "out" : "L18_k_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.2478864345594906e-07,
+        "fn" : "main",
+        "i" : 467,
+        "op" : "ios18.reshape",
+        "out" : "L18_k_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.0273076724290969e-06,
+        "fn" : "main",
+        "i" : 469,
+        "op" : "ios18.transpose",
+        "out" : "L18_k_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00015182049920233349,
+        "fn" : "main",
+        "i" : 476,
+        "op" : "ios18.conv",
+        "out" : "L18_v_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.2478864345594906e-07,
+        "fn" : "main",
+        "i" : 478,
+        "op" : "ios18.reshape",
+        "out" : "L18_v_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.0273076724290969e-06,
+        "fn" : "main",
+        "i" : 480,
+        "op" : "ios18.transpose",
+        "out" : "L18_v_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 482,
+        "op" : "ios18.mul",
+        "out" : "L18_qn_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 485,
+        "op" : "ios18.concat",
+        "out" : "L18_qn_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 488,
+        "op" : "ios18.layer_norm",
+        "out" : "L18_qn_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.937921524146709e-06,
+        "fn" : "main",
+        "i" : 495,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_qn_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 497,
+        "op" : "ios18.mul",
+        "out" : "L18_qn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.1978691502192149e-07,
+        "fn" : "main",
+        "i" : 499,
+        "op" : "ios18.mul",
+        "out" : "L18_kn_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 5.674018643837083e-07,
+        "fn" : "main",
+        "i" : 502,
+        "op" : "ios18.concat",
+        "out" : "L18_kn_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.6399680988327997e-06,
+        "fn" : "main",
+        "i" : 505,
+        "op" : "ios18.layer_norm",
+        "out" : "L18_kn_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2479933017729094e-06,
+        "fn" : "main",
+        "i" : 512,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_kn_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 514,
+        "op" : "ios18.mul",
+        "out" : "L18_kn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.4779693758975096e-06,
+        "fn" : "main",
+        "i" : 521,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_q_lo",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.4779693758975096e-06,
+        "fn" : "main",
+        "i" : 528,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_q_hi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3895046373775746e-07,
+        "fn" : "main",
+        "i" : 529,
+        "op" : "ios18.mul",
+        "out" : "L18_q_nhi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1348037287674166e-06,
+        "fn" : "main",
+        "i" : 532,
+        "op" : "ios18.concat",
+        "out" : "L18_q_rot",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 533,
+        "op" : "ios18.mul",
+        "out" : "L18_q_cos",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 534,
+        "op" : "ios18.mul",
+        "out" : "L18_q_sin",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 535,
+        "op" : "ios18.add",
+        "out" : "L18_q_rope",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3300526471060945e-07,
+        "fn" : "main",
+        "i" : 542,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_k_lo",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3300526471060945e-07,
+        "fn" : "main",
+        "i" : 549,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_k_hi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.6020514066400358e-07,
+        "fn" : "main",
+        "i" : 550,
+        "op" : "ios18.mul",
+        "out" : "L18_k_nhi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8370093219185415e-07,
+        "fn" : "main",
+        "i" : 553,
+        "op" : "ios18.concat",
+        "out" : "L18_k_rot",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 554,
+        "op" : "ios18.mul",
+        "out" : "L18_k_cos",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 555,
+        "op" : "ios18.mul",
+        "out" : "L18_k_sin",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.7022055931511247e-06,
+        "fn" : "main",
+        "i" : 556,
+        "op" : "ios18.add",
+        "out" : "L18_k_rope",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.2098631526313393e-05,
+        "fn" : "main",
+        "i" : 557,
+        "op" : "ios18.mul",
+        "out" : "L18_kc_kept",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00011871831565456817,
+        "fn" : "main",
+        "i" : 560,
+        "op" : "ios18.matmul",
+        "out" : "L18_kc_placed",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00049023521082752395,
+        "fn" : "main",
+        "i" : 561,
+        "op" : "ios18.add",
+        "out" : "L18_kc_upd",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.2098631526313393e-05,
+        "fn" : "main",
+        "i" : 562,
+        "op" : "ios18.mul",
+        "out" : "L18_vc_kept",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00011871831565456817,
+        "fn" : "main",
+        "i" : 565,
+        "op" : "ios18.matmul",
+        "out" : "L18_vc_placed",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00049023521082752395,
+        "fn" : "main",
+        "i" : 566,
+        "op" : "ios18.add",
+        "out" : "L18_vc_upd",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023616181235730927,
+        "fn" : "main",
+        "i" : 568,
+        "op" : "ios18.reshape",
+        "out" : "L18_k_g1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0005903949217051941,
+        "fn" : "main",
+        "i" : 570,
+        "op" : "tile",
+        "out" : "L18_k_gt",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00094462642952173226,
+        "fn" : "main",
+        "i" : 572,
+        "op" : "ios18.reshape",
+        "out" : "L18_k_gqa",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023616181235730927,
+        "fn" : "main",
+        "i" : 574,
+        "op" : "ios18.reshape",
+        "out" : "L18_v_g1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0005903949217051941,
+        "fn" : "main",
+        "i" : 576,
+        "op" : "tile",
+        "out" : "L18_v_gt",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00094462642952173226,
+        "fn" : "main",
+        "i" : 578,
+        "op" : "ios18.reshape",
+        "out" : "L18_v_gqa",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00047764070878505288,
+        "fn" : "main",
+        "i" : 581,
+        "op" : "ios18.matmul",
+        "out" : "L18_scores",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8730953047486085e-06,
+        "fn" : "main",
+        "i" : 582,
+        "op" : "ios18.mul",
+        "out" : "L18_scaled",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.1386704922538158e-06,
+        "fn" : "main",
+        "i" : 583,
+        "op" : "ios18.add",
+        "out" : "L18_masked",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 7.3814579760941168e-06,
+        "fn" : "main",
+        "i" : 585,
+        "op" : "ios18.softmax",
+        "out" : "L18_probs",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00047764070878505288,
+        "fn" : "main",
+        "i" : 588,
+        "op" : "ios18.matmul",
+        "out" : "L18_attn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.7443906000729215e-06,
+        "fn" : "main",
+        "i" : 595,
+        "op" : "ios18.conv",
+        "out" : "L18_hgate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5624501544262495e-08,
+        "fn" : "main",
+        "i" : 596,
+        "op" : "ios18.sigmoid",
+        "out" : "L18_hgate_s_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8827564237295312e-08,
+        "fn" : "main",
+        "i" : 598,
+        "op" : "ios18.reshape",
+        "out" : "L18_hgate_s",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.5905899230531539e-08,
+        "fn" : "main",
+        "i" : 600,
+        "op" : "ios18.transpose",
+        "out" : "L18_hgate_t",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.0429095583811716e-08,
+        "fn" : "main",
+        "i" : 602,
+        "op" : "ios18.reshape",
+        "out" : "L18_hgate_r",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2866280557607134e-06,
+        "fn" : "main",
+        "i" : 603,
+        "op" : "ios18.mul",
+        "out" : "L18_attn_gated",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.0912777401011207e-06,
+        "fn" : "main",
+        "i" : 605,
+        "op" : "ios18.transpose",
+        "out" : "L18_attn_t",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 608,
+        "op" : "ios18.reshape",
+        "out" : "L18_attn_flat_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 614,
+        "op" : "ios18.conv",
+        "out" : "L18_o_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 616,
+        "op" : "ios18.reshape",
+        "out" : "L18_o",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 618,
+        "op" : "ios18.mul",
+        "out" : "L18_postnorm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 621,
+        "op" : "ios18.concat",
+        "out" : "L18_postnorm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 624,
+        "op" : "ios18.layer_norm",
+        "out" : "L18_postnorm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 631,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_postnorm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 633,
+        "op" : "ios18.mul",
+        "out" : "L18_postnorm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 634,
+        "op" : "ios18.add",
+        "out" : "L18_res1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 636,
+        "op" : "ios18.mul",
+        "out" : "L18_norm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 639,
+        "op" : "ios18.concat",
+        "out" : "L18_norm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 642,
+        "op" : "ios18.layer_norm",
+        "out" : "L18_norm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 649,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_norm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 651,
+        "op" : "ios18.mul",
+        "out" : "L18_norm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 654,
+        "op" : "ios18.reshape",
+        "out" : "L18_norm2_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 660,
+        "op" : "ios18.conv",
+        "out" : "L18_gate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1479776691829598e-05,
+        "fn" : "main",
+        "i" : 661,
+        "op" : "ios18.silu",
+        "out" : "L18_gate_act_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 668,
+        "op" : "ios18.conv",
+        "out" : "L18_up_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.9365793640434064e-06,
+        "fn" : "main",
+        "i" : 669,
+        "op" : "ios18.mul",
+        "out" : "L18_gated_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 676,
+        "op" : "ios18.conv",
+        "out" : "L18_down_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 678,
+        "op" : "ios18.reshape",
+        "out" : "L18_down",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 680,
+        "op" : "ios18.mul",
+        "out" : "L18_postnorm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 683,
+        "op" : "ios18.concat",
+        "out" : "L18_postnorm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 686,
+        "op" : "ios18.layer_norm",
+        "out" : "L18_postnorm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 693,
+        "op" : "ios18.slice_by_index",
+        "out" : "L18_postnorm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 695,
+        "op" : "ios18.mul",
+        "out" : "L18_postnorm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 696,
+        "op" : "ios18.add",
+        "out" : "L18_res2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 698,
+        "op" : "ios18.mul",
+        "out" : "L19_norm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 701,
+        "op" : "ios18.concat",
+        "out" : "L19_norm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 704,
+        "op" : "ios18.layer_norm",
+        "out" : "L19_norm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 711,
+        "op" : "ios18.slice_by_index",
+        "out" : "L19_norm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 713,
+        "op" : "ios18.mul",
+        "out" : "L19_norm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 716,
+        "op" : "ios18.reshape",
+        "out" : "L19_norm1_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0018218459904280021,
+        "fn" : "main",
+        "i" : 722,
+        "op" : "ios18.conv",
+        "out" : "L19_inproj_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.843011655689833e-06,
+        "fn" : "main",
+        "i" : 724,
+        "op" : "ios18.reshape",
+        "out" : "L19_inproj",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 731,
+        "op" : "ios18.slice_by_index",
+        "out" : "L19_gateB",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 738,
+        "op" : "ios18.slice_by_index",
+        "out" : "L19_x",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 739,
+        "op" : "ios18.mul",
+        "out" : "L19_bx",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 746,
+        "op" : "ios18.slice_by_index",
+        "out" : "L19_gateC",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 7.9436261013719163e-06,
+        "fn" : "main",
+        "i" : 749,
+        "op" : "ios18.concat",
+        "out" : "L19_cv_ext",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.1331596769925271e-05,
+        "fn" : "main",
+        "i" : 756,
+        "op" : "ios18.slice_by_index",
+        "out" : "L19_cv_next",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2964357977698746e-05,
+        "fn" : "main",
+        "i" : 758,
+        "op" : "ios18.reshape",
+        "out" : "L19_window",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.7873158728086813e-05,
+        "fn" : "main",
+        "i" : 760,
+        "op" : "ios18.mul",
+        "out" : "L19_taps",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2501185806020282e-05,
+        "fn" : "main",
+        "i" : 763,
+        "op" : "ios16.reduce_sum",
+        "out" : "L19_conv",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 764,
+        "op" : "ios18.mul",
+        "out" : "L19_cy",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 767,
+        "op" : "ios18.reshape",
+        "out" : "L19_cy_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 773,
+        "op" : "ios18.conv",
+        "out" : "L19_outproj_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 775,
+        "op" : "ios18.reshape",
+        "out" : "L19_outproj",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 777,
+        "op" : "ios18.mul",
+        "out" : "L19_postnorm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 780,
+        "op" : "ios18.concat",
+        "out" : "L19_postnorm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 783,
+        "op" : "ios18.layer_norm",
+        "out" : "L19_postnorm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 790,
+        "op" : "ios18.slice_by_index",
+        "out" : "L19_postnorm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 792,
+        "op" : "ios18.mul",
+        "out" : "L19_postnorm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 793,
+        "op" : "ios18.add",
+        "out" : "L19_res1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 795,
+        "op" : "ios18.mul",
+        "out" : "L19_norm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 798,
+        "op" : "ios18.concat",
+        "out" : "L19_norm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 801,
+        "op" : "ios18.layer_norm",
+        "out" : "L19_norm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 808,
+        "op" : "ios18.slice_by_index",
+        "out" : "L19_norm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 810,
+        "op" : "ios18.mul",
+        "out" : "L19_norm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 813,
+        "op" : "ios18.reshape",
+        "out" : "L19_norm2_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 819,
+        "op" : "ios18.conv",
+        "out" : "L19_gate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1479776691829598e-05,
+        "fn" : "main",
+        "i" : 820,
+        "op" : "ios18.silu",
+        "out" : "L19_gate_act_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 827,
+        "op" : "ios18.conv",
+        "out" : "L19_up_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.9365793640434064e-06,
+        "fn" : "main",
+        "i" : 828,
+        "op" : "ios18.mul",
+        "out" : "L19_gated_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 835,
+        "op" : "ios18.conv",
+        "out" : "L19_down_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 837,
+        "op" : "ios18.reshape",
+        "out" : "L19_down",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 839,
+        "op" : "ios18.mul",
+        "out" : "L19_postnorm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 842,
+        "op" : "ios18.concat",
+        "out" : "L19_postnorm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 845,
+        "op" : "ios18.layer_norm",
+        "out" : "L19_postnorm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 852,
+        "op" : "ios18.slice_by_index",
+        "out" : "L19_postnorm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 854,
+        "op" : "ios18.mul",
+        "out" : "L19_postnorm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 855,
+        "op" : "ios18.add",
+        "out" : "L19_res2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 857,
+        "op" : "ios18.mul",
+        "out" : "L20_norm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 860,
+        "op" : "ios18.concat",
+        "out" : "L20_norm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 863,
+        "op" : "ios18.layer_norm",
+        "out" : "L20_norm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 870,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_norm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 872,
+        "op" : "ios18.mul",
+        "out" : "L20_norm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 875,
+        "op" : "ios18.reshape",
+        "out" : "L20_norm1_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 881,
+        "op" : "ios18.conv",
+        "out" : "L20_q_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2847407917051489e-06,
+        "fn" : "main",
+        "i" : 883,
+        "op" : "ios18.reshape",
+        "out" : "L20_q_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.0912777401011207e-06,
+        "fn" : "main",
+        "i" : 885,
+        "op" : "ios18.transpose",
+        "out" : "L20_q_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00015182049920233349,
+        "fn" : "main",
+        "i" : 892,
+        "op" : "ios18.conv",
+        "out" : "L20_k_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.2478864345594906e-07,
+        "fn" : "main",
+        "i" : 894,
+        "op" : "ios18.reshape",
+        "out" : "L20_k_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.0273076724290969e-06,
+        "fn" : "main",
+        "i" : 896,
+        "op" : "ios18.transpose",
+        "out" : "L20_k_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00015182049920233349,
+        "fn" : "main",
+        "i" : 903,
+        "op" : "ios18.conv",
+        "out" : "L20_v_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.2478864345594906e-07,
+        "fn" : "main",
+        "i" : 905,
+        "op" : "ios18.reshape",
+        "out" : "L20_v_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.0273076724290969e-06,
+        "fn" : "main",
+        "i" : 907,
+        "op" : "ios18.transpose",
+        "out" : "L20_v_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 909,
+        "op" : "ios18.mul",
+        "out" : "L20_qn_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 912,
+        "op" : "ios18.concat",
+        "out" : "L20_qn_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 915,
+        "op" : "ios18.layer_norm",
+        "out" : "L20_qn_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.937921524146709e-06,
+        "fn" : "main",
+        "i" : 922,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_qn_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 924,
+        "op" : "ios18.mul",
+        "out" : "L20_qn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.1978691502192149e-07,
+        "fn" : "main",
+        "i" : 926,
+        "op" : "ios18.mul",
+        "out" : "L20_kn_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 5.674018643837083e-07,
+        "fn" : "main",
+        "i" : 929,
+        "op" : "ios18.concat",
+        "out" : "L20_kn_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.6399680988327997e-06,
+        "fn" : "main",
+        "i" : 932,
+        "op" : "ios18.layer_norm",
+        "out" : "L20_kn_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2479933017729094e-06,
+        "fn" : "main",
+        "i" : 939,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_kn_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 941,
+        "op" : "ios18.mul",
+        "out" : "L20_kn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.4779693758975096e-06,
+        "fn" : "main",
+        "i" : 948,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_q_lo",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.4779693758975096e-06,
+        "fn" : "main",
+        "i" : 955,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_q_hi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3895046373775746e-07,
+        "fn" : "main",
+        "i" : 956,
+        "op" : "ios18.mul",
+        "out" : "L20_q_nhi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1348037287674166e-06,
+        "fn" : "main",
+        "i" : 959,
+        "op" : "ios18.concat",
+        "out" : "L20_q_rot",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 960,
+        "op" : "ios18.mul",
+        "out" : "L20_q_cos",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 961,
+        "op" : "ios18.mul",
+        "out" : "L20_q_sin",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 962,
+        "op" : "ios18.add",
+        "out" : "L20_q_rope",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3300526471060945e-07,
+        "fn" : "main",
+        "i" : 969,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_k_lo",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3300526471060945e-07,
+        "fn" : "main",
+        "i" : 976,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_k_hi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.6020514066400358e-07,
+        "fn" : "main",
+        "i" : 977,
+        "op" : "ios18.mul",
+        "out" : "L20_k_nhi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8370093219185415e-07,
+        "fn" : "main",
+        "i" : 980,
+        "op" : "ios18.concat",
+        "out" : "L20_k_rot",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 981,
+        "op" : "ios18.mul",
+        "out" : "L20_k_cos",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 982,
+        "op" : "ios18.mul",
+        "out" : "L20_k_sin",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.7022055931511247e-06,
+        "fn" : "main",
+        "i" : 983,
+        "op" : "ios18.add",
+        "out" : "L20_k_rope",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.2098631526313393e-05,
+        "fn" : "main",
+        "i" : 984,
+        "op" : "ios18.mul",
+        "out" : "L20_kc_kept",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00011871831565456817,
+        "fn" : "main",
+        "i" : 987,
+        "op" : "ios18.matmul",
+        "out" : "L20_kc_placed",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00049023521082752395,
+        "fn" : "main",
+        "i" : 988,
+        "op" : "ios18.add",
+        "out" : "L20_kc_upd",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.2098631526313393e-05,
+        "fn" : "main",
+        "i" : 989,
+        "op" : "ios18.mul",
+        "out" : "L20_vc_kept",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00011871831565456817,
+        "fn" : "main",
+        "i" : 992,
+        "op" : "ios18.matmul",
+        "out" : "L20_vc_placed",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00049023521082752395,
+        "fn" : "main",
+        "i" : 993,
+        "op" : "ios18.add",
+        "out" : "L20_vc_upd",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023616181235730927,
+        "fn" : "main",
+        "i" : 995,
+        "op" : "ios18.reshape",
+        "out" : "L20_k_g1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0005903949217051941,
+        "fn" : "main",
+        "i" : 997,
+        "op" : "tile",
+        "out" : "L20_k_gt",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00094462642952173226,
+        "fn" : "main",
+        "i" : 999,
+        "op" : "ios18.reshape",
+        "out" : "L20_k_gqa",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023616181235730927,
+        "fn" : "main",
+        "i" : 1001,
+        "op" : "ios18.reshape",
+        "out" : "L20_v_g1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0005903949217051941,
+        "fn" : "main",
+        "i" : 1003,
+        "op" : "tile",
+        "out" : "L20_v_gt",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00094462642952173226,
+        "fn" : "main",
+        "i" : 1005,
+        "op" : "ios18.reshape",
+        "out" : "L20_v_gqa",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00047764070878505288,
+        "fn" : "main",
+        "i" : 1008,
+        "op" : "ios18.matmul",
+        "out" : "L20_scores",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8730953047486085e-06,
+        "fn" : "main",
+        "i" : 1009,
+        "op" : "ios18.mul",
+        "out" : "L20_scaled",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.1386704922538158e-06,
+        "fn" : "main",
+        "i" : 1010,
+        "op" : "ios18.add",
+        "out" : "L20_masked",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 7.3814579760941168e-06,
+        "fn" : "main",
+        "i" : 1012,
+        "op" : "ios18.softmax",
+        "out" : "L20_probs",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00047764070878505288,
+        "fn" : "main",
+        "i" : 1015,
+        "op" : "ios18.matmul",
+        "out" : "L20_attn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.7443906000729215e-06,
+        "fn" : "main",
+        "i" : 1022,
+        "op" : "ios18.conv",
+        "out" : "L20_hgate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5624501544262495e-08,
+        "fn" : "main",
+        "i" : 1023,
+        "op" : "ios18.sigmoid",
+        "out" : "L20_hgate_s_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8827564237295312e-08,
+        "fn" : "main",
+        "i" : 1025,
+        "op" : "ios18.reshape",
+        "out" : "L20_hgate_s",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.5905899230531539e-08,
+        "fn" : "main",
+        "i" : 1027,
+        "op" : "ios18.transpose",
+        "out" : "L20_hgate_t",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.0429095583811716e-08,
+        "fn" : "main",
+        "i" : 1029,
+        "op" : "ios18.reshape",
+        "out" : "L20_hgate_r",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2866280557607134e-06,
+        "fn" : "main",
+        "i" : 1030,
+        "op" : "ios18.mul",
+        "out" : "L20_attn_gated",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.0912777401011207e-06,
+        "fn" : "main",
+        "i" : 1032,
+        "op" : "ios18.transpose",
+        "out" : "L20_attn_t",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1035,
+        "op" : "ios18.reshape",
+        "out" : "L20_attn_flat_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 1041,
+        "op" : "ios18.conv",
+        "out" : "L20_o_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 1043,
+        "op" : "ios18.reshape",
+        "out" : "L20_o",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1045,
+        "op" : "ios18.mul",
+        "out" : "L20_postnorm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1048,
+        "op" : "ios18.concat",
+        "out" : "L20_postnorm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1051,
+        "op" : "ios18.layer_norm",
+        "out" : "L20_postnorm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1058,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_postnorm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1060,
+        "op" : "ios18.mul",
+        "out" : "L20_postnorm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1061,
+        "op" : "ios18.add",
+        "out" : "L20_res1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1063,
+        "op" : "ios18.mul",
+        "out" : "L20_norm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1066,
+        "op" : "ios18.concat",
+        "out" : "L20_norm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1069,
+        "op" : "ios18.layer_norm",
+        "out" : "L20_norm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1076,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_norm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1078,
+        "op" : "ios18.mul",
+        "out" : "L20_norm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1081,
+        "op" : "ios18.reshape",
+        "out" : "L20_norm2_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1087,
+        "op" : "ios18.conv",
+        "out" : "L20_gate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1479776691829598e-05,
+        "fn" : "main",
+        "i" : 1088,
+        "op" : "ios18.silu",
+        "out" : "L20_gate_act_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1095,
+        "op" : "ios18.conv",
+        "out" : "L20_up_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.9365793640434064e-06,
+        "fn" : "main",
+        "i" : 1096,
+        "op" : "ios18.mul",
+        "out" : "L20_gated_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1103,
+        "op" : "ios18.conv",
+        "out" : "L20_down_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 1105,
+        "op" : "ios18.reshape",
+        "out" : "L20_down",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1107,
+        "op" : "ios18.mul",
+        "out" : "L20_postnorm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1110,
+        "op" : "ios18.concat",
+        "out" : "L20_postnorm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1113,
+        "op" : "ios18.layer_norm",
+        "out" : "L20_postnorm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1120,
+        "op" : "ios18.slice_by_index",
+        "out" : "L20_postnorm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1122,
+        "op" : "ios18.mul",
+        "out" : "L20_postnorm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1123,
+        "op" : "ios18.add",
+        "out" : "L20_res2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1125,
+        "op" : "ios18.mul",
+        "out" : "L21_norm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1128,
+        "op" : "ios18.concat",
+        "out" : "L21_norm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1131,
+        "op" : "ios18.layer_norm",
+        "out" : "L21_norm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1138,
+        "op" : "ios18.slice_by_index",
+        "out" : "L21_norm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1140,
+        "op" : "ios18.mul",
+        "out" : "L21_norm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1143,
+        "op" : "ios18.reshape",
+        "out" : "L21_norm1_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0018218459904280021,
+        "fn" : "main",
+        "i" : 1149,
+        "op" : "ios18.conv",
+        "out" : "L21_inproj_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.843011655689833e-06,
+        "fn" : "main",
+        "i" : 1151,
+        "op" : "ios18.reshape",
+        "out" : "L21_inproj",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 1158,
+        "op" : "ios18.slice_by_index",
+        "out" : "L21_gateB",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 1165,
+        "op" : "ios18.slice_by_index",
+        "out" : "L21_x",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1166,
+        "op" : "ios18.mul",
+        "out" : "L21_bx",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 1173,
+        "op" : "ios18.slice_by_index",
+        "out" : "L21_gateC",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 7.9436261013719163e-06,
+        "fn" : "main",
+        "i" : 1176,
+        "op" : "ios18.concat",
+        "out" : "L21_cv_ext",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.1331596769925271e-05,
+        "fn" : "main",
+        "i" : 1183,
+        "op" : "ios18.slice_by_index",
+        "out" : "L21_cv_next",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2964357977698746e-05,
+        "fn" : "main",
+        "i" : 1185,
+        "op" : "ios18.reshape",
+        "out" : "L21_window",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.7873158728086813e-05,
+        "fn" : "main",
+        "i" : 1187,
+        "op" : "ios18.mul",
+        "out" : "L21_taps",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2501185806020282e-05,
+        "fn" : "main",
+        "i" : 1190,
+        "op" : "ios16.reduce_sum",
+        "out" : "L21_conv",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1191,
+        "op" : "ios18.mul",
+        "out" : "L21_cy",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1194,
+        "op" : "ios18.reshape",
+        "out" : "L21_cy_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 1200,
+        "op" : "ios18.conv",
+        "out" : "L21_outproj_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 1202,
+        "op" : "ios18.reshape",
+        "out" : "L21_outproj",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1204,
+        "op" : "ios18.mul",
+        "out" : "L21_postnorm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1207,
+        "op" : "ios18.concat",
+        "out" : "L21_postnorm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1210,
+        "op" : "ios18.layer_norm",
+        "out" : "L21_postnorm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1217,
+        "op" : "ios18.slice_by_index",
+        "out" : "L21_postnorm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1219,
+        "op" : "ios18.mul",
+        "out" : "L21_postnorm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1220,
+        "op" : "ios18.add",
+        "out" : "L21_res1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1222,
+        "op" : "ios18.mul",
+        "out" : "L21_norm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1225,
+        "op" : "ios18.concat",
+        "out" : "L21_norm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1228,
+        "op" : "ios18.layer_norm",
+        "out" : "L21_norm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1235,
+        "op" : "ios18.slice_by_index",
+        "out" : "L21_norm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1237,
+        "op" : "ios18.mul",
+        "out" : "L21_norm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1240,
+        "op" : "ios18.reshape",
+        "out" : "L21_norm2_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1246,
+        "op" : "ios18.conv",
+        "out" : "L21_gate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1479776691829598e-05,
+        "fn" : "main",
+        "i" : 1247,
+        "op" : "ios18.silu",
+        "out" : "L21_gate_act_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1254,
+        "op" : "ios18.conv",
+        "out" : "L21_up_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.9365793640434064e-06,
+        "fn" : "main",
+        "i" : 1255,
+        "op" : "ios18.mul",
+        "out" : "L21_gated_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1262,
+        "op" : "ios18.conv",
+        "out" : "L21_down_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 1264,
+        "op" : "ios18.reshape",
+        "out" : "L21_down",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1266,
+        "op" : "ios18.mul",
+        "out" : "L21_postnorm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1269,
+        "op" : "ios18.concat",
+        "out" : "L21_postnorm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1272,
+        "op" : "ios18.layer_norm",
+        "out" : "L21_postnorm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1279,
+        "op" : "ios18.slice_by_index",
+        "out" : "L21_postnorm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1281,
+        "op" : "ios18.mul",
+        "out" : "L21_postnorm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1282,
+        "op" : "ios18.add",
+        "out" : "L21_res2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1284,
+        "op" : "ios18.mul",
+        "out" : "L22_norm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1287,
+        "op" : "ios18.concat",
+        "out" : "L22_norm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1290,
+        "op" : "ios18.layer_norm",
+        "out" : "L22_norm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1297,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_norm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1299,
+        "op" : "ios18.mul",
+        "out" : "L22_norm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1302,
+        "op" : "ios18.reshape",
+        "out" : "L22_norm1_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 1308,
+        "op" : "ios18.conv",
+        "out" : "L22_q_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2847407917051489e-06,
+        "fn" : "main",
+        "i" : 1310,
+        "op" : "ios18.reshape",
+        "out" : "L22_q_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.0912777401011207e-06,
+        "fn" : "main",
+        "i" : 1312,
+        "op" : "ios18.transpose",
+        "out" : "L22_q_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00015182049920233349,
+        "fn" : "main",
+        "i" : 1319,
+        "op" : "ios18.conv",
+        "out" : "L22_k_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.2478864345594906e-07,
+        "fn" : "main",
+        "i" : 1321,
+        "op" : "ios18.reshape",
+        "out" : "L22_k_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.0273076724290969e-06,
+        "fn" : "main",
+        "i" : 1323,
+        "op" : "ios18.transpose",
+        "out" : "L22_k_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00015182049920233349,
+        "fn" : "main",
+        "i" : 1330,
+        "op" : "ios18.conv",
+        "out" : "L22_v_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.2478864345594906e-07,
+        "fn" : "main",
+        "i" : 1332,
+        "op" : "ios18.reshape",
+        "out" : "L22_v_split",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.0273076724290969e-06,
+        "fn" : "main",
+        "i" : 1334,
+        "op" : "ios18.transpose",
+        "out" : "L22_v_heads",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1336,
+        "op" : "ios18.mul",
+        "out" : "L22_qn_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1339,
+        "op" : "ios18.concat",
+        "out" : "L22_qn_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1342,
+        "op" : "ios18.layer_norm",
+        "out" : "L22_qn_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.937921524146709e-06,
+        "fn" : "main",
+        "i" : 1349,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_qn_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 1351,
+        "op" : "ios18.mul",
+        "out" : "L22_qn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.1978691502192149e-07,
+        "fn" : "main",
+        "i" : 1353,
+        "op" : "ios18.mul",
+        "out" : "L22_kn_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 5.674018643837083e-07,
+        "fn" : "main",
+        "i" : 1356,
+        "op" : "ios18.concat",
+        "out" : "L22_kn_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.6399680988327997e-06,
+        "fn" : "main",
+        "i" : 1359,
+        "op" : "ios18.layer_norm",
+        "out" : "L22_kn_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2479933017729094e-06,
+        "fn" : "main",
+        "i" : 1366,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_kn_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 1368,
+        "op" : "ios18.mul",
+        "out" : "L22_kn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.4779693758975096e-06,
+        "fn" : "main",
+        "i" : 1375,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_q_lo",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.4779693758975096e-06,
+        "fn" : "main",
+        "i" : 1382,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_q_hi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3895046373775746e-07,
+        "fn" : "main",
+        "i" : 1383,
+        "op" : "ios18.mul",
+        "out" : "L22_q_nhi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1348037287674166e-06,
+        "fn" : "main",
+        "i" : 1386,
+        "op" : "ios18.concat",
+        "out" : "L22_q_rot",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 1387,
+        "op" : "ios18.mul",
+        "out" : "L22_q_cos",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.3564450820423024e-06,
+        "fn" : "main",
+        "i" : 1388,
+        "op" : "ios18.mul",
+        "out" : "L22_q_sin",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1389,
+        "op" : "ios18.add",
+        "out" : "L22_q_rope",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3300526471060945e-07,
+        "fn" : "main",
+        "i" : 1396,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_k_lo",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.3300526471060945e-07,
+        "fn" : "main",
+        "i" : 1403,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_k_hi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.6020514066400358e-07,
+        "fn" : "main",
+        "i" : 1404,
+        "op" : "ios18.mul",
+        "out" : "L22_k_nhi",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8370093219185415e-07,
+        "fn" : "main",
+        "i" : 1407,
+        "op" : "ios18.concat",
+        "out" : "L22_k_rot",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 1408,
+        "op" : "ios18.mul",
+        "out" : "L22_k_cos",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.9895443589479491e-07,
+        "fn" : "main",
+        "i" : 1409,
+        "op" : "ios18.mul",
+        "out" : "L22_k_sin",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.7022055931511247e-06,
+        "fn" : "main",
+        "i" : 1410,
+        "op" : "ios18.add",
+        "out" : "L22_k_rope",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.2098631526313393e-05,
+        "fn" : "main",
+        "i" : 1411,
+        "op" : "ios18.mul",
+        "out" : "L22_kc_kept",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00011871831565456817,
+        "fn" : "main",
+        "i" : 1414,
+        "op" : "ios18.matmul",
+        "out" : "L22_kc_placed",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00049023521082752395,
+        "fn" : "main",
+        "i" : 1415,
+        "op" : "ios18.add",
+        "out" : "L22_kc_upd",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.2098631526313393e-05,
+        "fn" : "main",
+        "i" : 1416,
+        "op" : "ios18.mul",
+        "out" : "L22_vc_kept",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00011871831565456817,
+        "fn" : "main",
+        "i" : 1419,
+        "op" : "ios18.matmul",
+        "out" : "L22_vc_placed",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00049023521082752395,
+        "fn" : "main",
+        "i" : 1420,
+        "op" : "ios18.add",
+        "out" : "L22_vc_upd",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023616181235730927,
+        "fn" : "main",
+        "i" : 1422,
+        "op" : "ios18.reshape",
+        "out" : "L22_k_g1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0005903949217051941,
+        "fn" : "main",
+        "i" : 1424,
+        "op" : "tile",
+        "out" : "L22_k_gt",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00094462642952173226,
+        "fn" : "main",
+        "i" : 1426,
+        "op" : "ios18.reshape",
+        "out" : "L22_k_gqa",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023616181235730927,
+        "fn" : "main",
+        "i" : 1428,
+        "op" : "ios18.reshape",
+        "out" : "L22_v_g1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0005903949217051941,
+        "fn" : "main",
+        "i" : 1430,
+        "op" : "tile",
+        "out" : "L22_v_gt",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00094462642952173226,
+        "fn" : "main",
+        "i" : 1432,
+        "op" : "ios18.reshape",
+        "out" : "L22_v_gqa",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00047764070878505288,
+        "fn" : "main",
+        "i" : 1435,
+        "op" : "ios18.matmul",
+        "out" : "L22_scores",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8730953047486085e-06,
+        "fn" : "main",
+        "i" : 1436,
+        "op" : "ios18.mul",
+        "out" : "L22_scaled",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.1386704922538158e-06,
+        "fn" : "main",
+        "i" : 1437,
+        "op" : "ios18.add",
+        "out" : "L22_masked",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 7.3814579760941168e-06,
+        "fn" : "main",
+        "i" : 1439,
+        "op" : "ios18.softmax",
+        "out" : "L22_probs",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00047764070878505288,
+        "fn" : "main",
+        "i" : 1442,
+        "op" : "ios18.matmul",
+        "out" : "L22_attn",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.7443906000729215e-06,
+        "fn" : "main",
+        "i" : 1449,
+        "op" : "ios18.conv",
+        "out" : "L22_hgate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5624501544262495e-08,
+        "fn" : "main",
+        "i" : 1450,
+        "op" : "ios18.sigmoid",
+        "out" : "L22_hgate_s_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.8827564237295312e-08,
+        "fn" : "main",
+        "i" : 1452,
+        "op" : "ios18.reshape",
+        "out" : "L22_hgate_s",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.5905899230531539e-08,
+        "fn" : "main",
+        "i" : 1454,
+        "op" : "ios18.transpose",
+        "out" : "L22_hgate_t",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.0429095583811716e-08,
+        "fn" : "main",
+        "i" : 1456,
+        "op" : "ios18.reshape",
+        "out" : "L22_hgate_r",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2866280557607134e-06,
+        "fn" : "main",
+        "i" : 1457,
+        "op" : "ios18.mul",
+        "out" : "L22_attn_gated",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.0912777401011207e-06,
+        "fn" : "main",
+        "i" : 1459,
+        "op" : "ios18.transpose",
+        "out" : "L22_attn_t",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1462,
+        "op" : "ios18.reshape",
+        "out" : "L22_attn_flat_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 1468,
+        "op" : "ios18.conv",
+        "out" : "L22_o_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 1470,
+        "op" : "ios18.reshape",
+        "out" : "L22_o",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1472,
+        "op" : "ios18.mul",
+        "out" : "L22_postnorm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1475,
+        "op" : "ios18.concat",
+        "out" : "L22_postnorm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1478,
+        "op" : "ios18.layer_norm",
+        "out" : "L22_postnorm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1485,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_postnorm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1487,
+        "op" : "ios18.mul",
+        "out" : "L22_postnorm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1488,
+        "op" : "ios18.add",
+        "out" : "L22_res1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1490,
+        "op" : "ios18.mul",
+        "out" : "L22_norm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1493,
+        "op" : "ios18.concat",
+        "out" : "L22_norm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1496,
+        "op" : "ios18.layer_norm",
+        "out" : "L22_norm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1503,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_norm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1505,
+        "op" : "ios18.mul",
+        "out" : "L22_norm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1508,
+        "op" : "ios18.reshape",
+        "out" : "L22_norm2_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1514,
+        "op" : "ios18.conv",
+        "out" : "L22_gate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1479776691829598e-05,
+        "fn" : "main",
+        "i" : 1515,
+        "op" : "ios18.silu",
+        "out" : "L22_gate_act_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1522,
+        "op" : "ios18.conv",
+        "out" : "L22_up_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.9365793640434064e-06,
+        "fn" : "main",
+        "i" : 1523,
+        "op" : "ios18.mul",
+        "out" : "L22_gated_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1530,
+        "op" : "ios18.conv",
+        "out" : "L22_down_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 1532,
+        "op" : "ios18.reshape",
+        "out" : "L22_down",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1534,
+        "op" : "ios18.mul",
+        "out" : "L22_postnorm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1537,
+        "op" : "ios18.concat",
+        "out" : "L22_postnorm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1540,
+        "op" : "ios18.layer_norm",
+        "out" : "L22_postnorm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1547,
+        "op" : "ios18.slice_by_index",
+        "out" : "L22_postnorm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1549,
+        "op" : "ios18.mul",
+        "out" : "L22_postnorm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1550,
+        "op" : "ios18.add",
+        "out" : "L22_res2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1552,
+        "op" : "ios18.mul",
+        "out" : "L23_norm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1555,
+        "op" : "ios18.concat",
+        "out" : "L23_norm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1558,
+        "op" : "ios18.layer_norm",
+        "out" : "L23_norm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1565,
+        "op" : "ios18.slice_by_index",
+        "out" : "L23_norm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1567,
+        "op" : "ios18.mul",
+        "out" : "L23_norm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1570,
+        "op" : "ios18.reshape",
+        "out" : "L23_norm1_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0018218459904280021,
+        "fn" : "main",
+        "i" : 1576,
+        "op" : "ios18.conv",
+        "out" : "L23_inproj_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 9.843011655689833e-06,
+        "fn" : "main",
+        "i" : 1578,
+        "op" : "ios18.reshape",
+        "out" : "L23_inproj",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 1585,
+        "op" : "ios18.slice_by_index",
+        "out" : "L23_gateB",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 1592,
+        "op" : "ios18.slice_by_index",
+        "out" : "L23_x",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1593,
+        "op" : "ios18.mul",
+        "out" : "L23_bx",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5718838804300722e-06,
+        "fn" : "main",
+        "i" : 1600,
+        "op" : "ios18.slice_by_index",
+        "out" : "L23_gateC",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 7.9436261013719163e-06,
+        "fn" : "main",
+        "i" : 1603,
+        "op" : "ios18.concat",
+        "out" : "L23_cv_ext",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.1331596769925271e-05,
+        "fn" : "main",
+        "i" : 1610,
+        "op" : "ios18.slice_by_index",
+        "out" : "L23_cv_next",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2964357977698746e-05,
+        "fn" : "main",
+        "i" : 1612,
+        "op" : "ios18.reshape",
+        "out" : "L23_window",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.7873158728086813e-05,
+        "fn" : "main",
+        "i" : 1614,
+        "op" : "ios18.mul",
+        "out" : "L23_taps",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2501185806020282e-05,
+        "fn" : "main",
+        "i" : 1617,
+        "op" : "ios16.reduce_sum",
+        "out" : "L23_conv",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1618,
+        "op" : "ios18.mul",
+        "out" : "L23_cy",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1621,
+        "op" : "ios18.reshape",
+        "out" : "L23_cy_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00060728199680933396,
+        "fn" : "main",
+        "i" : 1627,
+        "op" : "ios18.conv",
+        "out" : "L23_outproj_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 1629,
+        "op" : "ios18.reshape",
+        "out" : "L23_outproj",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1631,
+        "op" : "ios18.mul",
+        "out" : "L23_postnorm1_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1634,
+        "op" : "ios18.concat",
+        "out" : "L23_postnorm1_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1637,
+        "op" : "ios18.layer_norm",
+        "out" : "L23_postnorm1_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1644,
+        "op" : "ios18.slice_by_index",
+        "out" : "L23_postnorm1_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1646,
+        "op" : "ios18.mul",
+        "out" : "L23_postnorm1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1647,
+        "op" : "ios18.add",
+        "out" : "L23_res1",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1649,
+        "op" : "ios18.mul",
+        "out" : "L23_norm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1652,
+        "op" : "ios18.concat",
+        "out" : "L23_norm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1655,
+        "op" : "ios18.layer_norm",
+        "out" : "L23_norm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1662,
+        "op" : "ios18.slice_by_index",
+        "out" : "L23_norm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1664,
+        "op" : "ios18.mul",
+        "out" : "L23_norm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1667,
+        "op" : "ios18.reshape",
+        "out" : "L23_norm2_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1673,
+        "op" : "ios18.conv",
+        "out" : "L23_gate_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.1479776691829598e-05,
+        "fn" : "main",
+        "i" : 1674,
+        "op" : "ios18.silu",
+        "out" : "L23_gate_act_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1681,
+        "op" : "ios18.conv",
+        "out" : "L23_up_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 8.9365793640434064e-06,
+        "fn" : "main",
+        "i" : 1682,
+        "op" : "ios18.mul",
+        "out" : "L23_gated_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.0021254869888326687,
+        "fn" : "main",
+        "i" : 1689,
+        "op" : "ios18.conv",
+        "out" : "L23_down_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.283139260358633e-06,
+        "fn" : "main",
+        "i" : 1691,
+        "op" : "ios18.reshape",
+        "out" : "L23_down",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1693,
+        "op" : "ios18.mul",
+        "out" : "L23_postnorm2_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1696,
+        "op" : "ios18.concat",
+        "out" : "L23_postnorm2_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1699,
+        "op" : "ios18.layer_norm",
+        "out" : "L23_postnorm2_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1706,
+        "op" : "ios18.slice_by_index",
+        "out" : "L23_postnorm2_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1708,
+        "op" : "ios18.mul",
+        "out" : "L23_postnorm2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.8088223726044988e-06,
+        "fn" : "main",
+        "i" : 1709,
+        "op" : "ios18.add",
+        "out" : "L23_res2",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 1.2772775611694293e-06,
+        "fn" : "main",
+        "i" : 1711,
+        "op" : "ios18.mul",
+        "out" : "final_norm_unit_neg",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.2696074575348332e-06,
+        "fn" : "main",
+        "i" : 1714,
+        "op" : "ios18.concat",
+        "out" : "final_norm_unit_cat",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 6.5598723953311988e-06,
+        "fn" : "main",
+        "i" : 1717,
+        "op" : "ios18.layer_norm",
+        "out" : "final_norm_unit_ln",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 4.9319157815972731e-06,
+        "fn" : "main",
+        "i" : 1724,
+        "op" : "ios18.slice_by_index",
+        "out" : "final_norm_unit_half",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 2.5533083897266874e-06,
+        "fn" : "main",
+        "i" : 1726,
+        "op" : "ios18.mul",
+        "out" : "final_norm",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 3.2863423230516653e-06,
+        "fn" : "main",
+        "i" : 1729,
+        "op" : "ios18.reshape",
+        "out" : "final_norm_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.037955124800583377,
+        "fn" : "main",
+        "i" : 1735,
+        "op" : "ios18.conv",
+        "out" : "logits_nc11",
+        "preferred" : "ANE",
+        "supported" : [
+          "ANE",
+          "CPU"
+        ]
+      },
+      {
+        "cost" : 0.00023313636263086267,
+        "fn" : "main",
+        "i" : 1737,
+        "op" : "ios18.reshape",
+        "out" : "logits",
+        "preferred" : "CPU",
+        "supported" : [
+          "CPU"
+        ]
+      }
+    ],
+    "seconds" : 21.067628026008606,
+    "summary" : {
+      "ane" : 547,
+      "aneFraction" : 0.99817518248175185,
+      "aneSupported" : 547,
+      "aneUnsupportedTypes" : {
+        "ios18.reshape" : 1
+      },
+      "assigned" : 548,
+      "cpu" : 1,
+      "gpu" : 0,
+      "none" : 1190
+    }
+  },
+  "schema" : "anec.oracle.v1",
+  "timestamp" : "2026-11-11T20:44:01Z",
+  "wallSeconds" : 24.138418078422546
+}

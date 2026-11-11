@@ -13,7 +13,64 @@ before relying on it.
 Not affiliated with or endorsed by Liquid AI. LFM3 is Liquid AI's model; this is a derivative
 distributed under the [LFM Open License v1.0](LICENSE).
 
+## Current weights: q1 (added 2026-11-11)
+
+The bundles named `q1` carry a second set of 4-bit weights for the same pruned model:
+palettes made with an error-compensating method (GPTQ) for this project's earlier per-layer
+build, moved into this two-function build unchanged. The first bundles on this page use
+plain k-means palettes and stay as the baseline. Both sets compile to the same programs, so
+placement, size and structure are identical; only the weight values differ. Use q1.
+
+| | q1 weights | First (k-means) weights |
+|---|---|---|
+| Same top-1 token as the teacher over 270 positions, on the ANE | 252 | 251 |
+| Mean KL from the teacher, on the ANE | 0.188 | 0.240 |
+| Logit cosine with the teacher, on the ANE | 0.924 | 0.859 |
+| First 64 positions, on the ANE | 47 of 64, KL 0.315 | 45 of 64, KL 0.955 |
+| Perplexity on the passage (teacher 1.644) | 1.911 | 1.983 |
+| The same program in exact arithmetic (reference interpreter) | 253 of 270, KL 0.1125 | not run |
+| Operations planned on the ANE | 1582 of 1583; prefill 1764 of 1765 | the same |
+| Decode, three runs of 60–66 s | 40.2 / 40.9 / 42.0 tok/s (mean step), load average 8–17 | 34.0 / 32.4 / 29.7 tok/s in an earlier session, load average 35–56 |
+| ANE power in those runs | 1.31 / 1.28 / 1.30 W, 31–33 mJ per token | 1.13 / 1.07 / 0.93 W, 31–33 mJ per token |
+
+What stands behind the q1 column (`evidence/q1-combined-20261111/`):
+
+- **The move is exact.** The verifier recomputed all 143 palettes of the q1 bundle from the
+  converted checkpoint with zero error and found the bundle equal to its source program bit
+  for bit (12 checks pass, 0 fail, 1 skipped).
+- **It is the same model as in the earlier build.** In exact arithmetic the q1 program
+  scores 253 of 270 and KL 0.1125; the earlier build's own record for q1 is 253 of 270 and
+  KL 0.113.
+- **The ANE costs q1 accuracy in this build:** KL 0.1125 in exact arithmetic, 0.188 on the
+  device. The earlier build holds 0.113 on the device by scaling weights so that 16-bit
+  products stay out of the subnormal range. That scaling is not in this compiler yet. A
+  first attempt that kept the scales without adjusting the norms' epsilon made the model
+  worse (KL 0.207 in exact arithmetic) and was dropped.
+- **With the prefill hand-off:** 251 of 270 and KL 0.189 against the teacher; 269 of 270
+  against the run without prefill.
+- **The two speed cells are not a comparison.** They come from different sessions under
+  different load. The programs are the same, so no difference is expected, and none was
+  measured head to head.
+- **This is agreement with a teacher on one passage, not a quality verdict.** The earlier
+  build's frozen evaluation set has not been run on this bundle.
+
+Four chat turns with q1, run from the packaged files with the published runner (single
+runs; reasoning block closed, greedy):
+
+| Prompt | Time to first new token | Reply |
+|---|---|---|
+| What is the capital of France? | 1.03 s (first run of the process; the first call alone took 0.57 s) | The capital of France is **Paris**. It is the country's largest city and its political, economic, and cultural center. |
+| Explain in one sentence why the sky is blue. | 0.64 s | The sky is blue because it scatters incoming sunlight, with shorter wavelengths (like blue) being scattered more efficiently by the molecules in the atmosphere, making the sky appear blue. |
+| The 105-token note to summarize, with prefill | 0.74 s | The city council approved a six-month trial of new bike lanes on Main Street, after public comments and a two-hour discussion, with a decision to proceed despite concerns about parking for shop owners. |
+| Explain RoPE in two sentences | 0.50 s | Wrong again: it expands RoPE as "Rotating Predicted" and had not finished at 128 tokens. |
+
+Three of the four are sound; the RoPE answer is wrong with both sets of weights.
+
 ## Headline numbers
+
+By this project's evidence standard a speed counts as a measurement only on a settled
+machine (one-minute load below 4). No run on this page met that, so every speed here is an
+observation on a loaded machine, with the load stated beside it.
 
 All measured on one machine: MacBook Neo (`Mac17,5`), Apple A18 Pro, 8 GB, macOS 27.3
 (build `26C5035r`), on 2026-11-10 (evening, US Eastern; timestamps in the evidence are UTC
@@ -221,9 +278,11 @@ build, recorded per operation in `evidence/*/seg0{1,2}_dev.oracle.json`:
 | Pruned checkpoint SHA-256 | `92bc789529bbaf1584efd0e8c10a5d5550648531b06391c90e68f71684e9e2cb` (3,306,640,496 bytes, BF16) |
 | Compiler | `anec` 0.2.0 (not public) |
 
-## Output quality
+## Agreement with the teacher (first weights)
 
-Quality was measured against a teacher: the pruned checkpoint itself, run in 32-bit float
+This is parity evidence, not a quality verdict: every figure compares with a teacher on one
+passage. The numbers in this section are for the first (k-means) weights; the q1 numbers
+are in the table at the top. Agreement was measured against a teacher: the pruned checkpoint itself, run in 32-bit float
 by an independent implementation, over a fixed 270-token passage. The bundle was fed the
 passage token by token on the ANE and its logits compared with the teacher's at every
 position.
@@ -253,6 +312,12 @@ Read plainly:
 - **Quality of the pruned checkpoint against the original LFM3-1.7B: not measured.** Every
   accuracy number above compares against the pruned checkpoint, not against Liquid AI's
   model. The pruning was not followed by any recovery training.
+- **No per-position data from the test passage in this repository.** The passage's token
+  ids and the per-position picks were removed from the current files on 2026-11-11 (they
+  remain in the git history), so that the passage can still be used blind elsewhere. Only
+  aggregates are kept.
+- **The device costs q1 accuracy** (KL 0.1125 in exact arithmetic, 0.188 on the ANE). The
+  weight scaling that avoids this is not built in this compiler.
 - **No task or chat evaluation.** Next-token agreement on one 270-token passage, and three
   chat prompts, one of which it answered wrongly.
 - **No long-run or thermal measurement.** The 2026-11-10 speed runs repeat a 28-step decode
@@ -284,6 +349,7 @@ In this repository:
 | `evidence/chat-20261111/` | The 2026-11-11 runs: the three chat records and their token ids, the runner check, the 64-second benchmark runs, the raw power samples (`macmon.jsonl`), the job script and log, and the two small scripts that compute the tables above |
 | `evidence/prefill-20261111/` | The prefill function: its fit record, certificate, plan and per-operation placement evidence, the two comparison runs, the 60-second benchmark runs, the raw power samples, the verifier log, the job script and log, and the script that computes the table |
 | `evidence/prefill-chain-20261111/` | Prefill joined to generation: the three 270-token comparison records, the six chat records and their token ids, the job script and log, and the script that computes the tables |
+| `evidence/q1-combined-20261111/` | The q1 bundle: fit records, certificates, plans and placement evidence for both functions, the verifier log, the carry report (palette hashes and the scale found for every tensor), the exact-arithmetic comparison by position range, the benchmark runs with power samples, four chat records, and the job scripts and logs |
 | `evidence/PRUNING_RECEIPT.json` | What the pruning changed |
 | `tokenizer/` | Tokenizer, chat template and model configuration from the upstream release |
 | `tools/tok.mjs` | Turns a chat message into token ids and token ids back into text |
@@ -294,7 +360,9 @@ As release assets:
 
 | Asset | Contents |
 |---|---|
-| `lfm3-1.7b-pruned7168-lut4-c64.tar` | `seg01_dev.mlpackage`, `seg02_dev.mlpackage`, `plan.json`, `certificate.json`, `semantic.json` for a 64-position context |
+| `lfm3-1.7b-pruned7168-q1-c288.tar` | The current bundle: q1 weights, 288-position context, same contents as the bundles below. Unpacks to `lfm3_q1_C288` |
+| `lfm3-1.7b-pruned7168-q1-c288-prefill32.tar` | The 32-token prefill function for the q1 bundle (1.7 MB; `link-weights.sh` links in the q1 bundle's weight files). Unpacks to `lfm3_q1_C288_prefill32` |
+| `lfm3-1.7b-pruned7168-lut4-c64.tar` | First (k-means) weights. `seg01_dev.mlpackage`, `seg02_dev.mlpackage`, `plan.json`, `certificate.json`, `semantic.json` for a 64-position context |
 | `lfm3-1.7b-pruned7168-lut4-c288.tar` | The same for a 288-position context |
 | `embed_tokens.bf16.bin` | The token-embedding table for the host-side lookup: 128,000 × 2,048, little-endian bfloat16, row-major, 524,288,000 bytes |
 | `lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar` | The 32-token prefill function for the 288-position context: the two compiled programs, `plan.json`, `certificate.json`, `semantic.json`, and `link-weights.sh`, which links in the weight files from the unpacked 288-position bundle and checks their SHA-256 |
@@ -320,15 +388,17 @@ recorded for it. The verifier was not run on the 288-position bundle today.
 ## Running it
 
 You need an Apple-silicon Mac, this repository cloned, and four assets downloaded into it:
-`lfm3-1.7b-pruned7168-lut4-c288.tar`, `lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar`,
-`embed_tokens.bf16.bin` and `lfm3-ane-runner-r2-macos-arm64.tar`.
+`lfm3-1.7b-pruned7168-q1-c288.tar`, `lfm3-1.7b-pruned7168-q1-c288-prefill32.tar`,
+`embed_tokens.bf16.bin` and `lfm3-ane-runner-r2-macos-arm64.tar`. (For the first weights,
+use the `lut4` assets and the folder names `lfm3_lut4_C288` and `lfm3_lut4_C288_prefill32`
+instead.)
 
 ```sh
 # 1. unpack, link the prefill function to the bundle's weights, assemble the model folder
-tar -xf lfm3-1.7b-pruned7168-lut4-c288.tar
-tar -xf lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar
+tar -xf lfm3-1.7b-pruned7168-q1-c288.tar
+tar -xf lfm3-1.7b-pruned7168-q1-c288-prefill32.tar
 tar -xf lfm3-ane-runner-r2-macos-arm64.tar
-./lfm3_lut4_C288_prefill32/link-weights.sh lfm3_lut4_C288
+./lfm3_q1_C288_prefill32/link-weights.sh lfm3_q1_C288
 ./lfm3-ane-runner/setup.sh embed_tokens.bf16.bin
 xattr -d com.apple.quarantine lfm3-ane-runner/anec-run 2>/dev/null || true   # needed if a browser downloaded it
 
@@ -337,8 +407,8 @@ npm install @huggingface/tokenizers @huggingface/jinja
 IDS=$(node tools/tok.mjs encode "What is the capital of France?")
 
 # 3. run on the Neural Engine
-./lfm3-ane-runner/anec-run lfm3_lut4_C288 --model lfm3-ane-runner/model \
-    --prefill lfm3_lut4_C288_prefill32 \
+./lfm3-ane-runner/anec-run lfm3_q1_C288 --model lfm3-ane-runner/model \
+    --prefill lfm3_q1_C288_prefill32 \
     --tokens "$IDS" --generate 128 --units ane --out reply.json
 
 # 4. token ids -> text
@@ -358,19 +428,21 @@ What to expect:
   one token at a time. With it, the wording of the reply can differ (see the prefill
   section).
 - `--units cpu` runs the same functions without the ANE.
-- Steps 1 and 3 were run on the machine above with the downloaded assets. `tools/tok.mjs`
-  was run with Node 22 on Linux, where it reproduces the test passage's token ids; it was
-  not run on macOS.
+- Steps 1 and 3 were run on the machine above with the packaged q1 files and the downloaded
+  runner and embedding table. `tools/tok.mjs` was run with Node 22 on Linux, where it
+  reproduces the test passage's token ids; it was not run on macOS.
 
 To time the prefill function on its own:
 
 ```sh
-./lfm3-ane-runner/anec-run lfm3_lut4_C288_prefill32 --model lfm3-ane-runner/model \
-    --tokens "$(cut -d, -f1-32 evidence/prefill-20261111/fixture256.ids)" --generate 0 --units ane
+IDS32=$(node tools/tok.mjs encode --raw "any text long enough to give at least 32 tokens ..." | cut -d, -f1-32)
+./lfm3-ane-runner/anec-run lfm3_q1_C288_prefill32 --model lfm3-ane-runner/model \
+    --tokens "$IDS32" --generate 0 --units ane
 ```
 
-`--tokens` must then hold a multiple of 32 ids. This was run on the machine above with the
-first runner and gave the same 32 next-token picks as the measured run.
+`--tokens` must then hold a multiple of 32 ids. The same command was run on the machine
+above with the first weights and the first runner, on 32 tokens of the test passage, and
+gave the same 32 next-token picks as the measured run.
 
 If you would rather write your own driver, one decode step, as recorded in `plan.json`:
 

@@ -1,0 +1,23 @@
+=== fit one-token, context 288 2026-11-11T20:42:08Z
+fit: state ioDelta, budget 450 MB -> 2 device segments, all ANE-eligible
+       seg01_dev: 445 MB, 1035 ops, ANE-supported 1035/1035, preferred 1035
+       seg02_dev: 346 MB, 548 ops, ANE-supported 547/548, preferred 547
+fit: state form ioDelta; chosen budget 450 MB; largest ANE-eligible segment measured 445 MB; smallest rejected none; compiled -> /Users/nayte/ane-hot/scratch/lfm3-release-20261111/q1/s1/final
+=== fit prefill 32, context 288 2026-11-11T20:44:25Z
+fit: state ioDelta, budget 450 MB -> 2 device segments, all ANE-eligible
+       seg01_dev: 445 MB, 1161 ops, ANE-supported 1161/1161, preferred 1161
+       seg02_dev: 346 MB, 604 ops, ANE-supported 603/604, preferred 603
+fit: state form ioDelta; chosen budget 450 MB; largest ANE-eligible segment measured 445 MB; smallest rejected none; compiled -> /Users/nayte/ane-hot/scratch/lfm3-release-20261111/q1/s32/final
+=== one-token function over 270 tokens 2026-11-11T20:46:42Z
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=366.3 | decode_ms_med=22.95 | tok_per_s_indicative=43.6 |
+=== with the prefill hand-off over the same 270 tokens 2026-11-11T20:47:23Z
+| prefill | tokens_per_call=32 | calls=8 | tokens=256 | total_ms=1318.4 | tok_per_s_indicative=194.2 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=766.2 | decode_ms_med=23.11 | tok_per_s_indicative=43.3 |
+ANE vs teacher, first 270: compare: n=34560000 maxAbs=13.651158 rms=1.1139052 cos=0.9241672 top1=252/270 meanKL=0.18819
+ANE vs teacher, first 64: compare: n=34560000 maxAbs=13.651158 rms=1.1139052 cos=0.9241672 top1=47/64 meanKL=0.31488
+ANE vs teacher, first 28: compare: n=34560000 maxAbs=13.651158 rms=1.1139052 cos=0.9241672
+with prefill vs teacher, 270: compare: n=34560000 maxAbs=13.651158 rms=1.1139799 cos=0.9241749 top1=251/270 meanKL=0.18896
+with vs without prefill, 270: compare: n=34560000 maxAbs=0.66015625 rms=0.056184802 cos=0.9998027 top1=269/270 meanKL=0.00020
+ANE     nll: rows=269 mean_nll=0.6478 ppl=1.911 target_top1=248/269
+teacher nll: rows=269 mean_nll=0.4974 ppl=1.644 target_top1=250/269
+JOB_DONE
