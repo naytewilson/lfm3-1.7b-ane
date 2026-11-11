@@ -153,6 +153,16 @@ byte-identical to the ones measured: for both functions of both bundles, the SHA
 `certificate.json`, `plan.json` and `semantic.json` are identical files. The two bundles
 share the same weight files; only the compiled program differs with the context size.
 
+The compiler's independent verifier was run on the published 64-position bundle on
+2026-11-11 against the pruned checkpoint and the hardware evidence
+(`evidence/c64/verify-20261111.log`): **12 checks pass, 0 fail, 1 skipped.** It recomputed
+all 143 palettes from the source tensors (worst relative L2 error of a palettized tensor
+against its fp16 source: 0.130), found the packages equal to the source program bit for bit
+on inputs it chose (256,000 output elements and all 35 carried states over 2 chained
+calls), and recomputed the placement as 1582/1583 from the per-operation rows. The skipped
+check is "the device executed every segment": no ANE-versus-CPU output comparison was
+recorded for it. The verifier was not run on the 288-position bundle today.
+
 ## Running it
 
 **The runtime used for the measurements (`anec-run`) is not included.** What is published is
