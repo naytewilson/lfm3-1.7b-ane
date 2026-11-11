@@ -1,0 +1,6 @@
+regression new-vs-published runner, 270 positions identical argmax: true
+with-vs-without prefill, positions with a different argmax: [13] | positions 256..269 after the hand-off identical: true
+tf chain prefill: {"calls":8,"tokens":256,"callMS":[279.5,126.6,120,130.1,125.1,125.5,118.2,112.5]}
+chat run 1 {"promptTokens":105,"newTokens":64,"stopAt":42,"plainFirstNewTokenMS":3376,"chainFirstNewTokenMS":1360,"prefillMS":917,"prefillCallMS":[646,142,129],"prefillTokens":96,"oneTokenPromptSteps":9,"plainGenTokPerS":31,"chainGenTokPerS":28.1,"sameReply":false,"firstDifferentNewToken":9}
+chat run 2 {"promptTokens":105,"newTokens":64,"stopAt":42,"plainFirstNewTokenMS":3352,"chainFirstNewTokenMS":1011,"prefillMS":538,"prefillCallMS":[237,160,141],"prefillTokens":96,"oneTokenPromptSteps":9,"plainGenTokPerS":33.7,"chainGenTokPerS":29.1,"sameReply":false,"firstDifferentNewToken":9}
+chat run 3 {"promptTokens":105,"newTokens":64,"stopAt":42,"plainFirstNewTokenMS":3436,"chainFirstNewTokenMS":1070,"prefillMS":643,"prefillCallMS":[320,169,154],"prefillTokens":96,"oneTokenPromptSteps":9,"plainGenTokPerS":32.6,"chainGenTokPerS":33.9,"sameReply":false,"firstDifferentNewToken":9}

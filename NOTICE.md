@@ -20,7 +20,7 @@ The following files are unmodified copies of upstream files:
 | `tokenizer/tokenizer.json`, `tokenizer/tokenizer_config.json`, `tokenizer/special_tokens_map.json`, `tokenizer/chat_template.jinja`, `tokenizer/generation_config.json` | |
 | `LICENSE` | |
 
-The runner package (`lfm3-ane-runner-macos-arm64.tar`) contains `model/config.json`, the
+Each runner package (`lfm3-ane-runner-macos-arm64.tar`, `lfm3-ane-runner-r2-macos-arm64.tar`) contains `model/config.json`, the
 modified configuration listed above, and `model.safetensors` once `setup.sh` has built it,
 which is `embed_tokens.bf16.bin` behind a 112-byte safetensors header. The `anec-run`
 binary in that package is not derived from the upstream work.

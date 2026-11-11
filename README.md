@@ -104,9 +104,8 @@ reply invents an expansion and had not finished at 128 tokens. Whether the origi
 6-bit model gets it right was not tested.
 
 **Prompt speed in these turns.** The prompt went through the same one-token-per-call path
-as generation, at 31–34 tokens per second (the first call of a turn took 67–83 ms). A
-32-token prefill function now exists (next section), but the runner cannot use it inside a
-chat turn yet.
+as generation, at 31–34 tokens per second (the first call of a turn took 67–83 ms). These
+prompts are shorter than 32 tokens, so the prefill function below would not change them.
 
 ## Prefill function (2026-11-11)
 
@@ -135,17 +134,55 @@ Power was sampled as in the section above and read 0.00 W before and after.
 A call takes about 121 ms once warm; the first call after loading took 254–270 ms. Peak
 resident memory of the runner was 546–592 MB in these runs.
 
-Its limits:
+### Prefill joined to generation (runner r2)
 
-- **It does not speed up a chat turn yet.** The published runner cannot hand the cache this
-  function fills to the one-token function. With the runner it runs on its own: a token
-  count that is a multiple of 32, and `--generate 0`. Joining the two is a change to the
-  runner that has not been made.
+The second runner build (`lfm3-ane-runner-r2-macos-arm64.tar`) takes `--prefill`: the
+prefill function reads the prompt in whole calls of 32 tokens, then the one-token function
+continues from the same cache for the rest of the prompt and for the reply. Measured on the
+same machine on 2026-11-11, 19:47Z–19:51Z; everything is in
+`evidence/prefill-chain-20261111/`.
+
+| Check | Result |
+|---|---|
+| r2 without `--prefill` against the first runner, 270 tokens of the test passage | Same next-token pick at 270 of 270 positions |
+| r2 with `--prefill` against without, same 270 tokens (8 prefill calls, then 14 one-token calls) | Same pick at 269 of 270 positions; logit cosine 0.99946; mean KL 0.00043. The one difference is at position 13, inside the prefill part. All 14 positions after the hand-off are identical |
+
+A chat turn with a 105-token prompt (a short news note to summarize in one sentence), 64
+new tokens, three runs each way. These are single runs outside the benchmark guard, so
+indicative:
+
+| | Without `--prefill` | With `--prefill` |
+|---|---|---|
+| How the prompt is read | 105 one-token calls | 3 calls of 32 tokens, then 9 one-token calls |
+| Time to the first new token | 3.38 / 3.35 / 3.44 s | 1.36 / 1.01 / 1.07 s |
+| Generation rate after that | 31.0 / 33.7 / 32.6 tok/s | 28.1 / 29.1 / 33.9 tok/s |
+
+The first prefill call of a process is slow (0.24–0.65 s against about 0.15 s for the later
+ones), which is the spread in the right-hand column.
+
+**The reply is not the same with and without prefill.** Both start with the same 9 tokens
+and then choose different words:
+
+> The city council approved a six-month trial of proposed bike lanes on Main Street, after a
+> public comment period and a vote approving a trial starting in March, with a review of
+> data on accidents and sales. *(without prefill)*
+
+> The city council approved a six-month trial of new bike lanes on Main Street, after a
+> public comment period, with a review of data on safety and sales. *(with prefill)*
+
+Both are sound summaries. The prefill calls compute the same cache rows in a different
+batch shape, the ANE's 16-bit arithmetic rounds them slightly differently, and greedy
+decoding turns a small difference into a different word once two candidates are close.
+
+The remaining limits of the prefill function:
+
+- **Prompts of 32 tokens or fewer gain nothing.** At least one prompt token always goes
+  through the one-token function, and the rest of the prompt is read in whole calls of 32.
 - **It computes more than a prompt needs.** It produces logits for all 32 positions, though
   only the last matters when reading a prompt. Of the 121 ms per call, about 99 ms is the
   second function, which holds the output head. A variant without the head was not built.
-- **Prompts shorter than 32 tokens**, and what is left over of longer ones, would still go
-  one token at a time.
+- **No guarded benchmark of a chained turn.** The runner refuses `--prefill` together with
+  its sustained-timing mode, so the turn timings above are single runs.
 
 ## What "on the ANE" means here
 
@@ -228,12 +265,13 @@ Read plainly:
   differ on other chips or OS versions.
 - **Fixed context.** A bundle holds at most 64 or 288 positions including the prompt; it
   does not slide or extend. The upstream model's 256K context is not available here.
-- **Prefill is not joined to generation.** In a chat turn the prompt is still read one
-  token per call, at the same speed as generation. The 32-token prefill function is
-  measured on its own only.
+- **Prefill changes the reply.** With `--prefill` the reply can differ in wording from the
+  one produced without it (shown above). Which of the two is closer to the unquantized
+  model was not measured.
 - **The runtime is a binary only.** `anec-run` is published without source. It takes token
   ids and returns token ids, decodes greedily, and has no sampling, streaming or server.
-  It was run only on the machine above.
+  It was run only on the machine above. The r2 build comes from a change that was still
+  under review in its private repository when it was published.
 
 ## What is in this release
 
@@ -245,6 +283,7 @@ In this repository:
 | `evidence/logs/` | Job logs of the teacher check, the accuracy runs and the three timing sessions |
 | `evidence/chat-20261111/` | The 2026-11-11 runs: the three chat records and their token ids, the runner check, the 64-second benchmark runs, the raw power samples (`macmon.jsonl`), the job script and log, and the two small scripts that compute the tables above |
 | `evidence/prefill-20261111/` | The prefill function: its fit record, certificate, plan and per-operation placement evidence, the two comparison runs, the 60-second benchmark runs, the raw power samples, the verifier log, the job script and log, and the script that computes the table |
+| `evidence/prefill-chain-20261111/` | Prefill joined to generation: the three 270-token comparison records, the six chat records and their token ids, the job script and log, and the script that computes the tables |
 | `evidence/PRUNING_RECEIPT.json` | What the pruning changed |
 | `tokenizer/` | Tokenizer, chat template and model configuration from the upstream release |
 | `tools/tok.mjs` | Turns a chat message into token ids and token ids back into text |
@@ -259,7 +298,8 @@ As release assets:
 | `lfm3-1.7b-pruned7168-lut4-c288.tar` | The same for a 288-position context |
 | `embed_tokens.bf16.bin` | The token-embedding table for the host-side lookup: 128,000 × 2,048, little-endian bfloat16, row-major, 524,288,000 bytes |
 | `lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar` | The 32-token prefill function for the 288-position context: the two compiled programs, `plan.json`, `certificate.json`, `semantic.json`, and `link-weights.sh`, which links in the weight files from the unpacked 288-position bundle and checks their SHA-256 |
-| `lfm3-ane-runner-macos-arm64.tar` | The `anec-run` binary (arm64, built for macOS 15 or later, ad-hoc signed, not notarized), `model/config.json`, and `setup.sh` with the 112-byte header that turns the embedding table into the one-tensor `model.safetensors` the runner reads |
+| `lfm3-ane-runner-r2-macos-arm64.tar` | The current runner: the same package as below with an `anec-run` that accepts `--prefill`. Use this one |
+| `lfm3-ane-runner-macos-arm64.tar` | The first runner, kept because the 2026-11-11 chat and power runs used it. The `anec-run` binary (arm64, built for macOS 15 or later, ad-hoc signed, not notarized), `model/config.json`, and `setup.sh` with the 112-byte header that turns the embedding table into the one-tensor `model.safetensors` the runner reads |
 
 The packages published here were rebuilt from the pruned checkpoint on 2026-11-11 and are
 byte-identical to the ones measured: for both functions of both bundles, the SHA-256 of
@@ -279,14 +319,16 @@ recorded for it. The verifier was not run on the 288-position bundle today.
 
 ## Running it
 
-You need an Apple-silicon Mac, this repository cloned, and the three assets
-`lfm3-1.7b-pruned7168-lut4-c288.tar`, `embed_tokens.bf16.bin` and
-`lfm3-ane-runner-macos-arm64.tar` downloaded into it.
+You need an Apple-silicon Mac, this repository cloned, and four assets downloaded into it:
+`lfm3-1.7b-pruned7168-lut4-c288.tar`, `lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar`,
+`embed_tokens.bf16.bin` and `lfm3-ane-runner-r2-macos-arm64.tar`.
 
 ```sh
-# 1. unpack and assemble the runner's model folder
+# 1. unpack, link the prefill function to the bundle's weights, assemble the model folder
 tar -xf lfm3-1.7b-pruned7168-lut4-c288.tar
-tar -xf lfm3-ane-runner-macos-arm64.tar
+tar -xf lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar
+tar -xf lfm3-ane-runner-r2-macos-arm64.tar
+./lfm3_lut4_C288_prefill32/link-weights.sh lfm3_lut4_C288
 ./lfm3-ane-runner/setup.sh embed_tokens.bf16.bin
 xattr -d com.apple.quarantine lfm3-ane-runner/anec-run 2>/dev/null || true   # needed if a browser downloaded it
 
@@ -296,6 +338,7 @@ IDS=$(node tools/tok.mjs encode "What is the capital of France?")
 
 # 3. run on the Neural Engine
 ./lfm3-ane-runner/anec-run lfm3_lut4_C288 --model lfm3-ane-runner/model \
+    --prefill lfm3_lut4_C288_prefill32 \
     --tokens "$IDS" --generate 128 --units ane --out reply.json
 
 # 4. token ids -> text
@@ -311,23 +354,23 @@ What to expect:
   token.
 - Prompt plus reply must fit the bundle's context (288 positions, or 64 with the other
   bundle).
+- `--prefill` only helps a prompt longer than 32 tokens; leave it out and the prompt is read
+  one token at a time. With it, the wording of the reply can differ (see the prefill
+  section).
 - `--units cpu` runs the same functions without the ANE.
 - Steps 1 and 3 were run on the machine above with the downloaded assets. `tools/tok.mjs`
   was run with Node 22 on Linux, where it reproduces the test passage's token ids; it was
   not run on macOS.
 
-To time the prefill function (it cannot continue into generation yet):
+To time the prefill function on its own:
 
 ```sh
-tar -xf lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar
-./lfm3_lut4_C288_prefill32/link-weights.sh lfm3_lut4_C288
 ./lfm3-ane-runner/anec-run lfm3_lut4_C288_prefill32 --model lfm3-ane-runner/model \
     --tokens "$(cut -d, -f1-32 evidence/prefill-20261111/fixture256.ids)" --generate 0 --units ane
 ```
 
-`--tokens` must hold a multiple of 32 ids. These three commands were run on the machine
-above with the downloaded runner and embedding table, and gave the same 32 next-token picks
-as the measured run.
+`--tokens` must then hold a multiple of 32 ids. This was run on the machine above with the
+first runner and gave the same 32 next-token picks as the measured run.
 
 If you would rather write your own driver, one decode step, as recorded in `plan.json`:
 

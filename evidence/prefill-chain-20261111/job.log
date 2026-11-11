@@ -1,0 +1,47 @@
+start=2026-11-11T19:47:36Z
+ANVIL_ANE status=PASS profile=anec-pub_prefill_chain_lfm3_C288 capsule=620bd43084cc seat_class=L perf_valid=false correctness_valid=false oracle_valid=true abort=none receipt=/Users/nayte/ane-hot/scratch/anec/seat/pub_pr
+SEAT_RUN=/Users/nayte/ane-hot/scratch/anec/seat/pub_prefill_chain_lfm3_C288-20261111T194736Z
+=== warm both plans 2026-11-11T19:47:40Z
+| prefill | tokens_per_call=32 | calls=1 | tokens=32 | total_ms=513.8 | tok_per_s_indicative=62.3 |
+|   prefill/seg00_host | host | ms_med=5.39 | load_ms=0 |
+|   prefill/seg01_dev | device | ms_med=304.89 | load_ms=16192 |
+|   prefill/seg02_dev | device | ms_med=201.18 | load_ms=19952 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=33 | first_ms=874.3 | decode_ms_med=0.00 | tok_per_s_indicative=- |
+=== published runner, 270 tokens
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=351.3 | decode_ms_med=25.79 | tok_per_s_indicative=38.8 |
+=== new runner without --prefill, 270 tokens
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=82.6 | decode_ms_med=28.27 | tok_per_s_indicative=35.4 |
+=== new runner with --prefill, 270 tokens
+| prefill | tokens_per_call=32 | calls=8 | tokens=256 | total_ms=1137.6 | tok_per_s_indicative=225.0 |
+|   prefill/seg00_host | host | ms_med=2.33 | load_ms=0 |
+|   prefill/seg01_dev | device | ms_med=19.23 | load_ms=407 |
+|   prefill/seg02_dev | device | ms_med=101.75 | load_ms=366 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=81.0 | decode_ms_med=23.73 | tok_per_s_indicative=42.1 |
+with vs without prefill: compare: n=34560000 maxAbs=1.2734375 rms=0.089649 cos=0.9994574 top1=269/270 meanKL=0.00043
+=== chat 105-token prompt, run 1, without --prefill
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=168 | first_ms=125.8 | decode_ms_med=32.26 | tok_per_s_indicative=31.0 |
+=== chat 105-token prompt, run 1, with --prefill
+| prefill | tokens_per_call=32 | calls=3 | tokens=96 | total_ms=917.4 | tok_per_s_indicative=104.6 |
+|   prefill/seg00_host | host | ms_med=9.38 | load_ms=0 |
+|   prefill/seg01_dev | device | ms_med=26.31 | load_ms=383 |
+|   prefill/seg02_dev | device | ms_med=108.00 | load_ms=307 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=168 | first_ms=83.4 | decode_ms_med=32.11 | tok_per_s_indicative=31.1 |
+=== chat 105-token prompt, run 2, without --prefill
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=168 | first_ms=140.1 | decode_ms_med=29.48 | tok_per_s_indicative=33.9 |
+=== chat 105-token prompt, run 2, with --prefill
+| prefill | tokens_per_call=32 | calls=3 | tokens=96 | total_ms=538.3 | tok_per_s_indicative=178.3 |
+|   prefill/seg00_host | host | ms_med=13.01 | load_ms=0 |
+|   prefill/seg01_dev | device | ms_med=22.77 | load_ms=388 |
+|   prefill/seg02_dev | device | ms_med=123.07 | load_ms=308 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=168 | first_ms=101.7 | decode_ms_med=30.80 | tok_per_s_indicative=32.5 |
+=== chat 105-token prompt, run 3, without --prefill
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=168 | first_ms=81.2 | decode_ms_med=30.10 | tok_per_s_indicative=33.2 |
+=== chat 105-token prompt, run 3, with --prefill
+| prefill | tokens_per_call=32 | calls=3 | tokens=96 | total_ms=643.2 | tok_per_s_indicative=149.3 |
+|   prefill/seg00_host | host | ms_med=9.74 | load_ms=0 |
+|   prefill/seg01_dev | device | ms_med=28.51 | load_ms=429 |
+|   prefill/seg02_dev | device | ms_med=126.87 | load_ms=309 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=168 | first_ms=108.5 | decode_ms_med=28.48 | tok_per_s_indicative=35.1 |
+JOB_DONE
+seat_exit=0
+end=2026-11-11T19:50:41Z
