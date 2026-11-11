@@ -1,0 +1,38 @@
+{
+  "chosenBudgetBytes" : 471859200,
+  "largestEligibleSegmentBytes" : 466988544,
+  "model" : "\/Users\/nayte\/ane-hot\/models\/lfm3-q1-carry-20261111",
+  "schema" : "anec.fit.v2",
+  "seqLen" : 1,
+  "stateForm" : "ioDelta",
+  "trials" : [
+    {
+      "budgetBytes" : 471859200,
+      "eligible" : true,
+      "planError" : false,
+      "segments" : [
+        {
+          "anePreferred" : 1172,
+          "aneSupported" : 1172,
+          "assigned" : 1172,
+          "computeOps" : 1172,
+          "modelSHA256" : "9d3bd564e66ae32b64e0554fdcecd7783ef43a0eb569314671208a07bb05ddc1",
+          "name" : "seg01_dev",
+          "osBuild" : "26C5035r",
+          "weightBytes" : 466988544
+        },
+        {
+          "anePreferred" : 619,
+          "aneSupported" : 619,
+          "assigned" : 620,
+          "computeOps" : 620,
+          "modelSHA256" : "44ed58b50f1ea6147e164e4da1c14468cd98f13c893e3d264dcbd90dbcd8fdfd",
+          "name" : "seg02_dev",
+          "osBuild" : "26C5035r",
+          "weightBytes" : 363522048
+        }
+      ],
+      "stateForm" : "ioDelta"
+    }
+  ]
+}

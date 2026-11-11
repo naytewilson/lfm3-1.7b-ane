@@ -27,7 +27,8 @@ SHA-256). What changed is the program around them, in two places, and the runner
 2. **SiLU and sigmoid written with `tanh`**: `sigmoid(v) = (1 + tanh(v/2)) / 2` and
    `silu(v) = v · sigmoid(v)`, as ordinary operations instead of the ANE's own kernels.
 3. **Runner r3 takes text.** A native tokenizer, the chat layout, sampling and a multi-turn
-   chat are in the runner; Node is no longer needed to run a prompt.
+   chat are in the runner; Node is no longer needed to run a prompt. Runner r4 adds longer
+   context (next section).
 
 With those two program changes the ANE gives almost exactly what exact arithmetic gives:
 
@@ -103,6 +104,48 @@ reasoning block closed, greedy unless noted; `evidence/q1-p2-20261111/packaged-r
 acronym), as with every earlier build. The runner's tokenizer and chat layout produce the
 same token ids as the Hugging Face tokenizer used before for all four prompts checked (18,
 21, 17 and 105 tokens).
+
+## Longer context: 1024 and 2048 positions (added 2026-11-11)
+
+The same weights and the same program revision, compiled for 1024 and for 2048 positions,
+and runner r4, which starts in the 288-position programs and moves into the larger ones
+when it runs out of room (`--grow`). A larger context costs speed on every token, so a run
+only pays for it once it needs it:
+
+| Context | Median step, three guarded 30 s runs | Tokens per second | Peak memory of the runner process | Planned on the ANE |
+|---|---|---|---|---|
+| 288 | 22.8 / 23.2 / 23.0 ms (60 s runs) | 43.9 / 43.1 / 43.5 | 69–80 MB | 1791 of 1792 |
+| 1024 | 29.3 / 29.1 / 28.8 ms | 34.1 / 34.3 / 34.7 | 135 MB | 1791 of 1792 |
+| 2048 | 38.4 / 38.8 / 37.5 ms | 26.0 / 25.8 / 26.7 | 231 MB | 1791 of 1792 |
+
+(One-minute load average 8 when the 1024 runs started and 45 when the 2048 runs started:
+observations on a loaded machine.) On the 270-token teacher passage all three contexts give
+the same figures as the 288 one: 253 of 270, KL 0.117. The verifier accepts both new
+functions (11 pass, 0 fail, 1 skipped), and they use the same two weight files.
+
+What moving between contexts does, and how it was checked (`evidence/q1-p2-context-20261111/`):
+
+- **Nothing is recomputed.** Each attention cache gets a larger array holding the rows
+  already written; the convolution windows carry over as they are. The switch took
+  0.8–1.1 s here once the larger functions had been loaded on the machine before.
+- **Against exact arithmetic, across the boundary.** 513 tokens of chat text were fed
+  through (a) 288 growing into 1024, with the prefill function reading the first 256, and
+  (b) 1024 from the first token. Same top-1 token as the 32-bit reference at 508 and 511 of
+  513 positions (mean KL 0.0006 both); (a) and (b) agree with each other at 508 of 513; in
+  (a), positions 288 to 512 alone agree with the reference at 224 of 225. This compares the
+  device with the same weights computed exactly, not with the unquantized teacher: beyond
+  the 270-token passage there is no teacher comparison.
+- **A reply of 1,500 tokens** crossed both boundaries without a break (`jobG.log`): median
+  step 24.9 ms below 288, 28.3 ms up to 1024, 40.5 ms beyond, 29.5 tokens per second over
+  the whole reply. The text reads fluently, repeats itself and gets facts wrong: this is
+  about the mechanism, not the content.
+- **From the packaged files** (`packaged-run/`): a 420-token reply that crosses 288 (first
+  token after 1.22 s, switch 1.0 s, 28.1 tokens per second overall) and a five-turn chat
+  that reaches position 484 (later turns: first token after 0.58–0.73 s, 28–33 tokens per
+  second).
+- **The first use of a context on a machine takes about 30 s** while the OS compiles it for
+  the ANE. In the first packaged run that pause fell in the middle of a reply
+  (`jobV-before-preparation.log`); runner r4 now does it once at start and says so.
 
 ## q1 weights, first program (2026-11-11)
 
@@ -431,17 +474,21 @@ Read plainly:
   model.
 - **One device, one OS build.** ANE placement is decided by the OS at load time and can
   differ on other chips or OS versions.
-- **Fixed context.** A bundle holds at most 64 or 288 positions including the prompt; it
-  does not slide or extend. The upstream model's 256K context is not available here.
+- **Context up to 2048 positions, not beyond, and not tested full.** With `--grow` a run
+  can move from 288 to 1024 to 2048 positions; it does not slide past that, and the
+  upstream model's 256K context is not available here. The longest run made reached
+  position 1542; nothing was run with 2048 positions completely used. Accuracy past
+  position 270 is checked against exact arithmetic on one 513-token sequence only.
 - **Prefill can change the reply with the first programs.** There, with `--prefill` the
   reply can differ in wording from the one produced without it (shown in the prefill
   section). With revision 2 the two paths picked the same top-1 token at all 270 positions
   of the test passage; a chat reply with and without it was not compared.
 - **The runtime is a binary only.** `anec-run` is published without source. Runner r3
   takes text, prints the reply as it is produced, can sample with a seed and keeps a
-  multi-turn chat; it has no server, and a chat ends when the 288 positions are used up.
-  It was run only on the machine above. r3 was built from changes that were still under
-  review in their private repository when it was published.
+  multi-turn chat, and r4 adds `--grow`; there is no server, and a chat ends when the
+  largest context given is used up. It was run only on the machine above. r3 and r4 were
+  built from changes that were still under review in their private repository when they
+  were published.
 
 ## What is in this release
 
@@ -456,6 +503,7 @@ In this repository:
 | `evidence/prefill-chain-20261111/` | Prefill joined to generation: the three 270-token comparison records, the six chat records and their token ids, the job script and log, and the script that computes the tables |
 | `evidence/q1-combined-20261111/` | The q1 bundle: fit records, certificates, plans and placement evidence for both functions, the verifier log, the carry report (palette hashes and the scale found for every tensor), the exact-arithmetic comparison by position range, the benchmark runs with power samples, four chat records, and the job scripts and logs |
 | `evidence/q1-p2-20261111/` | Program revision 2: fit records, certificates, plans and placement evidence for both functions, the two verifier logs, the fitted factors (`range.json`), the comparison with the teacher (`jobA.log`), the 60-second benchmark runs with power samples, the chat records made with the text front end, the run from the packaged files (`packaged-run/`), and under `numerics/` the value-by-value device comparison, the per-variant results, the side-by-side timing and the scripts that produced them |
+| `evidence/q1-p2-context-20261111/` | Longer context: fit records, certificates, plans, placement evidence and verifier logs for the 1024- and 2048-position functions, their benchmark runs, the comparison across the boundary against exact arithmetic (`jobG.log`, `grow_a.json`, `grow_b.json`), the 1,500-token reply, and the runs from the packaged files before and after the start-time preparation |
 | `evidence/PRUNING_RECEIPT.json` | What the pruning changed |
 | `tokenizer/` | Tokenizer, chat template and model configuration from the upstream release |
 | `tools/tok.mjs` | Turns a chat message into token ids and token ids back into text |
@@ -467,7 +515,9 @@ As release assets:
 | Asset | Contents |
 |---|---|
 | `lfm3-1.7b-pruned7168-q1-p2-c288.tar` | Program revision 2, programs only (3.3 MB): the one-token function (`lfm3_q1p2_C288`) and the 32-token prefill function (`lfm3_q1p2_C288_prefill32`), each with `plan.json`, `certificate.json`, `semantic.json`; `link-weights.sh` links in the q1 bundle's weight files and checks their SHA-256; `range.json` holds the fitted factors |
-| `lfm3-ane-runner-r3-macos-arm64.tar` | The current runner: the same package as r2 with an `anec-run` that takes text (`--prompt`, `--tokenizer`, `--chat`, sampling options). Use this one |
+| `lfm3-1.7b-pruned7168-q1-p2-c1024-c2048.tar` | Program revision 2 for 1024 and 2048 positions, programs only (3.1 MB): `lfm3_q1p2_C1024` and `lfm3_q1p2_C2048`, each with `plan.json`, `certificate.json`, `semantic.json`; `link-weights.sh` links in the q1 bundle's weight files |
+| `lfm3-ane-runner-r4-macos-arm64.tar` | The current runner: r3 plus `--grow`. Use this one |
+| `lfm3-ane-runner-r3-macos-arm64.tar` | The third runner: the same package as r2 with an `anec-run` that takes text (`--prompt`, `--tokenizer`, `--chat`, sampling options). Kept because the revision 2 runs used it |
 | `lfm3-1.7b-pruned7168-q1-c288.tar` | The q1 weights with the first program, 288-position context, same contents as the bundles below. Unpacks to `lfm3_q1_C288`. Revision 2 needs it for the weight files |
 | `lfm3-1.7b-pruned7168-q1-c288-prefill32.tar` | The 32-token prefill function for the q1 bundle (1.7 MB; `link-weights.sh` links in the q1 bundle's weight files). Unpacks to `lfm3_q1_C288_prefill32` |
 | `lfm3-1.7b-pruned7168-lut4-c64.tar` | First (k-means) weights. `seg01_dev.mlpackage`, `seg02_dev.mlpackage`, `plan.json`, `certificate.json`, `semantic.json` for a 64-position context |
@@ -495,16 +545,19 @@ recorded for it. The verifier was not run on the 288-position bundle today.
 
 ## Running it
 
-You need an Apple-silicon Mac, this repository cloned, and four assets downloaded into it:
+You need an Apple-silicon Mac, this repository cloned, and five assets downloaded into it:
 `lfm3-1.7b-pruned7168-q1-c288.tar` (the weights), `lfm3-1.7b-pruned7168-q1-p2-c288.tar`
-(the current programs), `embed_tokens.bf16.bin` and `lfm3-ane-runner-r3-macos-arm64.tar`.
+(the current programs), `lfm3-1.7b-pruned7168-q1-p2-c1024-c2048.tar` (the same programs for
+longer contexts; optional), `embed_tokens.bf16.bin` and `lfm3-ane-runner-r4-macos-arm64.tar`.
 
 ```sh
 # 1. unpack, link the programs to the weights, assemble the model folder
 tar -xf lfm3-1.7b-pruned7168-q1-c288.tar
 tar -xf lfm3-1.7b-pruned7168-q1-p2-c288.tar
-tar -xf lfm3-ane-runner-r3-macos-arm64.tar
+tar -xf lfm3-1.7b-pruned7168-q1-p2-c1024-c2048.tar
+tar -xf lfm3-ane-runner-r4-macos-arm64.tar
 ./lfm3_q1p2_C288/link-weights.sh lfm3_q1_C288
+./lfm3_q1p2_C1024/link-weights.sh lfm3_q1_C288
 ./lfm3-ane-runner/setup.sh embed_tokens.bf16.bin
 xattr -d com.apple.quarantine lfm3-ane-runner/anec-run 2>/dev/null || true   # needed if a browser downloaded it
 
@@ -513,9 +566,11 @@ xattr -d com.apple.quarantine lfm3-ane-runner/anec-run 2>/dev/null || true   # n
     --prefill lfm3_q1p2_C288_prefill32 --tokenizer tokenizer/tokenizer.json \
     --prompt "What is the capital of France?"
 
-# 3. a chat: the first turn on the command line, further turns typed in (/exit or Ctrl-D ends it)
+# 3. a chat: the first turn on the command line, further turns typed in (/exit or Ctrl-D ends it).
+#    --grow lets it continue past 288 positions, into 1024 and then 2048.
 ./lfm3-ane-runner/anec-run lfm3_q1p2_C288 --model lfm3-ane-runner/model \
     --prefill lfm3_q1p2_C288_prefill32 --tokenizer tokenizer/tokenizer.json \
+    --grow lfm3_q1p2_C1024,lfm3_q1p2_C2048 \
     --prompt "What is the capital of France?" --chat 1
 ```
 
@@ -531,18 +586,23 @@ What to expect:
   leaves the model's reasoning block open; `--raw 1` feeds the text as given, without the
   chat layout; `--stats 1` also prints the step tables; `--out reply.json` writes the full
   record, including the token ids and the reply text.
-- Prompt, replies and all chat turns together must fit the 288 positions. The runner says
-  so and ends the chat when the next turn would not fit.
+- Prompt, replies and all chat turns together must fit the largest context given: 288
+  positions, or 2048 with `--grow` as above. The runner says so and ends the chat when the
+  next turn would not fit. With `--grow`, the first start on a machine prepares each larger
+  context once (about 30 s each here); moving into one later takes about a second, and
+  every token after that is slower (see the longer-context table).
 - `--prefill` is used for whole blocks of 32 prompt tokens of the first turn; shorter
   prompts and later turns are read one token at a time. It can be left out.
 - `--units cpu` runs the same functions without the ANE.
 - Token ids still work: `--tokens "1,2,3" --generate 128` instead of `--prompt`, as with
   the earlier runners, and `tools/tok.mjs` still converts between text and ids.
-- Steps 1 to 3 were run on the machine above from the two new archives and the downloaded
-  embedding table (`evidence/q1-p2-20261111/packaged-run/`), with two differences: the q1
-  folder was the local copy the published archive was made from (`link-weights.sh` checked
-  its weight files against the published SHA-256), and the chat turns were piped in rather
-  than typed. Nothing was run on another machine.
+- Steps 1 to 3 were run on the machine above from the published archives and the downloaded
+  embedding table (`evidence/q1-p2-20261111/packaged-run/` with runner r3, and
+  `evidence/q1-p2-context-20261111/packaged-run/` with runner r4 and `--grow`), with two
+  differences: the weight files were linked from a local copy of the q1 packages rather
+  than from the unpacked q1 archive (`link-weights.sh` checked them against the published
+  SHA-256), and the chat turns were piped in rather than typed. Nothing was run on another
+  machine.
 
 For the earlier builds use their assets and folder names (`lfm3_q1_C288` with
 `lfm3_q1_C288_prefill32` from `…-q1-c288-prefill32.tar`, or the `lut4` ones); runner r2 or

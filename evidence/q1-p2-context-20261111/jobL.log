@@ -1,0 +1,37 @@
+=== fit one-token, context 1024 2026-11-11T22:42:02Z
+fit: state ioDelta, budget 450 MB -> 2 device segments, all ANE-eligible
+       seg01_dev: 445 MB, 1172 ops, ANE-supported 1172/1172, preferred 1172
+       seg02_dev: 346 MB, 620 ops, ANE-supported 619/620, preferred 619
+fit: state form ioDelta; chosen budget 450 MB; largest ANE-eligible segment measured 445 MB; smallest rejected none; compiled -> /Users/nayte/ane-hot/scratch/lfm3-release-20261111/p2/c1024/final
+=== 270 tokens on the ANE, context 1024 2026-11-11T22:44:04Z
+| host-carried state | states=35 | row_copy=22 | update_ms_med=0.10 | pass_through=13 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=234.9 | decode_ms_med=29.79 | tok_per_s_indicative=33.6 |
+|   seg00_host | host | ms_med=0.03 | load_ms=0 |
+|   seg01_dev | device | ms_med=17.29 | load_ms=10822 |
+|   seg02_dev | device | ms_med=12.25 | load_ms=15631 |
+context 1024, ANE vs teacher, 270: compare: n=34560000 maxAbs=13.198033 rms=0.9807908 cos=0.94158643 top1=253/270 meanKL=0.11666
+context 1024, ANE vs exact program, 270: compare: n=34560000 maxAbs=0.6931858 rms=0.04892039 cos=0.9998572 top1=270/270 meanKL=0.00044
+=== bench, context 1024 2026-11-11T22:44:41Z load={ 7.98 8.12 10.89 }
+ane-sustained-1	VALID	| stateful decode | first_ms=196.2 | decode_ms_med=29.29 | tok_per_s_indicative=34.1 |	33	5.200	750	134944
+ane-sustained-2	VALID	| stateful decode | first_ms=148.0 | decode_ms_med=29.12 | tok_per_s_indicative=34.3 |	33	4.990	722	134800
+ane-sustained-3	VALID	| stateful decode | first_ms=188.8 | decode_ms_med=28.84 | tok_per_s_indicative=34.7 |	32	5.020	750	135952
+BENCH_EVIDENCE=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/p2/c1024/final/bench-20261111T224441Z
+=== fit one-token, context 2048 2026-11-11T22:46:28Z
+fit: state ioDelta, budget 450 MB -> 2 device segments, all ANE-eligible
+       seg01_dev: 445 MB, 1172 ops, ANE-supported 1172/1172, preferred 1172
+       seg02_dev: 346 MB, 620 ops, ANE-supported 619/620, preferred 619
+fit: state form ioDelta; chosen budget 450 MB; largest ANE-eligible segment measured 445 MB; smallest rejected none; compiled -> /Users/nayte/ane-hot/scratch/lfm3-release-20261111/p2/c2048/final
+=== 270 tokens on the ANE, context 2048 2026-11-11T22:48:32Z
+| host-carried state | states=35 | row_copy=22 | update_ms_med=0.14 | pass_through=13 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=637.8 | decode_ms_med=40.48 | tok_per_s_indicative=24.7 |
+|   seg00_host | host | ms_med=0.03 | load_ms=0 |
+|   seg01_dev | device | ms_med=23.93 | load_ms=12976 |
+|   seg02_dev | device | ms_med=16.16 | load_ms=17166 |
+context 2048, ANE vs teacher, 270: compare: n=34560000 maxAbs=13.198033 rms=0.9807908 cos=0.94158643 top1=253/270 meanKL=0.11666
+context 2048, ANE vs exact program, 270: compare: n=34560000 maxAbs=0.6931858 rms=0.04892039 cos=0.9998572 top1=270/270 meanKL=0.00044
+=== bench, context 2048 2026-11-11T22:49:17Z load={ 44.54 19.60 14.79 }
+ane-sustained-1	VALID	| stateful decode | first_ms=260.6 | decode_ms_med=38.39 | tok_per_s_indicative=26.0 |	32	5.570	547	230400
+ane-sustained-2	VALID	| stateful decode | first_ms=422.9 | decode_ms_med=38.82 | tok_per_s_indicative=25.8 |	34	5.910	857	231328
+ane-sustained-3	VALID	| stateful decode | first_ms=328.6 | decode_ms_med=37.50 | tok_per_s_indicative=26.7 |	32	5.410	760	231120
+BENCH_EVIDENCE=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/p2/c2048/final/bench-20261111T224917Z
+JOB_DONE

@@ -1,0 +1,88 @@
+=== a. 288 growing into 1024 22:53:41
+[context 288 -> 1024 positions at position 288, 910 ms]
+| prefill | tokens_per_call=32 | calls=8 | tokens=256 | total_ms=1979.2 | tok_per_s_indicative=129.3 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=513 | first_ms=78.4 | decode_ms_med=29.21 | tok_per_s_indicative=34.2 |
+=== b. 1024 from the start 22:53:55
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=513 | first_ms=173.7 | decode_ms_med=30.45 | tok_per_s_indicative=32.8 |
+a vs exact, 513: compare: n=65664000 maxAbs=1.3193774 rms=0.038990334 cos=0.9999173 top1=508/513 meanKL=0.00057
+b vs exact, 513: compare: n=65664000 maxAbs=1.2634183 rms=0.03877609 cos=0.9999183 top1=511/513 meanKL=0.00058
+a vs b, 513: compare: n=65664000 maxAbs=0.30810547 rms=0.015557897 cos=0.9999868 top1=508/513 meanKL=0.00011
+a vs exact, positions 288-512: compare: n=28800000 maxAbs=1.2634183 rms=0.03937668 cos=0.9999151 top1=224/225 meanKL=0.00051
+=== long reply, growing 288 -> 1024 -> 2048 22:54:32
+**The Evolution of the Bicycle: A Comprehensive History from the First Designs to Modern Times**
+
+---
+
+## **Introduction**
+
+The bicycle, a marvel of human ingenuity, has been a cornerstone of modern transportation for centuries. From its humble beginnings in the late 19th century to its current status as a symbol of freedom and mobility, the bicycle has undergone a remarkable transformation. This essay explores the history of the bicycle, tracing its journey from the earliest conceptual designs to the sophisticated mac
+hines of today. In this detailed examination, we will delve into the technological advancements, cultural influences, and societal changes that have shaped the bicycle from its inception to its modern era. The following sections will cover the origins of the bicycle, the early models, the industrial revolution's impact, the rise of the American bicycle, the development of the modern bicycle, and t
+he contemporary bicycle.
+
+---
+
+## **Section 1: The Origins of the Bicycle**
+
+### **Early Concepts and the First Bicycles**
+
+The story of the bicycle begins not with a single inventor but with a series of experiments. The earliest forms of bicycles were simple wooden frames with horse-drawn wheels. In the late 18th century, the French inventor André[context 288 -> 1024 positions at position 288, 1051 ms]
+-Célandé created a rudimentary version of the bicycle, known as the "bicycle" or "bécane." However, it was the American bicycle that truly set the stage for the modern bicycle. In 1870, William B. F. (Bill) H. and his brother, the H. B. H. (H. B. H.?) created the first true bicycle, a lightweight wooden frame with a single wheel. This early design was essentially a single-wheel bicycle, and it 
+ite impractical for the era. The first true two-wheeled bicycle was developed in 1880 by the American inventor John A. S. (John A. S.) and his partner, Charles H. (Charles H.) in the United States. They patented a design that would become the standard for the bicycle. This was the first two-wheeled bicycle, and it was a simple wooden frame with a single wheel. The bicycle was initially used for ri
+ding on horse-drawn carriages, but it was soon adopted for its own purposes. 
+
+### **Technical Details of the First Bicycles**
+
+The first bicycles were simple wooden frames with a single wheel. They were not very practical for long distances, and they were often used for short trips. The design was simple, but it lacked the durability and comfort that would become essential for the modern bicycle. The early bicycle was a precursor to the modern one, and it laid the groundwork for future developments. The first bicycle whee
+ls were made of wood, and they were not as durable as the metal wheels that would come later. The early bicycle was a simple, lightweight design that was more of a novelty. It was not yet a serious mode of transportation, and it was soon replaced by the more robust and durable designs that would emerge in the late 19th century.
+
+---
+
+## **Section 2: The Industrial Revolution and the Bicycle's Rise**
+
+### **The Industrial Revolution's Influence**
+
+The industrial revolution played a crucial role in the development of the bicycle. The rise of mass production techniques in the late 19th century allowed for the creation of more affordable bicycles. The introduction of the steel frame and the use of chain drives by the late 1800s made bicycles more practical for everyday use. The first major advancements in bicycle technology occurred during thi
+s period. The invention of the chain drive by William B. F. (William B. F.) in 1877 was a significant step forward. This allowed for a more efficient and reliable operation. The bicycle's wheels were made of steel, and the frame was more durable. The bicycle became a fashionable item, and it was soon adopted for leisure and transportation. 
+
+### **Technological Advances**
+
+The bicycle's wheels were made of steel, and the frame was more durable. The invention of the chain drive by William B. F. in 1877 was a significant step forward. This allowed for a more efficient and reliable operation. The bicycle became a fashionable item, and it was soon adopted for leisure and transportation. The early bicycle was a simple wooden frame with a single wheel, but it was soon rep
+laced by the more robust and durable designs that would emerge in the late 19th century. 
+
+---
+
+## **Section 3: The American Bicycle and the Rise of the Bicycle Culture**
+
+### **The American Bicycle**
+
+In the late 19th century, the bicycle became a fashionable item in America. The American bicycle culture was driven by the invention of the chain drive and the use of steel wheels. The bicycle was used[context 1024 -> 2048 positions at position 1024, 760 ms]
+ for leisure and transportation. The first American bicycle was the "Bicycle" by William B. F. and his brother, which was a simple wooden frame with a single wheel. This was the first bicycle to be widely adopted in the United States. The bicycle was a symbol of progress and modernity. It was embraced by the public and became a part of the American lifestyle. 
+
+### **Cultural Impact**
+
+The bicycle became a fashionable item in America. The bicycle culture was driven by the invention of the chain drive and the use of steel wheels. The bicycle was used for leisure and transportation. The first American bicycle was the "Bicycle" by William B. F. and his brother, which was a simple wooden frame with a single wheel. This was the first bicycle to be widely adopted in the United States.
+ The bicycle was a symbol of progress and modernity. It was embraced by the public and became a part of the American lifestyle. 
+
+---
+
+## **Section 4: The Industrial Revolution's Technological Advances**
+
+### **The Role of the Industrial Revolution**
+
+The industrial revolution was a period of rapid technological advancement and mass production. It led to the development of the bicycle as a mass-produced item. The rise of the bicycle was a result of the industrial revolution. The invention of the chain drive by William B. F. in 1877 was a significant step forward. This allowed for a more efficient and reliable operation. The bicycle's wheels wer
+e made of steel, and the frame was more durable. The bicycle became a fashionable item, and it was soon adopted for leisure and transportation. 
+
+### **Technological Innovations**
+
+The bicycle's wheels were made of steel, and the frame was more durable. The invention of the chain drive by William B. F. in 1877 was a significant step forward. This allowed for a more efficient and reliable operation. The bicycle became a fashionable item, and it was soon adopted for leisure and transportation. The early bicycle was a simple wooden frame with a single wheel, but it was soon rep
+laced by the more robust and durable designs that would emerge in the late 19th century. 
+
+---
+
+## **Section 5: The Modern Bicycle**
+
+### **From the 20th Century to the Present**
+
+In the 20th century, the bicycle evolved into a modern machine. The introduction of the electric motor and the use of modern materials like aluminum and carbon fiber has made the bicycle a symbol of technological progress. The modern bicycle is a marvel of engineering, with features such as
+[43 prompt tokens | first token 727 ms | 1500 new tokens | 29.5 tok/s | position 1542 of 2048]
+JOB_DONE
