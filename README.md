@@ -4,8 +4,8 @@ Core ML packages of a width-pruned, 4-bit palettized LFM3-1.7B that decode one t
 on the Apple Neural Engine (ANE), with the measurements, hardware evidence and hashes that
 back every number on this page.
 
-**Status: early release (v0.1.0).** Placement, speed, ANE power and three real chat turns
-are measured. Output quality is measurably below the unquantized model (numbers below), the
+**Status: early release (v0.1.0).** Placement, decode and prefill speed, ANE power and
+three real chat turns are measured. Output quality is measurably below the unquantized model (numbers below), the
 runtime is a prebuilt binary without source, and several things a production deployment
 needs have not been measured. Read [What is not established](#what-is-not-established)
 before relying on it.
@@ -103,10 +103,49 @@ The first two are sound. The third is wrong: RoPE is rotary position embedding, 
 reply invents an expansion and had not finished at 128 tokens. Whether the original or the
 6-bit model gets it right was not tested.
 
-**Prompt speed.** There is no separate prefill function. The prompt goes through the same
-one-token-per-call path as generation, at 31–34 tokens per second in these turns (the first
-call of a turn took 67–83 ms). A function that reads several prompt tokens per call was not
-built.
+**Prompt speed in these turns.** The prompt went through the same one-token-per-call path
+as generation, at 31–34 tokens per second (the first call of a turn took 67–83 ms). A
+32-token prefill function now exists (next section), but the runner cannot use it inside a
+chat turn yet.
+
+## Prefill function (2026-11-11)
+
+A second compile of the same 4-bit model that reads 32 tokens per call, at the 288-position
+context, for getting through a prompt quickly. Built and measured on the same machine on
+2026-11-11, 19:21Z–19:29Z (load average 6–9). Everything is in `evidence/prefill-20261111/`.
+
+| | |
+|---|---|
+| Operations planned on the ANE | 1764 of 1765. The exception is again the final reshape that produces the logits |
+| Weights | The same two weight files as the one-token 288-position bundle (identical SHA-256). The package is 1.7 MB and links to them |
+| Agreement with the one-token function, both on the ANE, same 256 tokens | Same top-1 token at 255 of 256 positions; logit cosine 0.99945; mean KL 0.00045 |
+| Agreement with the teacher over those 256 positions | 236 of 256, mean KL 0.253. The one-token function scores 237 of 256 and 0.253 |
+| Independent verifier (`verify-20261111.log`) | 12 checks pass, 0 fail, 1 skipped (the same "device executed every segment" check). 8,192,000 output elements and all 35 carried states bit-identical to the source program over 2 chained calls |
+
+Speed and ANE power: three runs of about 60 seconds through the benchmark guard (all
+valid), each repeating 8 calls of 32 tokens over the first 256 tokens of the test passage.
+Power was sampled as in the section above and read 0.00 W before and after.
+
+| Run | Calls | Tokens | Seconds | Tokens/s (mean) | Tokens/s (median call) | ANE power | ANE energy per token |
+|---|---|---|---|---|---|---|---|
+| 1 | 503 | 16,096 | 60.0 | 268.3 | 266.6 | 1.89 W | 7.0 mJ |
+| 2 | 487 | 15,584 | 60.2 | 259.0 | 260.3 | 1.75 W | 6.8 mJ |
+| 3 | 503 | 16,096 | 60.8 | 264.8 | 263.6 | 1.86 W | 7.0 mJ |
+
+A call takes about 121 ms once warm; the first call after loading took 254–270 ms. Peak
+resident memory of the runner was 546–592 MB in these runs.
+
+Its limits:
+
+- **It does not speed up a chat turn yet.** The published runner cannot hand the cache this
+  function fills to the one-token function. With the runner it runs on its own: a token
+  count that is a multiple of 32, and `--generate 0`. Joining the two is a change to the
+  runner that has not been made.
+- **It computes more than a prompt needs.** It produces logits for all 32 positions, though
+  only the last matters when reading a prompt. Of the 121 ms per call, about 99 ms is the
+  second function, which holds the output head. A variant without the head was not built.
+- **Prompts shorter than 32 tokens**, and what is left over of longer ones, would still go
+  one token at a time.
 
 ## What "on the ANE" means here
 
@@ -189,8 +228,9 @@ Read plainly:
   differ on other chips or OS versions.
 - **Fixed context.** A bundle holds at most 64 or 288 positions including the prompt; it
   does not slide or extend. The upstream model's 256K context is not available here.
-- **One token per call.** The prompt is ingested at the same speed as generation; batched
-  prefill was not built.
+- **Prefill is not joined to generation.** In a chat turn the prompt is still read one
+  token per call, at the same speed as generation. The 32-token prefill function is
+  measured on its own only.
 - **The runtime is a binary only.** `anec-run` is published without source. It takes token
   ids and returns token ids, decodes greedily, and has no sampling, streaming or server.
   It was run only on the machine above.
@@ -204,6 +244,7 @@ In this repository:
 | `evidence/c64/`, `evidence/c288/` | For each bundle: `fit.json` (state-form and partition search against the hardware), `certificate.json`, `plan.json`, `semantic.json`, per-operation placement evidence (`seg0*_dev.oracle.json`), and three benchmark sessions (`bench-*/results.tsv`, `receipt.json`, `guard.log`, and the raw per-step record of each run, `ane_{1,2,3}.json`) |
 | `evidence/logs/` | Job logs of the teacher check, the accuracy runs and the three timing sessions |
 | `evidence/chat-20261111/` | The 2026-11-11 runs: the three chat records and their token ids, the runner check, the 64-second benchmark runs, the raw power samples (`macmon.jsonl`), the job script and log, and the two small scripts that compute the tables above |
+| `evidence/prefill-20261111/` | The prefill function: its fit record, certificate, plan and per-operation placement evidence, the two comparison runs, the 60-second benchmark runs, the raw power samples, the verifier log, the job script and log, and the script that computes the table |
 | `evidence/PRUNING_RECEIPT.json` | What the pruning changed |
 | `tokenizer/` | Tokenizer, chat template and model configuration from the upstream release |
 | `tools/tok.mjs` | Turns a chat message into token ids and token ids back into text |
@@ -217,6 +258,7 @@ As release assets:
 | `lfm3-1.7b-pruned7168-lut4-c64.tar` | `seg01_dev.mlpackage`, `seg02_dev.mlpackage`, `plan.json`, `certificate.json`, `semantic.json` for a 64-position context |
 | `lfm3-1.7b-pruned7168-lut4-c288.tar` | The same for a 288-position context |
 | `embed_tokens.bf16.bin` | The token-embedding table for the host-side lookup: 128,000 × 2,048, little-endian bfloat16, row-major, 524,288,000 bytes |
+| `lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar` | The 32-token prefill function for the 288-position context: the two compiled programs, `plan.json`, `certificate.json`, `semantic.json`, and `link-weights.sh`, which links in the weight files from the unpacked 288-position bundle and checks their SHA-256 |
 | `lfm3-ane-runner-macos-arm64.tar` | The `anec-run` binary (arm64, built for macOS 15 or later, ad-hoc signed, not notarized), `model/config.json`, and `setup.sh` with the 112-byte header that turns the embedding table into the one-tensor `model.safetensors` the runner reads |
 
 The packages published here were rebuilt from the pruned checkpoint on 2026-11-11 and are
@@ -273,6 +315,19 @@ What to expect:
 - Steps 1 and 3 were run on the machine above with the downloaded assets. `tools/tok.mjs`
   was run with Node 22 on Linux, where it reproduces the test passage's token ids; it was
   not run on macOS.
+
+To time the prefill function (it cannot continue into generation yet):
+
+```sh
+tar -xf lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar
+./lfm3_lut4_C288_prefill32/link-weights.sh lfm3_lut4_C288
+./lfm3-ane-runner/anec-run lfm3_lut4_C288_prefill32 --model lfm3-ane-runner/model \
+    --tokens "$(cut -d, -f1-32 evidence/prefill-20261111/fixture256.ids)" --generate 0 --units ane
+```
+
+`--tokens` must hold a multiple of 32 ids. These three commands were run on the machine
+above with the downloaded runner and embedding table, and gave the same 32 next-token picks
+as the measured run.
 
 If you would rather write your own driver, one decode step, as recorded in `plan.json`:
 

@@ -9,7 +9,7 @@ The following files are modified from the upstream work:
 
 | File | Change |
 |---|---|
-| `seg01_dev.mlpackage`, `seg02_dev.mlpackage` (both bundles) | Model weights with the feed-forward width pruned from 7,680 to 7,168 in all 24 layers; 143 tensors palettized to 4-bit lookup tables (one table per 8 rows, deterministic k-means); all weights and constants rounded to IEEE binary16; converted to Core ML `mlprogram` format and split into two functions; causal mask value −10000.0 in place of −∞ |
+| `seg01_dev.mlpackage`, `seg02_dev.mlpackage` (both bundles, and the programs in the prefill package, which reuse the 288-position bundle's weight files) | Model weights with the feed-forward width pruned from 7,680 to 7,168 in all 24 layers; 143 tensors palettized to 4-bit lookup tables (one table per 8 rows, deterministic k-means); all weights and constants rounded to IEEE binary16; converted to Core ML `mlprogram` format and split into two functions; causal mask value −10000.0 in place of −∞ |
 | `tokenizer/config.json` | `intermediate_size` changed from 7680 to 7168 |
 
 The following files are unmodified copies of upstream files:

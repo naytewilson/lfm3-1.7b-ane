@@ -1,0 +1,4 @@
+idle {"n":29,"ane":0,"cpu":3.74}
+arm1 {"tokensPerCall":32,"calls":503,"tokens":16096,"seconds":60,"passes":63,"meanTokPerS":268.3,"medianCallMs":120,"medianTokPerS":266.6,"aneW":1.886,"aneNetW":1.886,"mJPerToken":7,"cpuW":3.68,"cpuIdleW":3.74,"samples":55}
+arm2 {"tokensPerCall":32,"calls":487,"tokens":15584,"seconds":60.2,"passes":61,"meanTokPerS":259,"medianCallMs":122.9,"medianTokPerS":260.3,"aneW":1.754,"aneNetW":1.754,"mJPerToken":6.8,"cpuW":3.84,"cpuIdleW":3.74,"samples":56}
+arm3 {"tokensPerCall":32,"calls":503,"tokens":16096,"seconds":60.8,"passes":63,"meanTokPerS":264.8,"medianCallMs":121.4,"medianTokPerS":263.6,"aneW":1.861,"aneNetW":1.861,"mJPerToken":7,"cpuW":3.54,"cpuIdleW":3.74,"samples":56}
