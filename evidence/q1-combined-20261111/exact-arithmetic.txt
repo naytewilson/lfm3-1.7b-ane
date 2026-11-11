@@ -1,0 +1,7 @@
+Exact arithmetic (reference interpreter), divergence from the teacher by position range, 270-token passage:
+q1 weights (body and 4-bit head):
+[{"positions":"0-28","klSum":23.33,"klMean":0.8046,"top1":"12/29"},{"positions":"29-63","klSum":4.01,"klMean":0.1147,"top1":"35/35"},{"positions":"64-269","klSum":3.02,"klMean":0.0147,"top1":"206/206"},{"positions":"0-269","klSum":30.37,"klMean":0.1125,"top1":"253/270"}]
+q1 body with the unquantized head:
+[{"positions":"0-28","klSum":23,"klMean":0.793,"top1":"13/29"},{"positions":"29-63","klSum":3.97,"klMean":0.1135,"top1":"35/35"},{"positions":"64-269","klSum":3.46,"klMean":0.0168,"top1":"206/206"},{"positions":"0-269","klSum":30.43,"klMean":0.1127,"top1":"254/270"}]
+v1 (plain k-means) weights from the per-layer build, with its head carried under the first, wrong reading (final norm assumed folded in); kept only as a record of that mistake:
+[{"positions":"0-28","klSum":70.42,"klMean":2.4281,"top1":"6/29"},{"positions":"29-63","klSum":8.92,"klMean":0.2549,"top1":"35/35"},{"positions":"64-269","klSum":6.03,"klMean":0.0293,"top1":"206/206"},{"positions":"0-269","klSum":85.36,"klMean":0.3162,"top1":"247/270"}]

@@ -1,0 +1,2110 @@
+{
+  "schema": "anec.q1carry.v1",
+  "group": 8,
+  "tensors": [
+    {
+      "key": "L0.in_proj",
+      "tensor": "model.layers.0.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.89705,
+      "residualFirstGroup": 0.13293,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a93b6812ee9a5a0741f33d140bd2f1102b70604416c9adafc6581edaf0df395f",
+      "lutSHA256": "55a3a27b73575f62c033722a073a315c527952ff88c6f413ed246b2c7c047bfc"
+    },
+    {
+      "key": "L0.w3",
+      "tensor": "model.layers.0.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 63.33096,
+      "residualFirstGroup": 0.13612,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "92bfe1bc6680a7effcb994931f1c49a401dcedaf667147023346d0e8151cdbbf",
+      "lutSHA256": "4caf2603d49f91eeb5e90a0c25defd5c633565938d35a20b7f386452ef29843d"
+    },
+    {
+      "key": "L0.w1",
+      "tensor": "model.layers.0.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.87613,
+      "residualFirstGroup": 0.14076,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "459824a085ffb5aa33efc54a12f0d0d6e5eb88711c91d9491702962648a16791",
+      "lutSHA256": "0380b6da7069d81a16110358a3116d21228ba6f5e98ed9f3b5dc76c7d7ab2b4d"
+    },
+    {
+      "key": "L0.out_proj",
+      "tensor": "model.layers.0.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.95682,
+      "residualFirstGroup": 0.19613,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "8f830d589e8ae57f0d0c04eb66aa3330c376b38774540bf7d8ad4a5b5735b9cd",
+      "lutSHA256": "af0b42fd21ee819e4e9732fdf0a9aba1bd1d498bffe16b571cef4622b01b175b"
+    },
+    {
+      "key": "L0.w2",
+      "tensor": "model.layers.0.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 2,
+      "fittedGain": 1.98439,
+      "residualFirstGroup": 0.20258,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b51651a8c2514d29b76248894004489adcf20f022e7cd2ea3c7d8058c592db30",
+      "lutSHA256": "315e2dc511b43eb68859cf4e44e6d45fa1639c4112263523b88d1e8500ce3feb"
+    },
+    {
+      "key": "L1.w3",
+      "tensor": "model.layers.1.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.75241,
+      "residualFirstGroup": 0.13912,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "da67a584d9fc78411dba1ce586bb1f73362d9e656535bf156d3ef7b01f1cf7ec",
+      "lutSHA256": "62ba1e58d5f0d8c82241bccb7e777cdbda8d5bdd46992f2d65fb4db34e4649f3"
+    },
+    {
+      "key": "L1.w1",
+      "tensor": "model.layers.1.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.75725,
+      "residualFirstGroup": 0.14339,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "53c180771cf379703a34606c29863943b78ac5d8374ab184b4257b3dec9aff2d",
+      "lutSHA256": "e7d629f91dfcaf8604f460dee48dc52dedbb5335780f61ee376e3b9a9bee4228"
+    },
+    {
+      "key": "L1.out_proj",
+      "tensor": "model.layers.1.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.99209,
+      "residualFirstGroup": 0.14422,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "37abea5e00cd5e678f70617ad7dfa45f41a6ac7b311817c95cad2b8690b75f8d",
+      "lutSHA256": "a3eb2ff8d9835dd0f180ccd82c42984b07cf7f79c42af5def9aa2f298e132e28"
+    },
+    {
+      "key": "L1.in_proj",
+      "tensor": "model.layers.1.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.87549,
+      "residualFirstGroup": 0.14445,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "2c7cf5de7564d1b53775049fd582ac70ee0da6c9e47520238128a3ef44afa1d3",
+      "lutSHA256": "d49df26b158762421e098109ee9af4f325658674e1b59aa72156ba86f74f608c"
+    },
+    {
+      "key": "L1.w2",
+      "tensor": "model.layers.1.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 4,
+      "fittedGain": 3.98334,
+      "residualFirstGroup": 0.21357,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "0d2461b2f4b3bd34c3c3e5b072d762fd2f3a3b6db5b189fa99bd77d9f558c2c0",
+      "lutSHA256": "d7aeb88582389e1d4e1cb249668686061e676afb3fa3125645eff45404e501ef"
+    },
+    {
+      "key": "L2.w3",
+      "tensor": "model.layers.2.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 62.53039,
+      "residualFirstGroup": 0.14201,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "c8823cc6d76eee2d73e9235296dd156ca9ad57a00e549193f47c687886094b6b",
+      "lutSHA256": "68f4e7ccbcf98f10498d083d2661d53420b87766ad21e1c7d6c22c7d00bd4c55"
+    },
+    {
+      "key": "L2.w1",
+      "tensor": "model.layers.2.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.69922,
+      "residualFirstGroup": 0.15654,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b74778ac7dab6cda217e4151791c7857b1862dabbff7362738654d4a33ce87b1",
+      "lutSHA256": "cd2d4d9d112b77437900db08beb162cc90459bea9dac2bbedc921f04281ba8d5"
+    },
+    {
+      "key": "L2.q_proj",
+      "tensor": "model.layers.2.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.7622,
+      "residualFirstGroup": 0.16826,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "19ec06e593540773ae05ee5121fa27a537e44b6d582490478db9ec8aa523acbc",
+      "lutSHA256": "60dbdc56b80f28dce39e98405dbedd0704539eb4e24d3c5aa816eb756f7f9e04"
+    },
+    {
+      "key": "L2.v_proj",
+      "tensor": "model.layers.2.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.8593,
+      "residualFirstGroup": 0.17857,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "0674f948851b1e33caa112de78e50b4dc055e5c178bf4042f827eaa5ae4f2821",
+      "lutSHA256": "2b035450e8b31f9a019198e0bc32fd5abd7c69b05b7a645492d9050d67f9086b"
+    },
+    {
+      "key": "L2.o_proj",
+      "tensor": "model.layers.2.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.83834,
+      "residualFirstGroup": 0.19013,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "95e39025f0d857d1333f2e4f099f89ceb2d0c8d2edcee851e44241328e1e2e2b",
+      "lutSHA256": "558bb8d3dca18ddc4c160a69b0acc0e2a03f21059e07c4cf2c9eb5add97e15ab"
+    },
+    {
+      "key": "L2.k_proj",
+      "tensor": "model.layers.2.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.80941,
+      "residualFirstGroup": 0.20258,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "d10f846d3d528cbd5539935006be1516dc2e4ba3fce99ea1608ea2dab4d9e3a1",
+      "lutSHA256": "50cf716e1df1265663dabedac4368883bd1d57d3ef232533a182b648d5b555fd"
+    },
+    {
+      "key": "L2.w2",
+      "tensor": "model.layers.2.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.9935,
+      "residualFirstGroup": 0.23407,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "1d50d626d32728dd73bc893cb46bbf6358389bc9ed720e54f73d4c2b1529987b",
+      "lutSHA256": "bb88a9493f2c64b2ca1135d6dbd6136df4994879c317a02615077596520d356c"
+    },
+    {
+      "key": "L3.w3",
+      "tensor": "model.layers.3.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.5239,
+      "residualFirstGroup": 0.16503,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "1e6563f292a01569aef72ed190e670371201309a42c3baea8cef335427e44a36",
+      "lutSHA256": "334b1015cad49a66aa987ce479cf44503f592323d07683034751339d84e86477"
+    },
+    {
+      "key": "L3.w1",
+      "tensor": "model.layers.3.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.50846,
+      "residualFirstGroup": 0.16966,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "519a5ed57e0e327b25c075c10e947bd95dbbc026736e364efac61b58e55d36d2",
+      "lutSHA256": "eac74b433fd620989a903093e2a997343b42751b65ff0f84e3604d92c4bbfcc0"
+    },
+    {
+      "key": "L3.out_proj",
+      "tensor": "model.layers.3.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.98581,
+      "residualFirstGroup": 0.17945,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "62867ce8d55e9c11b722530b254c9818df1a1bb948bf23f05c1e9da9854b153e",
+      "lutSHA256": "3ed9363d1c8c7835c5038360640f9fc980a61cbd5555ec22273ee109a81e5652"
+    },
+    {
+      "key": "L3.in_proj",
+      "tensor": "model.layers.3.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.71837,
+      "residualFirstGroup": 0.18804,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "aa0096e4f9c8d3f78f3a5189d0b3d19709474107794b7d1f041ee06ba60a56f1",
+      "lutSHA256": "df73ff0471ce773608264ce553c158a9de12a761b788b270b0d177ae1dafb5fc"
+    },
+    {
+      "key": "L3.w2",
+      "tensor": "model.layers.3.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 4,
+      "fittedGain": 3.96618,
+      "residualFirstGroup": 0.22646,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "5f48e254d62aaf7e8574a97d9c41181669451f268ecf57508567abaf73d567c7",
+      "lutSHA256": "f896175e17d31edffadc3c6849bf677831facf677f834395167d15bdfc9f449e"
+    },
+    {
+      "key": "L4.w1",
+      "tensor": "model.layers.4.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.53639,
+      "residualFirstGroup": 0.15773,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "cdb0c4d65f090400f74b0f71675dcc15beeba9ce37bf3a5fbdfa65a64e998b53",
+      "lutSHA256": "9121f3c002be0d7fa6ca570ee6ece4757a7c8677c0d8f48f3cfa0c5bb11551d3"
+    },
+    {
+      "key": "L4.w3",
+      "tensor": "model.layers.4.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 62.07748,
+      "residualFirstGroup": 0.16108,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "72773e9a580547b5270f38f2ca6068d338cbd678375a442b3d7364648047194c",
+      "lutSHA256": "76ebb27b383d434e52ae4d3a299b5592401b322fb820a6da71743f5209829cf5"
+    },
+    {
+      "key": "L4.v_proj",
+      "tensor": "model.layers.4.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.78622,
+      "residualFirstGroup": 0.18053,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "83224bb7396259235d668d7eb807a0c4a474c8ac3da4de870882dab3d0f1e3e4",
+      "lutSHA256": "08884121dd4239d298d0f11387ba22f6ad7ded0de938959cfe6e81c65f499ee8"
+    },
+    {
+      "key": "L4.o_proj",
+      "tensor": "model.layers.4.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.83864,
+      "residualFirstGroup": 0.18602,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "08cb3ab7b47213fffb7fdb3d4c5860516b40b88b0c6d427f556daa7235f4479e",
+      "lutSHA256": "2dd9a74dabda71c98137cba27773f6909fb0ed7a11fd4032f2651650c590fec3"
+    },
+    {
+      "key": "L4.q_proj",
+      "tensor": "model.layers.4.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.67052,
+      "residualFirstGroup": 0.19834,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "ebf411f9b9299f29937b481e36cd28cc0c434a08520d77268f2fce8ddae6372a",
+      "lutSHA256": "dc2f1cc391d42fe38d46725131be778ef0fe157445d9122b3cfd31b0cf140f7a"
+    },
+    {
+      "key": "L4.k_proj",
+      "tensor": "model.layers.4.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.71089,
+      "residualFirstGroup": 0.2076,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "5f6d02bcece7e26434e357e18bc245947f150565c4f45b2b754f71d75d6c58ad",
+      "lutSHA256": "63f1033a40afb28933b2eb7dc438f3adebdf1310b4fcb613865095fa504bdbc4"
+    },
+    {
+      "key": "L4.w2",
+      "tensor": "model.layers.4.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.99056,
+      "residualFirstGroup": 0.23978,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "c4d289e92a3b3a2595693114399a8a04e761dfb3dab5e836af7e23d116230d10",
+      "lutSHA256": "c90fd3ef4289cfdba848245f96949b066637a9688590c9bc573967e5e942d275"
+    },
+    {
+      "key": "L5.w3",
+      "tensor": "model.layers.5.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.45102,
+      "residualFirstGroup": 0.17568,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "ea003ebb6aeee2235e125574e94d511ff2dd5306f9d13a086ac22ee16c5a73b9",
+      "lutSHA256": "cbc6dd862b248f9e9a490a4647ec37302d2ecc093530e76d88b52e2985d0141b"
+    },
+    {
+      "key": "L5.w1",
+      "tensor": "model.layers.5.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.42655,
+      "residualFirstGroup": 0.18029,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "1acd7c82080151df4bcd6c2aa2c2273254c8257dadfd3fcfe899c05b28db4251",
+      "lutSHA256": "5a39d9616aa1e5f26b9923b3690622f3ae7f1f993fb9814a0d5f970261bc181d"
+    },
+    {
+      "key": "L5.in_proj",
+      "tensor": "model.layers.5.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.65865,
+      "residualFirstGroup": 0.18248,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b0038e3f3de64c7ee8753678cdf3302ba73f1eaf6c2c8951d39ddf7208b75098",
+      "lutSHA256": "f6f2326d8a7c97c75a0fad15f891827c3cbe751de4cbdb68849ee68633075e82"
+    },
+    {
+      "key": "L5.w2",
+      "tensor": "model.layers.5.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.81446,
+      "residualFirstGroup": 0.23654,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "240f21fc80b03bba0258887f2638e87eddfbdf5c76c85c99e9fb7849cd24f586",
+      "lutSHA256": "77b8ec61fdee1febe5279507258d08fc16055e2b33a071682cb217254ae5a6af"
+    },
+    {
+      "key": "L5.out_proj",
+      "tensor": "model.layers.5.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.95997,
+      "residualFirstGroup": 0.23735,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "d5c29ca0883c060269b7890e6e3c8f2f9fe212580aa202e001d773e71c43aee6",
+      "lutSHA256": "657d510a48415b86a4bfb43f7551c8ea6c2ae36d7066f773906c8fb98d6a4800"
+    },
+    {
+      "key": "L6.w1",
+      "tensor": "model.layers.6.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.40641,
+      "residualFirstGroup": 0.1737,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b833db4e5fe3d3b226f242156e3c04c604da120483cd35d63df9543c463592e7",
+      "lutSHA256": "2daa00b171edd21787c3073cf09b44508aa128e10d6e6f6a3853b6f762f6f197"
+    },
+    {
+      "key": "L6.w3",
+      "tensor": "model.layers.6.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 61.4675,
+      "residualFirstGroup": 0.17913,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "395f31e2f2b268e075fece82dd54ff088e0d913ae2789193d80aa3d644e0b267",
+      "lutSHA256": "9efa72538a0f332a1c9206c5af555680f6dfbf4c560a38847e9598505c3f660b"
+    },
+    {
+      "key": "L6.q_proj",
+      "tensor": "model.layers.6.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.65799,
+      "residualFirstGroup": 0.20005,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a7c9a1d64ed2e534d674601eaadb1ab18dc5c8a7917fefecb40890fd96954549",
+      "lutSHA256": "169c4e356047088f9773cadaebaa5e902b9f63f8a9ba9d186f91ec4805f96ced"
+    },
+    {
+      "key": "L6.o_proj",
+      "tensor": "model.layers.6.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.80495,
+      "residualFirstGroup": 0.22157,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "f50ec33597188ca19387d435826f1d350a573edea14e76b9ec00965b8103351a",
+      "lutSHA256": "148440d090b2b22df3390bcadb32fba8c2fd7a9b6ffd63509d2e9ca5097f3b88"
+    },
+    {
+      "key": "L6.k_proj",
+      "tensor": "model.layers.6.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.42471,
+      "residualFirstGroup": 0.22973,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "d828efa2cc3070fd8846b62315be893e2bea2aee000853c79c2914392852b85e",
+      "lutSHA256": "626a534069d70d33f2ab24c737e1dcc63efd5c939c02e541f0c2eac8f9d2b829"
+    },
+    {
+      "key": "L6.w2",
+      "tensor": "model.layers.6.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.99091,
+      "residualFirstGroup": 0.24055,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "80272cc4427e1c9f47408b23845f315537d44303e7ced00b9f2e52fbe2d4129b",
+      "lutSHA256": "94fcfeda826764bc71aa95e5d91efff8ab7a32a8235e83961df825642963f6d9"
+    },
+    {
+      "key": "L6.v_proj",
+      "tensor": "model.layers.6.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.77327,
+      "residualFirstGroup": 0.2548,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "2f04d76c2122a6a59690d90f5e4ba0deecb6c35d7b722973f9565b49e08c1bf9",
+      "lutSHA256": "5a4648c1cc632d00c87959d32482af99957c8ec37d3cd381d50bcb0d71885c82"
+    },
+    {
+      "key": "L7.w3",
+      "tensor": "model.layers.7.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.37004,
+      "residualFirstGroup": 0.17286,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "3f8f2cc4bfdc41e2196becc9b2378652f7c32f279201a785489c05f6606d9d2e",
+      "lutSHA256": "51febd36c350d8c978e2bcd9cfc16321e52c482e85ad73f32cb2cb42f0911797"
+    },
+    {
+      "key": "L7.out_proj",
+      "tensor": "model.layers.7.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.99145,
+      "residualFirstGroup": 0.17498,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a6c90d561f599a56065855bfc6a33c9e9e669bcd0ee94a2fc8848c050423c3ec",
+      "lutSHA256": "815f5659f49fd4a7c94c0103e69bfe19f083911f2a10256964e131e83bfb8dcc"
+    },
+    {
+      "key": "L7.w1",
+      "tensor": "model.layers.7.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.28976,
+      "residualFirstGroup": 0.18448,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a5e1706188fc7a1393a6e45ba99e9b96523c021289420e5886dcbe585389a5cb",
+      "lutSHA256": "9d41969db3b45297a002da0dc4e312e0aa7124ab3ab376c44dbc6b1431dc8cb5"
+    },
+    {
+      "key": "L7.in_proj",
+      "tensor": "model.layers.7.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.70369,
+      "residualFirstGroup": 0.18578,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "6d7b9a66cf7e92b61cd25f3304185376068beca89d265d7ec80001571e8950d1",
+      "lutSHA256": "bda222ce17421417459ac02c8fc448816fbe1cdd78adaf429cc1d661df962689"
+    },
+    {
+      "key": "L7.w2",
+      "tensor": "model.layers.7.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.82164,
+      "residualFirstGroup": 0.24221,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "89f4b43f05ab20699a3c697c716dd4c5717476bd429c0d3a44570ba3fe348dcc",
+      "lutSHA256": "c5983aa3f30d45a9ce9ebbe7ae43b28482c14096e818930f3c115ae1c9181997"
+    },
+    {
+      "key": "L8.w3",
+      "tensor": "model.layers.8.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 61.43466,
+      "residualFirstGroup": 0.17294,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "d229654e58eec14419edc463db9898418da87f8de0791cb94c6f82e81b69212e",
+      "lutSHA256": "35efb7de44336b97923ceb7576ee38d2526816e401b4c2ea91733d615c98c970"
+    },
+    {
+      "key": "L8.w1",
+      "tensor": "model.layers.8.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.42396,
+      "residualFirstGroup": 0.17474,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "7e6e0812503491b4242faaf4731dea954e10e720f15891b16ef55e7397106975",
+      "lutSHA256": "f62394f28bb251fb9a4e849dea6248432238bfbd6e87359ff155b56b3c126733"
+    },
+    {
+      "key": "L8.o_proj",
+      "tensor": "model.layers.8.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.78541,
+      "residualFirstGroup": 0.19848,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "aa0e9749bc15e49901bad283ae8796f0a0076abbdf2f18a46ff962fd6b2702d6",
+      "lutSHA256": "3d245559120bc1acf97166098fbe38a3846540625a4da9e05178c7c4191b0f6c"
+    },
+    {
+      "key": "L8.v_proj",
+      "tensor": "model.layers.8.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.77957,
+      "residualFirstGroup": 0.2108,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "4935b64f5d5657def7c1e007ad76d3eb55187bb72affdea7c22171e696705be6",
+      "lutSHA256": "1a898ba55ae458a926488b8022e4914a2735e137651feccfb575c68a54d8658b"
+    },
+    {
+      "key": "L8.k_proj",
+      "tensor": "model.layers.8.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.68687,
+      "residualFirstGroup": 0.21396,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "3424ff8eac0831c9dc095d9bf154a9ee01c3b32b8996f9dbb4e7e7fcd1b76af8",
+      "lutSHA256": "e4b8885ca3aba9049f8e54f9777ce9a273ce596fb26701bd52fee6d0c1a60993"
+    },
+    {
+      "key": "L8.q_proj",
+      "tensor": "model.layers.8.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.6599,
+      "residualFirstGroup": 0.24182,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a214e10cf57f2470cecbfe8652f66c29032f5314d75450390db39d35ef4a6e02",
+      "lutSHA256": "35f75e94b04ca7efa90ffc5404d7e47280f7f7c76a0359cd16c8e307331d81a9"
+    },
+    {
+      "key": "L8.w2",
+      "tensor": "model.layers.8.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.98899,
+      "residualFirstGroup": 0.24934,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "c0aba478844f51991595670f389be6c472d43eee290d4243942d8cf70ecb804b",
+      "lutSHA256": "8a27a3a5c8892ca3d90cb6aa75b7fbad2f97c5cb3e214e3c896ecabdf88bc79f"
+    },
+    {
+      "key": "L9.w3",
+      "tensor": "model.layers.9.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.3624,
+      "residualFirstGroup": 0.18154,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "2c0090f25bbf0becf9f08113885358bb1274378bc9cb2735aa3f696cbb2ecc88",
+      "lutSHA256": "af3651f30917bac8ef3d30e90f39eef1b661248e12892a6ff69d3e1ded3e4fb1"
+    },
+    {
+      "key": "L9.w1",
+      "tensor": "model.layers.9.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.34424,
+      "residualFirstGroup": 0.19083,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "e5d402be5cbde578d0af01de9be5af33f3ccbf6acfe9905da9c84cf99e8937c2",
+      "lutSHA256": "dbbe070b6bddbfc855736d1f2e6a9d03870fe9ff1a5e285bb2b63ac4075c078d"
+    },
+    {
+      "key": "L9.out_proj",
+      "tensor": "model.layers.9.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.98755,
+      "residualFirstGroup": 0.19329,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b96b8c28d1626f56042836cf69b390d14be484c2331b266e084b55cfabf97e6c",
+      "lutSHA256": "a59a4c7434b368f4da853e2bff65045d2a3bd698c15b2d5017acd1d60624691d"
+    },
+    {
+      "key": "L9.in_proj",
+      "tensor": "model.layers.9.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.61758,
+      "residualFirstGroup": 0.22577,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "9bc5df7dc7e419a458df17e4bf18db1809126f750a3719a5be1debd58320ea7a",
+      "lutSHA256": "87f9fa221f4c8a5179fb855b7694512de577a514e93386ff565c648ddf8aa1e2"
+    },
+    {
+      "key": "L9.w2",
+      "tensor": "model.layers.9.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.78982,
+      "residualFirstGroup": 0.24756,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "e150765265061661b91ef5fd5fb89530bf8fbb51ce8e6cb1f32ad40bf48fc03f",
+      "lutSHA256": "8037eed525ea447765701831198aa3eb9c160301d0d75cdcecbc63783f4049e1"
+    },
+    {
+      "key": "L10.w3",
+      "tensor": "model.layers.10.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 60.76978,
+      "residualFirstGroup": 0.19648,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "90e7f84bd02da94439d64ad4674b435c4d720ac8a813a3cf4e325830d940f05e",
+      "lutSHA256": "443bf8e8bd3a930570501d27236f0ba1d392df1d14a02dde8c37011cd6978369"
+    },
+    {
+      "key": "L10.w1",
+      "tensor": "model.layers.10.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.15734,
+      "residualFirstGroup": 0.20232,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a64fc221bb80961e731a7c236c7384b0f919b0b964c0cf8fbc9c026fc3ba453f",
+      "lutSHA256": "0e5410589eea69a288d8909698154f4f5d45f5f1e9da73aa6df2b4d5c589822e"
+    },
+    {
+      "key": "L10.v_proj",
+      "tensor": "model.layers.10.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.79538,
+      "residualFirstGroup": 0.20845,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "d219a24668dd882b1b463ccc5f7b30214efb9d1c070bde54a17cf2a1d5394924",
+      "lutSHA256": "6bf1cc972c4ba4d1173e0a561c41b5af0980fde98efc08fdd506051cdf90803d"
+    },
+    {
+      "key": "L10.o_proj",
+      "tensor": "model.layers.10.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.76897,
+      "residualFirstGroup": 0.20946,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b6ea6288328cf3a92d9b2e44bebe5beecd8c448d38e55eb58cdccdbb038a2f2c",
+      "lutSHA256": "288c19318636f0f412e6f21f509adb9710e6dde1f51d1e1c75504cafc14ba40e"
+    },
+    {
+      "key": "L10.k_proj",
+      "tensor": "model.layers.10.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.54404,
+      "residualFirstGroup": 0.22243,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a88d550c7cc653bc9c4d3f51404adda2320fed35e307a68214f0f6262c9d6a34",
+      "lutSHA256": "9e2ff83607c5ad4e31cfd394f5ee61bcec6b6fa861049e6b8c6773ec354cff05"
+    },
+    {
+      "key": "L10.q_proj",
+      "tensor": "model.layers.10.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.59353,
+      "residualFirstGroup": 0.22617,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "05fb3f7be7bacad58a499a1a49b25cb93dc6598ef6d851ee5f7dcd241a128630",
+      "lutSHA256": "65dd5214558fe43d708af45f7d278421ba4aac98d8fb8abeab23c4b0969f305b"
+    },
+    {
+      "key": "L10.w2",
+      "tensor": "model.layers.10.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.98927,
+      "residualFirstGroup": 0.27105,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "47de0170e55820696cc820180afc0437d520987b6d7543119b374704ec73ea75",
+      "lutSHA256": "ad0014d2bf08cacb5d0164965582986925859ea501bcbaa658b5ec1d3f44a9f0"
+    },
+    {
+      "key": "L11.w3",
+      "tensor": "model.layers.11.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.33516,
+      "residualFirstGroup": 0.18532,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "8bbedfbdacf950ef16766f48c8ce7fc7fe09b56c46804e8729b8320d422b2f38",
+      "lutSHA256": "5290cce54090bd030dc61863d333c2657ee1d8c9e83b967ec1114040570cb895"
+    },
+    {
+      "key": "L11.w1",
+      "tensor": "model.layers.11.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.35888,
+      "residualFirstGroup": 0.19401,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a75e3129268fb8be864cd7ebdad7b840d01e98e50f0fd695c3082d888792c168",
+      "lutSHA256": "360a3a2ce55f33e485915241cd02ed3ea19d0f97c8405306dec1ffe93916ab9a"
+    },
+    {
+      "key": "L11.out_proj",
+      "tensor": "model.layers.11.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.98968,
+      "residualFirstGroup": 0.21194,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "4de134f4abc168e243dc5f1fe9db6dabdc913a6f5355e881b9be667b05b8db8b",
+      "lutSHA256": "4425be05226a4b6e7841f9039017192940b2ecf653c74e18fdc94c53da351729"
+    },
+    {
+      "key": "L11.in_proj",
+      "tensor": "model.layers.11.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.62171,
+      "residualFirstGroup": 0.21229,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "89fce7297f6cbc64e9635f422e5b59b4394fe33160dccc4194d0a44ca6b1b84a",
+      "lutSHA256": "701edb52917d73201def48cd0494f6fa805fbd9ae936c15980b575edab3688e0"
+    },
+    {
+      "key": "L11.w2",
+      "tensor": "model.layers.11.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.83644,
+      "residualFirstGroup": 0.27158,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "f3d12f5e2cee58fbf9fab4a2c788e75bee9b322be5bd6e1b5cc79a355d98ad77",
+      "lutSHA256": "10695cdd0c3022af3875dc26490803c5951167ffec4a594a9fb93b08d74dfcea"
+    },
+    {
+      "key": "L12.w1",
+      "tensor": "model.layers.12.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.31822,
+      "residualFirstGroup": 0.18725,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "985bef442c05c25131cceb3d89f6021c422fd9d58f5abd58016e83384a0baacd",
+      "lutSHA256": "a9da844ad2b0ffbf06fcd1ebb436268293e118511cd30b8dfa533e36e2273cf9"
+    },
+    {
+      "key": "L12.v_proj",
+      "tensor": "model.layers.12.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.77661,
+      "residualFirstGroup": 0.19479,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "8b2b7facc3f07425d5b19cee0161051e9c1ed68eca37315ce221320a22cb978f",
+      "lutSHA256": "bd3417499739fecf03d6dbff039a316f2e285d9e625b8b66c845281d1b1c5e3c"
+    },
+    {
+      "key": "L12.k_proj",
+      "tensor": "model.layers.12.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.75092,
+      "residualFirstGroup": 0.19869,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "cf8458ca3f0582503ed67476fb5550cc88ad81a058090173bed5edc76ea1aaf1",
+      "lutSHA256": "3de77bed0471cb43463754b2d7d92b680aed0bde47b53442ad5ddd2f5a8a15c8"
+    },
+    {
+      "key": "L12.w3",
+      "tensor": "model.layers.12.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 60.85717,
+      "residualFirstGroup": 0.20513,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "ebbeaf2b7dbad45ddb33605bb83866d1c27052d6650a4c5d6eaa63fd502f8aac",
+      "lutSHA256": "09b6ee85e066d72c3b9ccf539e2fe99f9aaab7d79d58e609c363e99f563af201"
+    },
+    {
+      "key": "L12.o_proj",
+      "tensor": "model.layers.12.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.79066,
+      "residualFirstGroup": 0.21812,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "5ff1a8ca0f64ab8b7976a49714d58d2c57c9104045a5c88477ce52670317d47e",
+      "lutSHA256": "effecb09e9a520c193cb73cc498a70b0988917e7b95a893dcdd7321e0ef2b43a"
+    },
+    {
+      "key": "L12.q_proj",
+      "tensor": "model.layers.12.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.7059,
+      "residualFirstGroup": 0.22625,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "cfd8cc0f254f544c2ce4c23c73e76a57af9dd645ab9c03ba3ca1649a21b02b43",
+      "lutSHA256": "e5c25ff9ba631138741e23a8fe6923154f20ca0eb0f063bb5df246d6c49b1009"
+    },
+    {
+      "key": "L12.w2",
+      "tensor": "model.layers.12.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.98986,
+      "residualFirstGroup": 0.27246,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "7eb2c2dd1a73162c5f05c89667ce89a8f34ee25a7809f3ea23a1f6e6bfd09b69",
+      "lutSHA256": "95c5f8a856dea8338aba9983a975c960e4930c187ebf1b36baddee57cbf56dde"
+    },
+    {
+      "key": "L13.w1",
+      "tensor": "model.layers.13.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.38005,
+      "residualFirstGroup": 0.19503,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "2eca97dc7003ee4a88afcefa1d851d0b789e8343fa75ad0660b51ad2f396ea98",
+      "lutSHA256": "e9b2f3d58be8d79eda9eea3362b55f435ddb3bbfa191698a908cd6af5bea0117"
+    },
+    {
+      "key": "L13.w3",
+      "tensor": "model.layers.13.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.31437,
+      "residualFirstGroup": 0.205,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "5cca176e05c2f3feb6c7f91b582e333420ed70ddfa9d5925134198109a5a5066",
+      "lutSHA256": "aa7839b0b6fcaacba7f3c7746222718cc1abc592585be6e404fb9ab8ae731031"
+    },
+    {
+      "key": "L13.in_proj",
+      "tensor": "model.layers.13.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.55712,
+      "residualFirstGroup": 0.22765,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "57d6f3a878d9068ff14bd0c8aac84d3a496190487801417e61cec3345a08d2f3",
+      "lutSHA256": "b2fe70a07f78ad407d982ba96b14695280dd93ec0fcfc8ad60eadd73223eb1a1"
+    },
+    {
+      "key": "L13.out_proj",
+      "tensor": "model.layers.13.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.97206,
+      "residualFirstGroup": 0.25475,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "26cd1890d4cb96e088b8e22b4607854874f2c30bbee06939a96396f457b5ae97",
+      "lutSHA256": "0e720e5aa440f356830bd1e18e9082a9e1a53bf3dc60997d9ef87cff71efddca"
+    },
+    {
+      "key": "L13.w2",
+      "tensor": "model.layers.13.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.8448,
+      "residualFirstGroup": 0.28505,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a9f2f96f00ffd5bb4d2815487569ad01e376c23069cfdfd8dcdd0c24f84e9190",
+      "lutSHA256": "f64dc651e29cc32a81c3f3f5ae3ef5fd267f80e048508e25096e588724428c58"
+    },
+    {
+      "key": "L14.w3",
+      "tensor": "model.layers.14.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 61.39003,
+      "residualFirstGroup": 0.18642,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b2b7596622b7cd3c337dfe5786da832c7509f30d0fa7bb966de2907a44f0d98c",
+      "lutSHA256": "3b2b49842fcbae4a9dd29be6bae24a73596252d7d6f87713ce3bdd6e9f209006"
+    },
+    {
+      "key": "L14.w1",
+      "tensor": "model.layers.14.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.38555,
+      "residualFirstGroup": 0.19336,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "ad2a3ab6c072e8073e4510256cb09924586c5be2793247a85e1f6ae8db7ddf9b",
+      "lutSHA256": "da2236f13086e6dfc802aa976883113e8294e8c171bd3ec71faeb62506af69a9"
+    },
+    {
+      "key": "L14.o_proj",
+      "tensor": "model.layers.14.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.86803,
+      "residualFirstGroup": 0.20657,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "894fba26562ad5fb1e05c3e8d1bf6f8c6627063746d6997e52ce59f4be6c3846",
+      "lutSHA256": "f8b1189d85f11e3649f973809a205136dd755850bbcb5528401e0ce5d6f6ffa1"
+    },
+    {
+      "key": "L14.k_proj",
+      "tensor": "model.layers.14.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.52428,
+      "residualFirstGroup": 0.21407,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "cb77748c88f9325cd88d4fe8f52f45dbb00c62ab91b6b11ff94d09c9c0d48ae6",
+      "lutSHA256": "42cb839dbfd540feacf3248a57e5ce8248671c7b47e871a6062c91c4053631ff"
+    },
+    {
+      "key": "L14.q_proj",
+      "tensor": "model.layers.14.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.59125,
+      "residualFirstGroup": 0.22273,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "fbfe42d360da6dc8fda3a840162b221e94f65de5ad45870f114841cbeb48f026",
+      "lutSHA256": "9f29f63ba600e05999d523defc1a7510e7ff4098de6026d3068b3cacb9ccc06a"
+    },
+    {
+      "key": "L14.v_proj",
+      "tensor": "model.layers.14.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.78607,
+      "residualFirstGroup": 0.25666,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "c929f3cf1262c0cb3f52d11621afee3823b2e065f23d3bb0e9ab11a26f6b2a26",
+      "lutSHA256": "aa80682e9446168f58a446ef539f0c06a2c4c1329ade7eac4b3c9e3baa1a1c55"
+    },
+    {
+      "key": "L14.w2",
+      "tensor": "model.layers.14.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.99288,
+      "residualFirstGroup": 0.29541,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "cf96f318d4cd52f71651d2fd54f21b77a1b622bc8382efdea2ab0684e182fe60",
+      "lutSHA256": "9f0a167d252df940072177ec054ef4023851f6e59dfd4e2673e93077ddfa9076"
+    },
+    {
+      "key": "L15.w1",
+      "tensor": "model.layers.15.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.44589,
+      "residualFirstGroup": 0.18305,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "423397f7494211a285ea14fc67669a3c6cbd89d8325f61b82b5ce34598f4495c",
+      "lutSHA256": "9726869cb5f52b3200ff5580619483ba79235c7298eda42ba919b6871039e019"
+    },
+    {
+      "key": "L15.in_proj",
+      "tensor": "model.layers.15.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.6946,
+      "residualFirstGroup": 0.18368,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "d9df485f9a165eeecbf1a6ca829281deca980b9daaf5d565918d89c864970426",
+      "lutSHA256": "24af8c62ef748f54a9a8febefd9dc7f2c1aff3cfcaa6422cd1f59e921ec4950b"
+    },
+    {
+      "key": "L15.w3",
+      "tensor": "model.layers.15.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.40443,
+      "residualFirstGroup": 0.18597,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "bd251a2e456938a88d76eb30dcd3ca4b269a2cedfea04fb0f65c451f10a40929",
+      "lutSHA256": "56d3f16a1403c45462001a1c16a380745c77a5f7c22ce3d3b9bc48711675f9a8"
+    },
+    {
+      "key": "L15.out_proj",
+      "tensor": "model.layers.15.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 1,
+      "fittedGain": 0.98363,
+      "residualFirstGroup": 0.1945,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "28df89abf00a4cccecefb4e56064530d30d45ff0ccab6f6211e3f828f4fc93df",
+      "lutSHA256": "6d79baf68783ca6d2ccc541d8c6a7e7679c934f3a720fd719c11643acc47ebc0"
+    },
+    {
+      "key": "L15.w2",
+      "tensor": "model.layers.15.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.85382,
+      "residualFirstGroup": 0.2519,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "eb051893dc451c45b1593042ab1f0e53ad6a73b272bc57958a337413c58969fe",
+      "lutSHA256": "524becee3f9d31afb4ac3acaf7f780db4cffd4cbf642097b2409ef10897c4830"
+    },
+    {
+      "key": "L16.w3",
+      "tensor": "model.layers.16.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 62.1754,
+      "residualFirstGroup": 0.16468,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "29d364261bc81ab6486ceb9dc989e0e0e383b3ca855f9aad6054e558eb0c4c18",
+      "lutSHA256": "745bf077bc44b61e783159e4cbf9fc77f67f7dd9460addfc85cd0e3ec7ace410"
+    },
+    {
+      "key": "L16.w1",
+      "tensor": "model.layers.16.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.5617,
+      "residualFirstGroup": 0.16876,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "db82ceb53527b6d3ec13f06a81666b658e7c507caf4a07255cad85a71a8dd129",
+      "lutSHA256": "9f572949eb9f70dc8fb07498bb314f616406f5f801b553d1f07b65d0abe30241"
+    },
+    {
+      "key": "L16.v_proj",
+      "tensor": "model.layers.16.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.79263,
+      "residualFirstGroup": 0.17897,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "d0a4775e0a2cde4b942898f64783775ce8e80167c8ac7513257e9d377877c161",
+      "lutSHA256": "72e291a098303693163e76adae0613adf83952e7ad7f490b9cdc0b2caf308c95"
+    },
+    {
+      "key": "L16.o_proj",
+      "tensor": "model.layers.16.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.83695,
+      "residualFirstGroup": 0.1879,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "4e2ffcb119cdb080eda3b037ed9b5ab36f5b6333b8fe564cafc5f1e1beec525a",
+      "lutSHA256": "8e9598dd0d466b7d9378b5dc81d8fffa686b17aeabf0e12807771ae4b53ded95"
+    },
+    {
+      "key": "L16.k_proj",
+      "tensor": "model.layers.16.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.69649,
+      "residualFirstGroup": 0.20002,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "4b2b9773f79d76ab15575ee1b93f999884ea7e9cddd6c188cd919f3678dade4e",
+      "lutSHA256": "9c7f3eafc9d038b73247020c5cbff4e7ed10ba9c0f14880df35913828a45b5ff"
+    },
+    {
+      "key": "L16.q_proj",
+      "tensor": "model.layers.16.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.69518,
+      "residualFirstGroup": 0.21088,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "ef3676c11824ee155750759a7600fbf5d5099b9aff77717743288825c77f3dee",
+      "lutSHA256": "3134eb36f31ca1b828db968f08296b05e4d77a5bfaa4372f43250f7fcc608e30"
+    },
+    {
+      "key": "L16.w2",
+      "tensor": "model.layers.16.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.99058,
+      "residualFirstGroup": 0.23112,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "2b36c5808ba628264686684fa027f0448773bea12ae4a76b9f0de94c53da5f9b",
+      "lutSHA256": "4b478f40726623c68a7d98e1ed19a0bce608e03acb439ceee9ebb497b3241519"
+    },
+    {
+      "key": "L17.w3",
+      "tensor": "model.layers.17.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.58787,
+      "residualFirstGroup": 0.16119,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "f6ffc14f2d078572f9faa96c2c8315ea108ea04a32f03e8544b586d47203e18a",
+      "lutSHA256": "1830afe2513b9f59d582baf55556055c239211507c279ee293d043361b691850"
+    },
+    {
+      "key": "L17.in_proj",
+      "tensor": "model.layers.17.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.78418,
+      "residualFirstGroup": 0.16359,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "2a716db3ad1fcbc067d94529333ece167b4e459ee1a0933abfd21a3c0faa10f3",
+      "lutSHA256": "8fdc8616ba384d40e84f9b417fa7d92c9fb5f253282a97f75910e70f474218b7"
+    },
+    {
+      "key": "L17.w1",
+      "tensor": "model.layers.17.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.57066,
+      "residualFirstGroup": 0.1642,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "165484a94340f8dd94c5516afb76b551b5ab7bbd2636e3153f52511510bea0b3",
+      "lutSHA256": "ad3f1a4b06e1e84d0236d0a03b2234b42bd31ff2c8895021b2bb9234c36353f5"
+    },
+    {
+      "key": "L17.out_proj",
+      "tensor": "model.layers.17.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.84546,
+      "residualFirstGroup": 0.19528,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "ea358dc836e284275a8b092ee5a7a6e188896141dc6e716166e8fb36583f821b",
+      "lutSHA256": "3757a1f6a7d8eef5aacd6928700aa1783759d819323faf967a92e9d58e8f12f0"
+    },
+    {
+      "key": "L17.w2",
+      "tensor": "model.layers.17.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.76778,
+      "residualFirstGroup": 0.23138,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "27c012c4525cbcad23b3f5f884e740877c5529a7743e3ee93899f2ae436dd629",
+      "lutSHA256": "3cb46c219b3ec1e552dab6d0dc24a0372b353ae86131205f5cf25992938bfde8"
+    },
+    {
+      "key": "L18.q_proj",
+      "tensor": "model.layers.18.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.76324,
+      "residualFirstGroup": 0.15763,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "a938138de0c5649a89dd140d95dc848836a14b4e77f9f8d6b9694fbac9957e11",
+      "lutSHA256": "97f3197bbb4e8a14676c5b765dc02b5086d065a501be4681481bc6ed1562a341"
+    },
+    {
+      "key": "L18.w3",
+      "tensor": "model.layers.18.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 62.4232,
+      "residualFirstGroup": 0.15833,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "47bb975455b3c5039ccf0faf642f17b683f9e48643b6f0a94ce4792c2952894d",
+      "lutSHA256": "9ad278e01f81db115457ba6bbf7b163ca1ab9c69a43351fbe8f916f54dc60992"
+    },
+    {
+      "key": "L18.w1",
+      "tensor": "model.layers.18.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.58681,
+      "residualFirstGroup": 0.16141,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "0c1016d161df1a8c801f763cdbb56a3c02257ceb940a2b6eef22832e4428883b",
+      "lutSHA256": "738718bc5651685ce70219a393bbb953d98c4d649a3672bf559a1a1f6234e8d6"
+    },
+    {
+      "key": "L18.o_proj",
+      "tensor": "model.layers.18.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.93464,
+      "residualFirstGroup": 0.1634,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "680491501d9f3ec0afc874fa14e524df92f68bb33bcc129e345925abf7bb2c31",
+      "lutSHA256": "571fe96339a4721fe32e772d0ab76dca7f9fad85e261312da2b813313b443c72"
+    },
+    {
+      "key": "L18.k_proj",
+      "tensor": "model.layers.18.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.72679,
+      "residualFirstGroup": 0.1651,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "bd7da3ad2d219f5932f5be9a6e6f53fecfa7a5eb846b3c079a0a16640955c1ea",
+      "lutSHA256": "b85b130dee0c9fba8235dae41743c52225ffb2fa6a0654c60a380e401e87eb64"
+    },
+    {
+      "key": "L18.v_proj",
+      "tensor": "model.layers.18.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.78493,
+      "residualFirstGroup": 0.17004,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "144b24473a5fb81097463e6f4ec6df24b5b7cff7a14a3c5fdc6a34a3084a604d",
+      "lutSHA256": "9c4ce181914a5ebfcae2f264a0e982419cfec5d6d6c56dc5ad5ea0fb6571a4b4"
+    },
+    {
+      "key": "L18.w2",
+      "tensor": "model.layers.18.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.98622,
+      "residualFirstGroup": 0.22397,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "23cda674d14b47ff9195748cb70a9dac62d3fe02d758013f7c764ae7889ae464",
+      "lutSHA256": "689cf2cd763bf31ffa152dca9e1cab9426526d60f2df2bdeb6ca9a5c9dd07e72"
+    },
+    {
+      "key": "L19.in_proj",
+      "tensor": "model.layers.19.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.81969,
+      "residualFirstGroup": 0.15471,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "071376e30e714496d3d857135aac88326248f5de2518cf77fe211beadbbdd102",
+      "lutSHA256": "09237b8889f83522474edd5a3acde0237f1764fdbb48db9b5f090e9d1dce3311"
+    },
+    {
+      "key": "L19.w3",
+      "tensor": "model.layers.19.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.50048,
+      "residualFirstGroup": 0.18393,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "598b3083633804c2744ad343b2cea870d5ebfe080ad6502cfa30ca04c280affd",
+      "lutSHA256": "9728fff7e8ed9d976b040d1df4a1b875ebe9324727b58d00d81dcbc1cedd16e4"
+    },
+    {
+      "key": "L19.out_proj",
+      "tensor": "model.layers.19.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.8858,
+      "residualFirstGroup": 0.18416,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "13d3829d8a23266fa63f100f9df86939912c7191fec64d241262286c5b44cd37",
+      "lutSHA256": "271bc64de14bcb119912cb7e1797034a1fd301a043d7e1015dcf1016b23c48e1"
+    },
+    {
+      "key": "L19.w1",
+      "tensor": "model.layers.19.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.3675,
+      "residualFirstGroup": 0.20103,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "4307ac8bf42cef80034a69ba53ed7d8363deae54e4613c67a14f06490d42b631",
+      "lutSHA256": "5f4df70143a24c585ef4699c56c831a9b7d3f023596f4b4ab513524f8992254a"
+    },
+    {
+      "key": "L19.w2",
+      "tensor": "model.layers.19.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.82059,
+      "residualFirstGroup": 0.23819,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "803d64e76182bb21642a99ccd0bc0407ea1b9e09312a06f6efb3869b042c9e0a",
+      "lutSHA256": "b2acea31172fb80cfcca09b225aaffcb9e40e4eb55899ea01ef014c6810b2d47"
+    },
+    {
+      "key": "L20.w1",
+      "tensor": "model.layers.20.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.64173,
+      "residualFirstGroup": 0.15557,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "ab60b79835cfa9a2c27839782e645c9c5e500756742c9f5bcdb07e3a6dd7507d",
+      "lutSHA256": "035c05427a4b3da7778f23f27865487d1e8b672d7237432f70389277609ec77b"
+    },
+    {
+      "key": "L20.w3",
+      "tensor": "model.layers.20.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 62.64358,
+      "residualFirstGroup": 0.15559,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "53331f8e0c840cfbb8b0f8a9ecadfd9d9849b0698fd286380f7e3355064d1ded",
+      "lutSHA256": "954942893c7294a2f8fd246d094f4fa3a1442d0237d55bd551f3b7e0ae1d571f"
+    },
+    {
+      "key": "L20.w2",
+      "tensor": "model.layers.20.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.98322,
+      "residualFirstGroup": 0.21851,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b2bb2355314141812032d5f2d743870205812bc979dc37f2687c82822126d9d3",
+      "lutSHA256": "8f8d32f43bfefb926b01a44c707746c672d30a4d80390240a6562bc79a2f10fd"
+    },
+    {
+      "key": "L20.o_proj",
+      "tensor": "model.layers.20.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.73494,
+      "residualFirstGroup": 0.22411,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "df005a132dbab5dba70b4f8dd17d2c087827d6b83d6fefbcda64945ad531d70f",
+      "lutSHA256": "bfa1c728f86d4fce145f111100e0d8f88449829ec683986ddb192795d6390e2c"
+    },
+    {
+      "key": "L20.q_proj",
+      "tensor": "model.layers.20.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.65095,
+      "residualFirstGroup": 0.23529,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "55fd81ce2f7e95538fa53644e752f8c1227a6fb7d55b5d05a67d1770185e98e5",
+      "lutSHA256": "f27e6cfd4bbaa934692ff6e0685dc4fc912957780f8f5fb199727898d42b2ae1"
+    },
+    {
+      "key": "L20.k_proj",
+      "tensor": "model.layers.20.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.79063,
+      "residualFirstGroup": 0.25327,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "45602b901e86e93ab71c932152495c42b83fa44543b6156ffe587750ab6b5495",
+      "lutSHA256": "576bf54063becf721c0cd21dd36684b876ddbe108eb940c63eaffb83801f5314"
+    },
+    {
+      "key": "L20.v_proj",
+      "tensor": "model.layers.20.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.91839,
+      "residualFirstGroup": 0.37581,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "2068c594c8c6396ff86eef3f8c4b2cb8069bd7c36d091c044f88352ef955fc9c",
+      "lutSHA256": "8999ed8f7464e0b695325856adbdf9e3a019af33ddcdb379dc41eb05fc5d3c9b"
+    },
+    {
+      "key": "L21.w3",
+      "tensor": "model.layers.21.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.62827,
+      "residualFirstGroup": 0.14921,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "5b2474d07bceafaa54ca9c68bc391bdc77d6539e4d3b8b1a77fb543a2bb190f9",
+      "lutSHA256": "d40e86a39f5001746faffb5ecccea2f177583142d6efd3437906c0855659d609"
+    },
+    {
+      "key": "L21.w1",
+      "tensor": "model.layers.21.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.63579,
+      "residualFirstGroup": 0.15874,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "fcd0d142138ca8a0d9026e88ddcca3e74292e7e7bc109229ff38f3fdd06db669",
+      "lutSHA256": "cc0727c6f145b60269cda5c56befd7c9eb8ad5929f44be74506481a526b22869"
+    },
+    {
+      "key": "L21.in_proj",
+      "tensor": "model.layers.21.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.78251,
+      "residualFirstGroup": 0.17336,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "e8b069ef0b45478b7075639a8ffedb4adb9ad38caf4b5d743d65393a5cee00ed",
+      "lutSHA256": "5ddd337b871fda7c50760cfd4a82d6d2c4a7aad0415d4cfcee1564170bf9446e"
+    },
+    {
+      "key": "L21.out_proj",
+      "tensor": "model.layers.21.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.83249,
+      "residualFirstGroup": 0.20652,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "5c516e9050bc3bac67f751592e0304561dedd2cbfce450cff6c24213cb6d1922",
+      "lutSHA256": "714b1691663bdf9cb5424e6652d343cf9a0ed9b4129524a73ec8c977ffc65cb1"
+    },
+    {
+      "key": "L21.w2",
+      "tensor": "model.layers.21.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 16,
+      "fittedGain": 15.54868,
+      "residualFirstGroup": 0.23805,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "4a34d45eee71c5b9e65f4d5e37ed6bdb963df30301a016c9d76e0d3300624015",
+      "lutSHA256": "f661746e8a6fc2fef1f4f4349d8e7a49bcef304005c656e4ec1e44650b7a01b0"
+    },
+    {
+      "key": "L22.w3",
+      "tensor": "model.layers.22.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 64,
+      "fittedGain": 62.54624,
+      "residualFirstGroup": 0.15153,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "2a6b9001c23c2a5424366447cabbb049f18a758432a8262e4d1bed838dac3c86",
+      "lutSHA256": "0e10b8c87763b1fb193c8fcda2e71f2628566348d7638422057d9abde85ea201"
+    },
+    {
+      "key": "L22.w1",
+      "tensor": "model.layers.22.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.61166,
+      "residualFirstGroup": 0.15608,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "51d9e3f9cfc45052e4eaa87931329e525adeb95e1779b18bf4ec92cc12bc4b65",
+      "lutSHA256": "e0a71e5239e24a87accfcbe743defd3d7e095383fda71af131792156b7c40961"
+    },
+    {
+      "key": "L22.k_proj",
+      "tensor": "model.layers.22.self_attn.k_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.69054,
+      "residualFirstGroup": 0.22094,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "0ad0a38de59997665c6deca32538ee2f3c444814a73c4b00361994ab75a3b897",
+      "lutSHA256": "7ec28af84bbc3eff1ae69a382f51bda908507157ff4f0ad3ff0534a8b7b822e3"
+    },
+    {
+      "key": "L22.o_proj",
+      "tensor": "model.layers.22.self_attn.o_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.83834,
+      "residualFirstGroup": 0.23471,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "b17cb9b7167beeb810ba6e139803cef3c4c27ca6b1e86d6ab5617e5df41128e0",
+      "lutSHA256": "0172bb175133728aa665125acf21b768aa490804c455f452db36106f74c19552"
+    },
+    {
+      "key": "L22.q_proj",
+      "tensor": "model.layers.22.self_attn.q_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.73095,
+      "residualFirstGroup": 0.26637,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "3649aa26a3b374f6ef08a272c6702a074ff848b165b45562576fb5c7d510ccfc",
+      "lutSHA256": "d4ec489158a28f640b29d3f4f29a8a98c83acf4ad1df220f4658b53fee724faa"
+    },
+    {
+      "key": "L22.w2",
+      "tensor": "model.layers.22.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 1,
+      "fittedGain": 0.94176,
+      "residualFirstGroup": 0.27542,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "369d39df9b92bd032e3d1fe07e48cd29a452a46173519f24ec7201aad3bb89f3",
+      "lutSHA256": "094e1f27a047222fc129d3f540c81f35a4d7f45afc941da4fc670666693651d2"
+    },
+    {
+      "key": "L22.v_proj",
+      "tensor": "model.layers.22.self_attn.v_proj.weight",
+      "shape": [
+        512,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.92101,
+      "residualFirstGroup": 0.38599,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "90634cd97cd1591aac9bf6311f296677aeec82ededf5df9d824c9e3d2c63326f",
+      "lutSHA256": "e0d868a9dfff8cc42bdab45148e019e92aa99d90d88fbbab95da092ba1aa8ed3"
+    },
+    {
+      "key": "L23.w3",
+      "tensor": "model.layers.23.feed_forward.w3.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.63131,
+      "residualFirstGroup": 0.15436,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "3f8549c33ddece8d2033668e4e19b3b05c2a188d9173ed81181401258d0f5165",
+      "lutSHA256": "fd4ba8f9801e2fc9344ee4a9c129d9ecde273fb9ef4d852112c8e3d53a5a5a92"
+    },
+    {
+      "key": "L23.in_proj",
+      "tensor": "model.layers.23.conv.in_proj.weight",
+      "shape": [
+        6144,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.82138,
+      "residualFirstGroup": 0.1549,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "420707294f603281f259c40335fb7dc724a3aa3fbaad1218d31f087b824ec96b",
+      "lutSHA256": "56402e83451318a6d608aeecc7f578b78cb89d973d481243f6df5bf2f8ed247e"
+    },
+    {
+      "key": "L23.w1",
+      "tensor": "model.layers.23.feed_forward.w1.weight",
+      "shape": [
+        7168,
+        2048
+      ],
+      "gain": 16,
+      "fittedGain": 15.61708,
+      "residualFirstGroup": 0.15895,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "15e5513abebaef28f780c8e15e5b2dabd3fb887216642cbf0b0156bc617a334f",
+      "lutSHA256": "a04ef333c5701692c25d7fb8497a9a569172d8b2ccd4abd6a93b4003d8021ce1"
+    },
+    {
+      "key": "L23.out_proj",
+      "tensor": "model.layers.23.conv.out_proj.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "gain": 8,
+      "fittedGain": 7.71909,
+      "residualFirstGroup": 0.20154,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "8e1d418c499e77172abf49b859e8f01db32992152efd903126d2e627cc0b945a",
+      "lutSHA256": "f4faf7d6ee44c73c69f4864caf7a25b9531b0e5afae3eff8771bd1755dd38660"
+    },
+    {
+      "key": "L23.w2",
+      "tensor": "model.layers.23.feed_forward.w2.weight",
+      "shape": [
+        2048,
+        7168
+      ],
+      "gain": 4,
+      "fittedGain": 3.82316,
+      "residualFirstGroup": 0.2571,
+      "maxDistinctPerGroup": 16,
+      "idxSHA256": "aeea2df64920e08d989cf1c55edfd66566b40d8b3738356ecfbf7d0ab0d4d983",
+      "lutSHA256": "4af751a5544d9e3dce3825e3c35e1117cbb8f3026716fdebfe2be2bdeec3939e"
+    }
+  ],
+  "head": {
+    "tensor": "lm_head.weight",
+    "shape": [
+      128000,
+      2048
+    ],
+    "finalNormFolded": false,
+    "chunks": [
+      {
+        "rows": [
+          0,
+          16000
+        ],
+        "gain": 16,
+        "fittedGain": 15.81989,
+        "residual": 0.11884,
+        "residualOtherReading": 0.15328,
+        "maxDistinctPerGroup": 16,
+        "idxSHA256": "32d60987ee06a8466f52b148f1c2e92dde0abd9601726fe9c5817ae896a09667",
+        "lutSHA256": "75eec1bc85b0b2a56c4a1c70c13b62dd2ba5d4a97c5e797e3b8f1d6655609de7"
+      },
+      {
+        "rows": [
+          16000,
+          32000
+        ],
+        "gain": 16,
+        "fittedGain": 15.78339,
+        "residual": 0.12283,
+        "residualOtherReading": 0.15437,
+        "maxDistinctPerGroup": 16,
+        "idxSHA256": "fa2cb67d3fe530e1ed094037c3b2d126b07176ffe79572df66b012cbc760e039",
+        "lutSHA256": "274e7bfdb071f92040edf1d0dbf45bb9c40f568c213ad89fc0217f3f0766c4ad"
+      },
+      {
+        "rows": [
+          32000,
+          48000
+        ],
+        "gain": 16,
+        "fittedGain": 15.77743,
+        "residual": 0.12676,
+        "residualOtherReading": 0.15821,
+        "maxDistinctPerGroup": 16,
+        "idxSHA256": "880c8eaf3f67f1c3f6a67ee70c74e344d1dbc9960c485512ed8b6c5d1976e26d",
+        "lutSHA256": "abccba10c6e451a0c94c0d0d5f4f4b0f0173d162bb24ca2aeabf5dfda15a282e"
+      },
+      {
+        "rows": [
+          48000,
+          64000
+        ],
+        "gain": 16,
+        "fittedGain": 15.81539,
+        "residual": 0.1243,
+        "residualOtherReading": 0.16078,
+        "maxDistinctPerGroup": 16,
+        "idxSHA256": "3c4662e9f25ad6f24e80255733a23988bea2ec9c527516ba45f31f2a44ee5a4f",
+        "lutSHA256": "cf339b4fe9b0cc59f2f9a94d2633f4bf189c93c234134b89abe6a9fb506e9b42"
+      },
+      {
+        "rows": [
+          64000,
+          80000
+        ],
+        "gain": 16,
+        "fittedGain": 15.75176,
+        "residual": 0.13791,
+        "residualOtherReading": 0.17273,
+        "maxDistinctPerGroup": 16,
+        "idxSHA256": "8712ad7cc39bebac3ec5a45b4ba6450e5ae8803273673d8afae90cbaf458eb4e",
+        "lutSHA256": "69a4bfc19dd73ec22e0ee22ead81639dbd7aa3961136e62272b2565b7c60d190"
+      },
+      {
+        "rows": [
+          80000,
+          96000
+        ],
+        "gain": 16,
+        "fittedGain": 15.73586,
+        "residual": 0.1471,
+        "residualOtherReading": 0.18506,
+        "maxDistinctPerGroup": 16,
+        "idxSHA256": "2bafbbdab274a3b86feda48c9496b599089756b704e4c581a90f6a90c21433fa",
+        "lutSHA256": "4679af57287f609c4d1783eea24986dd1c9f103a2930faab0ec2f0b7d6ef2935"
+      },
+      {
+        "rows": [
+          96000,
+          112000
+        ],
+        "gain": 16,
+        "fittedGain": 15.79254,
+        "residual": 0.13986,
+        "residualOtherReading": 0.17929,
+        "maxDistinctPerGroup": 16,
+        "idxSHA256": "b9eb1b3a34c11b87153331465873bbc1cb2c6f4c843338092cf20dc673e7f1a7",
+        "lutSHA256": "f65ce8842e1c2778a6f0e7ea6f544980cd9e57e8975f3667e09a9b4bc2ee83cb"
+      },
+      {
+        "rows": [
+          112000,
+          128000
+        ],
+        "gain": 16,
+        "fittedGain": 15.76578,
+        "residual": 0.14168,
+        "residualOtherReading": 0.17805,
+        "maxDistinctPerGroup": 16,
+        "idxSHA256": "0096e0e62df9110c328ffcc4ea73dcfc390254aa3ae2c522dbfc3c3ef4a6d2c7",
+        "lutSHA256": "67b1b84f90db1f5b391d4aaf447d730ff00050e55838e91431d29b0a8bdc5553"
+      }
+    ]
+  },
+  "carried": 143,
+  "bytes": 3830928536
+}
