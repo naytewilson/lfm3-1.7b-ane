@@ -1,0 +1,3 @@
+{"k":"sky","promptTokens":21,"steps":148,"newTokensToEOS":47,"hitEOS":true,"loadMS":{"seg01_dev":449,"seg02_dev":262},"ttftMs":672.5,"promptTokPerS":31.2,"genTokPerS":35,"totalMs":1987,"endToEndTokPerS":23.7,"firstStepMs":82.7,"medStepMs":28.82}
+{"k":"rope","promptTokens":17,"steps":144,"newTokensToEOS":128,"hitEOS":false,"loadMS":{"seg01_dev":135,"seg02_dev":54},"ttftMs":539.6,"promptTokPerS":31.5,"genTokPerS":34.2,"totalMs":4248,"endToEndTokPerS":30.1,"firstStepMs":75.2,"medStepMs":28.97}
+{"k":"france","promptTokens":18,"steps":145,"newTokensToEOS":36,"hitEOS":true,"loadMS":{"seg01_dev":86,"seg02_dev":53},"ttftMs":531.8,"promptTokPerS":33.8,"genTokPerS":34.7,"totalMs":1541,"endToEndTokPerS":23.4,"firstStepMs":66.5,"medStepMs":28.64}

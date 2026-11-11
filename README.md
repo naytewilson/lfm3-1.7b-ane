@@ -4,10 +4,11 @@ Core ML packages of a width-pruned, 4-bit palettized LFM3-1.7B that decode one t
 on the Apple Neural Engine (ANE), with the measurements, hardware evidence and hashes that
 back every number on this page.
 
-**Status: early release (v0.1.0).** Placement and speed are measured. Output quality is
-measurably below the unquantized model (numbers below), the reference runtime is not part of
-this release, and several things a production deployment needs have not been measured. Read
-[What is not established](#what-is-not-established) before relying on it.
+**Status: early release (v0.1.0).** Placement, speed, ANE power and three real chat turns
+are measured. Output quality is measurably below the unquantized model (numbers below), the
+runtime is a prebuilt binary without source, and several things a production deployment
+needs have not been measured. Read [What is not established](#what-is-not-established)
+before relying on it.
 
 Not affiliated with or endorsed by Liquid AI. LFM3 is Liquid AI's model; this is a derivative
 distributed under the [LFM Open License v1.0](LICENSE).
@@ -42,6 +43,70 @@ calls; its logits are bit-identical to the first runtime's over 64 positions (ma
 difference 0.0). The spread between the two "current" sessions is machine state, not a
 change in the artifact: figures are comparable only within a session. No measurement was
 taken on a cool, idle machine with the current runtime.
+
+## Chat turns, sustained decode and ANE power (2026-11-11)
+
+The published runner and the files downloaded from this release were run on the same
+machine on 2026-11-11, 19:06Z–19:13Z. The machine was busy with unrelated work the whole
+time (load average 35–56, CPU drawing about 3.9 W before the test started), so read the
+rates as what a loaded machine gave, not as the best this hardware does. Everything is in
+`evidence/chat-20261111/`.
+
+**Runner check.** Fed the first 64 tokens of the test passage, the published runner with the
+downloaded 288-position bundle picks the same next token as the 2026-11-10 run at 64 of 64
+positions.
+
+**Sustained decode with ANE power.** 288-position bundle, three runs of about 64 seconds
+each through the benchmark guard (all valid), each run repeating full 270-token passes.
+Power is the `ane_power` reading of macmon 0.10.0 (IOReport, no root), sampled once a
+second and averaged over the run. It read 0.00 W before and after.
+
+| Run | Steps | Seconds | Tokens/s (mean) | Tokens/s (median step) | ANE power | ANE energy per token |
+|---|---|---|---|---|---|---|
+| 1 | 2,159 | 63.5 | 34.0 | 34.5 | 1.13 W | 33.3 mJ |
+| 2 | 2,159 | 66.6 | 32.4 | 33.1 | 1.07 W | 32.9 mJ |
+| 3 | 1,889 | 63.7 | 29.7 | 32.3 | 0.93 W | 31.4 mJ |
+
+This is the ANE's own reading, not wall power. The runner's CPU and memory power could not
+be separated from the other work on the machine and are not reported. Peak resident memory
+of the runner in these runs was about 309 MB, against 97–112 MB in the short runs above;
+the likely cause is that the runner keeps the logits of all 270 positions of a pass.
+
+**Chat turns.** Chat template with the reasoning block closed, greedy decoding, up to 128
+new tokens, 288-position bundle. These are single runs outside the benchmark guard, so
+treat the timings as indicative.
+
+| Prompt | Prompt tokens | Time to first new token | New tokens | Generation rate | Whole turn |
+|---|---|---|---|---|---|
+| What is the capital of France? | 18 | 0.53 s | 36, then stopped | 34.7 tok/s | 1.54 s |
+| Explain in one sentence why the sky is blue. | 21 | 0.67 s | 47, then stopped | 35.0 tok/s | 1.99 s |
+| Explain RoPE in two sentences | 17 | 0.54 s | 128, cut off | 34.2 tok/s | 4.25 s |
+
+Times start at the first prompt token and exclude loading the model. Loading took 0.1–0.7 s
+with the compiled model cached and 32 s the first time on this machine (14.1 s + 17.9 s for
+the two functions).
+
+The replies, verbatim:
+
+> The capital of France is **Paris**. It is located on the river Seine in the northern part
+> of the country and is one of the most well-known cities in the world.
+
+> The sky is blue because sunlight is reflected by the molecules in the atmosphere, and the
+> specific wavelengths of light that are scattered by these molecules (mainly nitrogen and
+> oxygen) to the eye are in the blue part of the spectrum.
+
+> **RoPE** stands for **Realientation of Weights** (or **Parameter-wise **) and refers to a
+> technique used in **Transformer** models, particularly in **Large Language Models
+> (LLMs)**, to **normalize the weights** of the model's parameters. […]
+
+The first two are sound. The third is wrong: RoPE is rotary position embedding, and the
+reply invents an expansion and had not finished at 128 tokens. Whether the original or the
+6-bit model gets it right was not tested.
+
+**Prompt speed.** There is no separate prefill function. The prompt goes through the same
+one-token-per-call path as generation, at 31–34 tokens per second in these turns (the first
+call of a turn took 67–83 ms). A function that reads several prompt tokens per call was not
+built.
 
 ## What "on the ANE" means here
 
@@ -112,19 +177,23 @@ Read plainly:
 - **Quality of the pruned checkpoint against the original LFM3-1.7B: not measured.** Every
   accuracy number above compares against the pruned checkpoint, not against Liquid AI's
   model. The pruning was not followed by any recovery training.
-- **No task or chat evaluation.** Only next-token agreement on one 270-token passage.
-- **No long-run or thermal measurement.** Each speed run repeats a 28-step decode (13
-  prompt tokens, then generation) from an empty cache for about 24 seconds. The longest
-  single decode timed was 270 steps, on the first runtime (33.4 ms per token median, 29.9
-  tokens per second). Nothing was run for minutes, and nothing at a full cache.
-- **No energy measurement, no CPU or GPU comparison** for this model.
+- **No task or chat evaluation.** Next-token agreement on one 270-token passage, and three
+  chat prompts, one of which it answered wrongly.
+- **No long-run or thermal measurement.** The 2026-11-10 speed runs repeat a 28-step decode
+  (13 prompt tokens, then generation) from an empty cache for about 24 seconds; the
+  2026-11-11 runs repeat 270-token passes for about 64 seconds. Nothing was run for
+  minutes, and nothing with the cache completely full.
+- **ANE power only.** No wall or whole-system power, and no CPU or GPU comparison for this
+  model.
 - **One device, one OS build.** ANE placement is decided by the OS at load time and can
   differ on other chips or OS versions.
 - **Fixed context.** A bundle holds at most 64 or 288 positions including the prompt; it
   does not slide or extend. The upstream model's 256K context is not available here.
 - **One token per call.** The prompt is ingested at the same speed as generation; batched
   prefill was not built.
-- **No reference runtime in this release.** See below.
+- **The runtime is a binary only.** `anec-run` is published without source. It takes token
+  ids and returns token ids, decodes greedily, and has no sampling, streaming or server.
+  It was run only on the machine above.
 
 ## What is in this release
 
@@ -134,8 +203,10 @@ In this repository:
 |---|---|
 | `evidence/c64/`, `evidence/c288/` | For each bundle: `fit.json` (state-form and partition search against the hardware), `certificate.json`, `plan.json`, `semantic.json`, per-operation placement evidence (`seg0*_dev.oracle.json`), and three benchmark sessions (`bench-*/results.tsv`, `receipt.json`, `guard.log`, and the raw per-step record of each run, `ane_{1,2,3}.json`) |
 | `evidence/logs/` | Job logs of the teacher check, the accuracy runs and the three timing sessions |
+| `evidence/chat-20261111/` | The 2026-11-11 runs: the three chat records and their token ids, the runner check, the 64-second benchmark runs, the raw power samples (`macmon.jsonl`), the job script and log, and the two small scripts that compute the tables above |
 | `evidence/PRUNING_RECEIPT.json` | What the pruning changed |
 | `tokenizer/` | Tokenizer, chat template and model configuration from the upstream release |
+| `tools/tok.mjs` | Turns a chat message into token ids and token ids back into text |
 | `SHA256SUMS` | SHA-256 of every release asset and of the files inside the bundles |
 | `LICENSE`, `NOTICE.md` | LFM Open License v1.0 and the statement of changes it requires |
 
@@ -146,6 +217,7 @@ As release assets:
 | `lfm3-1.7b-pruned7168-lut4-c64.tar` | `seg01_dev.mlpackage`, `seg02_dev.mlpackage`, `plan.json`, `certificate.json`, `semantic.json` for a 64-position context |
 | `lfm3-1.7b-pruned7168-lut4-c288.tar` | The same for a 288-position context |
 | `embed_tokens.bf16.bin` | The token-embedding table for the host-side lookup: 128,000 × 2,048, little-endian bfloat16, row-major, 524,288,000 bytes |
+| `lfm3-ane-runner-macos-arm64.tar` | The `anec-run` binary (arm64, built for macOS 15 or later, ad-hoc signed, not notarized), `model/config.json`, and `setup.sh` with the 112-byte header that turns the embedding table into the one-tensor `model.safetensors` the runner reads |
 
 The packages published here were rebuilt from the pruned checkpoint on 2026-11-11 and are
 byte-identical to the ones measured: for both functions of both bundles, the SHA-256 of
@@ -165,11 +237,44 @@ recorded for it. The verifier was not run on the 288-position bundle today.
 
 ## Running it
 
-**The runtime used for the measurements (`anec-run`) is not included.** What is published is
-enough to load the functions with Core ML and to write a driver, but there is no turnkey
-command yet.
+You need an Apple-silicon Mac, this repository cloned, and the three assets
+`lfm3-1.7b-pruned7168-lut4-c288.tar`, `embed_tokens.bf16.bin` and
+`lfm3-ane-runner-macos-arm64.tar` downloaded into it.
 
-One decode step, as recorded in `plan.json`:
+```sh
+# 1. unpack and assemble the runner's model folder
+tar -xf lfm3-1.7b-pruned7168-lut4-c288.tar
+tar -xf lfm3-ane-runner-macos-arm64.tar
+./lfm3-ane-runner/setup.sh embed_tokens.bf16.bin
+xattr -d com.apple.quarantine lfm3-ane-runner/anec-run 2>/dev/null || true   # needed if a browser downloaded it
+
+# 2. text -> token ids
+npm install @huggingface/tokenizers @huggingface/jinja
+IDS=$(node tools/tok.mjs encode "What is the capital of France?")
+
+# 3. run on the Neural Engine
+./lfm3-ane-runner/anec-run lfm3_lut4_C288 --model lfm3-ane-runner/model \
+    --tokens "$IDS" --generate 128 --units ane --out reply.json
+
+# 4. token ids -> text
+node tools/tok.mjs reply reply.json
+```
+
+What to expect:
+
+- The first run on a machine compiles the model for the ANE and took 32 s here; later runs
+  load in under a second.
+- `anec-run` prints the step timings and writes the full record to `reply.json`. It always
+  produces the number of tokens asked for; `tok.mjs reply` cuts the text at the end-of-turn
+  token.
+- Prompt plus reply must fit the bundle's context (288 positions, or 64 with the other
+  bundle).
+- `--units cpu` runs the same functions without the ANE.
+- Steps 1 and 3 were run on the machine above with the downloaded assets. `tools/tok.mjs`
+  was run with Node 22 on Linux, where it reproduces the test passage's token ids; it was
+  not run on macOS.
+
+If you would rather write your own driver, one decode step, as recorded in `plan.json`:
 
 1. Look up the token's row in `embed_tokens.bf16.bin` and convert it from bfloat16 to
    float16 → `embed` (shape `[1, 2048]`). No scaling is applied.
@@ -207,3 +312,7 @@ LFM3-1.7B and are distributed under the **LFM Open License v1.0** (see `LICENSE`
 short, and not as a substitute for the text: use, modification and redistribution are
 permitted with the license and notices kept; commercial use is licensed only for entities
 with annual revenue under US $10 million. `NOTICE.md` states what was changed.
+
+The `anec-run` binary is not a derivative of LFM3 and is not under that license. It is
+published without source, as is and without warranty, for running these bundles.
+`tools/tok.mjs` and the files under `evidence/` are original to this repository.

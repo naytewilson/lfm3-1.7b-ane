@@ -1,0 +1,54 @@
+start=2026-11-11T19:08:22Z
+ANVIL_ANE status=PASS profile=anec-pub_chat_power_lfm3_C288 capsule=808d84aa7312 seat_class=L perf_valid=false correctness_valid=false oracle_valid=true abort=none receipt=/Users/nayte/ane-hot/scratch/anec/seat/pub_chat_
+SEAT_RUN=/Users/nayte/ane-hot/scratch/anec/seat/pub_chat_power_lfm3_C288-20261111T190822Z
+=== chat sky 2026-11-11T19:08:26Z
+| host-carried state | states=35 | row_copy=22 | update_ms_med=0.13 | pass_through=13 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=148 | first_ms=82.7 | decode_ms_med=28.82 | tok_per_s_indicative=34.7 |
+|   seg00_host | host | ms_med=0.09 | load_ms=0 |
+|   seg01_dev | device | ms_med=15.93 | load_ms=449 |
+|   seg02_dev | device | ms_med=12.36 | load_ms=262 |
+=== chat rope 2026-11-11T19:08:31Z
+| host-carried state | states=35 | row_copy=22 | update_ms_med=0.15 | pass_through=13 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=144 | first_ms=75.2 | decode_ms_med=28.97 | tok_per_s_indicative=34.5 |
+|   seg00_host | host | ms_med=0.22 | load_ms=0 |
+|   seg01_dev | device | ms_med=15.92 | load_ms=135 |
+|   seg02_dev | device | ms_med=12.15 | load_ms=54 |
+=== chat france 2026-11-11T19:08:35Z
+| host-carried state | states=35 | row_copy=22 | update_ms_med=0.13 | pass_through=13 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=145 | first_ms=66.5 | decode_ms_med=28.64 | tok_per_s_indicative=34.9 |
+|   seg00_host | host | ms_med=0.05 | load_ms=0 |
+|   seg01_dev | device | ms_med=16.00 | load_ms=86 |
+|   seg02_dev | device | ms_med=12.16 | load_ms=53 |
+idle_start=1794424120
+bench_start=1794424140
+[guard] guard init: out=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/stage/lfm3_lut4_C288/bench-20261111T190900Z time_kind=bsd
+[guard] thresholds: min_wall=20s min_cpu=1.0s max_faults=50000 strict=1
+[guard] gates ACTIVE: G1 exit, G2 result-row, G3 wall, G4 cpu, G5 faults, G6 flags
+[guard] preflight ok: --model
+[guard] preflight ok: --tokens
+[guard] preflight ok: --generate
+[guard] preflight ok: --units
+[guard] preflight ok: --out
+[guard] --- arm ane-sustained-1 attempt 1 ---
+[guard] VALID   ane-sustained-1  wall=64s cpu=11.870s faults=1038
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=70.7 | decode_ms_med=29.02 | tok_per_s_indicative=34.5 |
+[guard] --- arm ane-sustained-2 attempt 2 ---
+[guard] VALID   ane-sustained-2  wall=68s cpu=13.280s faults=939
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=86.0 | decode_ms_med=30.20 | tok_per_s_indicative=33.1 |
+[guard] --- arm ane-sustained-3 attempt 3 ---
+[guard] VALID   ane-sustained-3  wall=65s cpu=11.430s faults=893
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=105.7 | decode_ms_med=31.00 | tok_per_s_indicative=32.3 |
+
+[guard] === RESULTS ===
+arm	status	result	wall_s	cpu_s	major_faults	maxrss_kb
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=70.7 | decode_ms_med=29.02 | tok_per_s_indicative=34.5 |	64	11.870	1038	301680
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=86.0 | decode_ms_med=30.20 | tok_per_s_indicative=33.1 |	68	13.280	939	302560
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=105.7 | decode_ms_med=31.00 | tok_per_s_indicative=32.3 |	65	11.430	893	301600
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/lfm3-release-20261111/stage/lfm3_lut4_C288/bench-20261111T190900Z
+BENCH_EVIDENCE=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/stage/lfm3_lut4_C288/bench-20261111T190900Z
+bench_end=1794424346
+idle_end=1794424361
+JOB_DONE
+seat_exit=0
+end=2026-11-11T19:12:57Z
