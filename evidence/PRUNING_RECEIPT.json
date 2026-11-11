@@ -1,0 +1,30 @@
+{
+  "config_changed_keys" : [
+    "intermediate_size"
+  ],
+  "copied_sidecars" : [
+    "LICENSE",
+    "README.md",
+    "chat_template.jinja",
+    "configuration_lfm3.py",
+    "generation_config.json",
+    "lfm3_conv.py",
+    "modeling_lfm3.py",
+    "special_tokens_map.json",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "upstream-identity.json"
+  ],
+  "output_directory" : "/home/nayte/ane-mirror/LFM3-1.7B-north-tournament-10692-20261028/LFM3-PRUNED1653304064params-ffn7168-created_20261028",
+  "output_tensor_bytes" : 3306608128,
+  "resulting_total_parameters" : 1653304064,
+  "schema_version" : 1,
+  "source_directory" : "/home/nayte/ane-mirror/LFM3-1.7B-40ebe0aa-teacher",
+  "source_ffn_width" : 7680,
+  "source_tensor_bytes" : 3457603072,
+  "source_total_parameters" : 1728801536,
+  "target_ffn_width" : 7168,
+  "tensors_copied" : 214,
+  "tensors_pruned" : 72,
+  "weight_file" : "LFM3-PRUNED1653304064params-ffn7168-created_20261028.safetensors"
+}

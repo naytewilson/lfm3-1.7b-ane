@@ -1,0 +1,20 @@
+[guard] guard init: out=/Users/nayte/ane-hot/scratch/anec/lfm3_lut4_decode_C288/final/bench-20261111T020552Z time_kind=bsd
+[guard] thresholds: min_wall=20s min_cpu=1.0s max_faults=50000 strict=1
+[guard] gates ACTIVE: G1 exit, G2 result-row, G3 wall, G4 cpu, G5 faults, G6 flags
+[guard] preflight ok: --model
+[guard] preflight ok: --tokens
+[guard] preflight ok: --generate
+[guard] preflight ok: --units
+[guard] preflight ok: --out
+[guard] --- arm ane-sustained-1 attempt 1 ---
+[guard] VALID   ane-sustained-1  wall=25s cpu=3.850s faults=361
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=60.2 | decode_ms_med=26.55 | tok_per_s_indicative=37.7 |
+[guard] --- arm ane-sustained-2 attempt 2 ---
+[guard] VALID   ane-sustained-2  wall=25s cpu=4.240s faults=637
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=109.4 | decode_ms_med=27.67 | tok_per_s_indicative=36.1 |
+[guard] --- arm ane-sustained-3 attempt 3 ---
+[guard] VALID   ane-sustained-3  wall=25s cpu=4.230s faults=338
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=159.2 | decode_ms_med=26.87 | tok_per_s_indicative=37.2 |
+[guard] === RESULTS ===
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/anec/lfm3_lut4_decode_C288/final/bench-20261111T020552Z

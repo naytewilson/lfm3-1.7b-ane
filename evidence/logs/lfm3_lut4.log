@@ -1,0 +1,44 @@
+Build complete! (8.50 sec)
+=== fit (stateful, S=1, context 288)
+ANVIL_ANE status=PASS profile=anec-fit_lfm3_lut4_C288 capsule=64d65a8fec45 seat_class=L perf_valid=false correctness_valid=false oracle_valid=true abort=none receipt=/Users/nayte/ane-hot/scratch/anec/seat/fit_lfm3_lut4_C
+SEAT_RUN=/Users/nayte/ane-hot/scratch/anec/seat/fit_lfm3_lut4_C288-20261111T010952Z
+fit: hybrid decoder, state forms probed on layers 0..<3 (conv, conv, full_attention)
+fit: state native, budget unlimited -> 1 device segments, NO EXECUTION PLAN: seg00_dev (error code -14)
+       seg00_dev: 84 MB, 188 ops, plan error (error code -14)
+fit: state rank4, budget unlimited -> 1 device segments, NO EXECUTION PLAN: seg00_dev (error code -14)
+       seg00_dev: 84 MB, 196 ops, plan error (error code -14)
+fit: state ioDelta, budget unlimited -> 1 device segments, all ANE-eligible
+       seg00_dev: 84 MB, 180 ops, ANE-supported 180/180, preferred 180
+fit: state io, budget unlimited -> 1 device segments, all ANE-eligible
+       seg00_dev: 84 MB, 180 ops, ANE-supported 180/180, preferred 180
+fit: state form chosen by measurement: ioDelta
+fit: state ioDelta, budget 450 MB -> 2 device segments, all ANE-eligible
+       seg01_dev: 445 MB, 1035 ops, ANE-supported 1035/1035, preferred 1035
+       seg02_dev: 346 MB, 548 ops, ANE-supported 547/548, preferred 547
+fit: state form ioDelta; chosen budget 450 MB; largest ANE-eligible segment measured 445 MB; smallest rejected none; compiled -> /Users/nayte/ane-hot/scratch/anec/lfm3_lut4_decode_C288/final
+=== teacher-forced on the ANE over 270 fixture tokens
+ANVIL_ANE status=PASS profile=anec-tf_ane_lfm3_lut4_C288 capsule=f1c1640d54e3 seat_class=L perf_valid=false correctness_valid=false oracle_valid=true abort=none receipt=/Users/nayte/ane-hot/scratch/anec/seat/tf_ane_lfm3_
+| host-carried state | states=35 | row_copy=22 | update_ms_med=0.12 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=425.9 | decode_ms_med=33.40 | tok_per_s_indicative=29.9 |
+|   seg00_host | host | ms_med=0.04 | load_ms=0 |
+|   seg01_dev | device | ms_med=18.12 | load_ms=20373 |
+|   seg02_dev | device | ms_med=14.80 | load_ms=22203 |
+ANE vs teacher: compare: n=34560000 maxAbs=14.213713 rms=1.4994502 cos=0.8585582 top1=251/270 meanKL=0.24006
+ANE     nll: rows=269 mean_nll=0.6845 ppl=1.983 target_top1=246/269
+teacher nll: rows=269 mean_nll=0.4974 ppl=1.644 target_top1=250/269
+=== anvil-bench (official timing, ANE arms)
+[guard] --- arm ane-sustained-3 attempt 3 ---
+[guard] VALID   ane-sustained-3  wall=24s cpu=7.380s faults=114
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=288.9 | decode_ms_med=33.74 | tok_per_s_indicative=29.6 |
+
+[guard] === RESULTS ===
+arm	status	result	wall_s	cpu_s	major_faults	maxrss_kb
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=142.2 | decode_ms_med=33.62 | tok_per_s_indicative=29.7 |	25	7.440	78	104144
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=232.6 | decode_ms_med=34.00 | tok_per_s_indicative=29.4 |	26	7.690	114	110560
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=288.9 | decode_ms_med=33.74 | tok_per_s_indicative=29.6 |	24	7.380	114	104560
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/anec/lfm3_lut4_decode_C288/final/bench-20261111T011738Z
+BENCH_EVIDENCE=/Users/nayte/ane-hot/scratch/anec/lfm3_lut4_decode_C288/final/bench-20261111T011738Z
+1.7G
+/dev/disk3s3s1   460Gi    13Gi    74Gi    15%    490k  775M    0%   /
+=== JOB DONE

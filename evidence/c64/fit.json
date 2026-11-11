@@ -1,0 +1,112 @@
+{
+  "chosenBudgetBytes" : 471859200,
+  "largestEligibleSegmentBytes" : 466988544,
+  "model" : "\/Users\/nayte\/ane-hot\/models\/lfm3-pruned-anec",
+  "schema" : "anec.fit.v2",
+  "seqLen" : 1,
+  "stateForm" : "ioDelta",
+  "trials" : [
+    {
+      "budgetBytes" : 9223372036854775807,
+      "eligible" : false,
+      "planError" : true,
+      "segments" : [
+        {
+          "anePreferred" : 0,
+          "aneSupported" : 0,
+          "assigned" : 0,
+          "computeOps" : 188,
+          "modelSHA256" : "cde085d5b469eb6c89f0317f129cd10120e67ac81948a1d0db6da637cd1af0dc",
+          "name" : "seg00_dev",
+          "osBuild" : "26C5035r",
+          "planError" : "error code -14",
+          "weightBytes" : 88535552
+        }
+      ],
+      "stateForm" : "native"
+    },
+    {
+      "budgetBytes" : 9223372036854775807,
+      "eligible" : false,
+      "planError" : true,
+      "segments" : [
+        {
+          "anePreferred" : 0,
+          "aneSupported" : 0,
+          "assigned" : 0,
+          "computeOps" : 196,
+          "modelSHA256" : "13a3062c7bcbde68dfe5aeb9ca10243abf358a88ba073a981f832ff63585d752",
+          "name" : "seg00_dev",
+          "osBuild" : "26C5035r",
+          "planError" : "error code -14",
+          "weightBytes" : 88535552
+        }
+      ],
+      "stateForm" : "rank4"
+    },
+    {
+      "budgetBytes" : 9223372036854775807,
+      "eligible" : true,
+      "planError" : false,
+      "segments" : [
+        {
+          "anePreferred" : 180,
+          "aneSupported" : 180,
+          "assigned" : 180,
+          "computeOps" : 180,
+          "modelSHA256" : "fb3c968a27ac62c284dce479093f56dbf827553c6a172a2ec9af8583e2d892ad",
+          "name" : "seg00_dev",
+          "osBuild" : "26C5035r",
+          "weightBytes" : 88535552
+        }
+      ],
+      "stateForm" : "ioDelta"
+    },
+    {
+      "budgetBytes" : 9223372036854775807,
+      "eligible" : true,
+      "planError" : false,
+      "segments" : [
+        {
+          "anePreferred" : 180,
+          "aneSupported" : 180,
+          "assigned" : 180,
+          "computeOps" : 180,
+          "modelSHA256" : "a4cc97fa8fc56a5c9f86258b2fd5343f734f0881889a0e026755241dcf9d115f",
+          "name" : "seg00_dev",
+          "osBuild" : "26C5035r",
+          "weightBytes" : 88535552
+        }
+      ],
+      "stateForm" : "io"
+    },
+    {
+      "budgetBytes" : 471859200,
+      "eligible" : true,
+      "planError" : false,
+      "segments" : [
+        {
+          "anePreferred" : 1035,
+          "aneSupported" : 1035,
+          "assigned" : 1035,
+          "computeOps" : 1035,
+          "modelSHA256" : "09e488e08e4afaf83dae363371b7e81fafc9b260a80ba450a999d1500423c892",
+          "name" : "seg01_dev",
+          "osBuild" : "26C5035r",
+          "weightBytes" : 466988544
+        },
+        {
+          "anePreferred" : 547,
+          "aneSupported" : 547,
+          "assigned" : 548,
+          "computeOps" : 548,
+          "modelSHA256" : "7c938155216558a90934803a1bd809c282cb4341b3fbd0e412777876c2c40c48",
+          "name" : "seg02_dev",
+          "osBuild" : "26C5035r",
+          "weightBytes" : 363522048
+        }
+      ],
+      "stateForm" : "ioDelta"
+    }
+  ]
+}

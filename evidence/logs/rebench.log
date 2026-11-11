@@ -1,0 +1,45 @@
+Build complete! (9.87 sec)
+=== carry check: fast host carry against the generic update path (LFM3 LUT4, 64 fixture tokens)
+| host-carried state | states=35 | row_copy=22 | update_ms_med=0.09 | pass_through=13 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=64 | first_ms=360.8 | decode_ms_med=21.85 | tok_per_s_indicative=45.8 |
+| host-carried state | states=35 | row_copy=0 | update_ms_med=6.12 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=64 | first_ms=51.7 | decode_ms_med=32.35 | tok_per_s_indicative=30.9 |
+fast vs generic: compare: n=8192000 maxAbs=0.0 rms=0.0 cos=1.0 top1=64/64
+=== rebench lfm3_lut4_C64
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=40.5 | decode_ms_med=22.91 | tok_per_s_indicative=43.6 |	24	3.760	82	78384
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=48.1 | decode_ms_med=23.39 | tok_per_s_indicative=42.7 |	25	3.510	175	74288
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=53.6 | decode_ms_med=23.18 | tok_per_s_indicative=43.1 |	26	3.970	733	74032
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/anec/lfm3_lut4c64_decode_C64/final/bench-20261111T020417Z
+=== rebench lfm3_lut4_C288
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=60.2 | decode_ms_med=26.55 | tok_per_s_indicative=37.7 |	25	3.850	361	94928
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=109.4 | decode_ms_med=27.67 | tok_per_s_indicative=36.1 |	25	4.240	637	102512
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=159.2 | decode_ms_med=26.87 | tok_per_s_indicative=37.2 |	25	4.230	338	93920
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/anec/lfm3_lut4_decode_C288/final/bench-20261111T020552Z
+=== rebench lfm3_lut6_C288
+ane-sustained-1	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=116.5 | decode_ms_med=34.40 | tok_per_s_indicative=29.1 |	25	4.010	429	93856
+ane-sustained-2	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=208.4 | decode_ms_med=34.33 | tok_per_s_indicative=29.1 |	26	4.420	358	85984
+ane-sustained-3	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=123.4 | decode_ms_med=32.50 | tok_per_s_indicative=30.8 |	25	3.860	865	96208
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/anec/lfm3_lut6_decode_C288/final/bench-20261111T020758Z
+=== rebench llama_lut4
+ane-sustained-1	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=60.1 | decode_ms_med=19.44 | tok_per_s_indicative=51.4 |	24	5.250	230	72192
+ane-sustained-2	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=66.7 | decode_ms_med=18.48 | tok_per_s_indicative=54.1 |	25	4.610	86	69456
+ane-sustained-3	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=59.1 | decode_ms_med=18.38 | tok_per_s_indicative=54.4 |	25	4.440	94	69648
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/anec/lut4m_decode_C64/final/bench-20261111T021102Z
+=== rebench llama_lut6
+ane-sustained-1	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=47.5 | decode_ms_med=24.68 | tok_per_s_indicative=40.5 |	25	3.800	466	63696
+ane-sustained-2	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=90.7 | decode_ms_med=24.45 | tok_per_s_indicative=40.9 |	26	3.780	741	71376
+ane-sustained-3	VALID	| stateful decode | segments=4 | units=cpuAndNeuralEngine | steps=28 | first_ms=75.4 | decode_ms_med=25.69 | tok_per_s_indicative=38.9 |	25	3.630	648	74112
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/anec/lut6_decode_C64/final/bench-20261111T021306Z
+=== rebench qwen_lut4
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=102.9 | decode_ms_med=27.34 | tok_per_s_indicative=36.6 |	25	5.420	450	83184
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=54.6 | decode_ms_med=28.70 | tok_per_s_indicative=34.8 |	25	5.010	711	82528
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=28 | first_ms=259.6 | decode_ms_med=31.19 | tok_per_s_indicative=32.1 |	27	4.620	964	75424
+[guard] arms=3 valid=3 invalid=0 repeats=OK -> USABLE
+[guard] evidence: /Users/nayte/ane-hot/scratch/anec/qwen_lut4_decode_C64/final/bench-20261111T021541Z
+/dev/disk3s3s1   460Gi    13Gi    56Gi    19%    490k  590M    0%   /
+=== JOB DONE
