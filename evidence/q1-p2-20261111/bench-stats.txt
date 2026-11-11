@@ -1,0 +1,4 @@
+idle {"n":21,"ane":0,"cpu":4.16,"all":4.24,"sys":10.17}
+arm1 {"steps":2699,"seconds":62.6,"passes":10,"meanTokPerS":43.1,"medianMs":22.76,"medianTokPerS":43.9,"power":{"n":58,"ane":1.445,"cpu":3.62,"all":5.15,"sys":13.84},"aneNetW":1.445,"mJPerToken":33.5,"cpuNetW":-0.54}
+arm2 {"steps":2699,"seconds":64.1,"passes":10,"meanTokPerS":42.1,"medianMs":23.2,"medianTokPerS":43.1,"power":{"n":59,"ane":1.332,"cpu":3.67,"all":5.08,"sys":13.74},"aneNetW":1.332,"mJPerToken":31.6,"cpuNetW":-0.49}
+arm3 {"steps":2699,"seconds":63.4,"passes":10,"meanTokPerS":42.6,"medianMs":23.01,"medianTokPerS":43.5,"power":{"n":59,"ane":1.322,"cpu":3.61,"all":5.01,"sys":13.56},"aneNetW":1.322,"mJPerToken":31.1,"cpuNetW":-0.55}

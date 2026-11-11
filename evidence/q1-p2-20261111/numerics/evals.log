@@ -1,0 +1,45 @@
+=== v0-none compile 2026-11-11T21:26:04Z range=none
+  seg01_dev: 1035 ops, 445 MB weights, model 9e2258263be1
+  seg02_dev: 548 ops, 346 MB weights, model b4b839b4d610
+hashing source tensors
+compiled: 3 segments, semantic hash 8b658edc7f5194c0, certificate /Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/v0-none/s1/certificate.json
+ANVIL_ANE status=PASS profile=anec-lfm3num-v0-none capsule=e29805739954 seat_class=L perf_valid=false correctness_valid=false oracle_valid=true abort=none receipt=/Users/nayte/ane-hot/scratch/anec/sea
+SEAT_RUN=/Users/nayte/ane-hot/scratch/anec/seat/lfm3num-v0-none-20261111T212727Z
+placement seg01_dev: "summary":{"ane":1035,"aneFraction":1,"aneSupported":1035,"aneUnsupportedTypes":{},"assigned":1035,"cpu":0,"gpu":0,"none":2274}
+placement seg02_dev: "summary":{"ane":547,"aneFraction":0.99817518248175185,"aneSupported":547,"aneUnsupportedTypes":{"ios18.reshape":1},"assigned":548,"cpu":1,"gpu":0,"none":1190}
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=350.9 | decode_ms_med=24.31 | tok_per_s_indicative=41.1 |
+ANE vs teacher 270: compare: n=34560000 maxAbs=13.651158 rms=1.1139052 cos=0.9241672 top1=252/270 meanKL=0.18819
+position ranges: [{"positions":"0-28","klSum":38.53,"klMean":1.3285,"top1":"11/29"},{"positions":"29-63","klSum":6.95,"klMean":0.1987,"top1":"35/35"},{"positions":"64-269","klSum":5.33,"klMean":0.0259,"top1":"206/206"},{"positions":"0-269","klSum":50.81,"klMean":0.1882,"top1":"252/270"}]
+ANE vs exact q1 270: compare: n=34560000 maxAbs=5.535882 rms=0.5577547 cos=0.9808097 top1=261/270 meanKL=0.05376
+ANE  nll: rows=269 mean_nll=0.6478 ppl=1.911 target_top1=248/269
+=== v0-none done 2026-11-11T21:29:03Z
+=== v1-op compile 2026-11-11T21:29:03Z range=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/range.op.json
+  seg01_dev: 1058 ops, 445 MB weights, model 873f470ed331
+  seg02_dev: 560 ops, 346 MB weights, model 81de95aabf5c
+hashing source tensors
+compiled: 3 segments, semantic hash 2c0cee3b4bb80dcb, certificate /Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/v1-op/s1/certificate.json
+ANVIL_ANE status=PASS profile=anec-lfm3num-v1-op capsule=273b1d60d13c seat_class=L perf_valid=false correctness_valid=false oracle_valid=true abort=none receipt=/Users/nayte/ane-hot/scratch/anec/seat/
+SEAT_RUN=/Users/nayte/ane-hot/scratch/anec/seat/lfm3num-v1-op-20261111T213031Z
+placement seg01_dev: "summary":{"ane":1058,"aneFraction":1,"aneSupported":1058,"aneUnsupportedTypes":{},"assigned":1058,"cpu":0,"gpu":0,"none":2297}
+placement seg02_dev: "summary":{"ane":559,"aneFraction":0.99821428571428572,"aneSupported":559,"aneUnsupportedTypes":{"ios18.reshape":1},"assigned":560,"cpu":1,"gpu":0,"none":1202}
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=370.1 | decode_ms_med=23.37 | tok_per_s_indicative=42.8 |
+ANE vs teacher 270: compare: n=34560000 maxAbs=13.869908 rms=1.0123079 cos=0.9378249 top1=252/270 meanKL=0.13397
+position ranges: [{"positions":"0-28","klSum":28.38,"klMean":0.9787,"top1":"11/29"},{"positions":"29-63","klSum":4.42,"klMean":0.1262,"top1":"35/35"},{"positions":"64-269","klSum":3.38,"klMean":0.0164,"top1":"206/206"},{"positions":"0-269","klSum":36.17,"klMean":0.134,"top1":"252/270"}]
+ANE vs exact q1 270: compare: n=34560000 maxAbs=3.0603733 rms=0.22448961 cos=0.9969113 top1=269/270 meanKL=0.00692
+ANE  nll: rows=269 mean_nll=0.6198 ppl=1.859 target_top1=248/269
+=== v1-op done 2026-11-11T21:32:09Z
+=== v2-all compile 2026-11-11T21:32:09Z range=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/range.all.json
+  seg01_dev: 1087 ops, 445 MB weights, model 0756820f80de
+  seg02_dev: 576 ops, 346 MB weights, model abdcabdb37f0
+hashing source tensors
+compiled: 3 segments, semantic hash 97fd18cca26d2548, certificate /Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/v2-all/s1/certificate.json
+ANVIL_ANE status=PASS profile=anec-lfm3num-v2-all capsule=9e62b9ed09b6 seat_class=L perf_valid=false correctness_valid=false oracle_valid=true abort=none receipt=/Users/nayte/ane-hot/scratch/anec/seat
+SEAT_RUN=/Users/nayte/ane-hot/scratch/anec/seat/lfm3num-v2-all-20261111T213338Z
+placement seg01_dev: "summary":{"ane":1087,"aneFraction":1,"aneSupported":1087,"aneUnsupportedTypes":{},"assigned":1087,"cpu":0,"gpu":0,"none":2326}
+placement seg02_dev: "summary":{"ane":575,"aneFraction":0.99826388888888884,"aneSupported":575,"aneUnsupportedTypes":{"ios18.reshape":1},"assigned":576,"cpu":1,"gpu":0,"none":1218}
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=374.4 | decode_ms_med=22.98 | tok_per_s_indicative=43.5 |
+ANE vs teacher 270: compare: n=34560000 maxAbs=13.979283 rms=1.0105402 cos=0.9380592 top1=252/270 meanKL=0.13213
+position ranges: [{"positions":"0-28","klSum":28,"klMean":0.9654,"top1":"11/29"},{"positions":"29-63","klSum":4.36,"klMean":0.1245,"top1":"35/35"},{"positions":"64-269","klSum":3.32,"klMean":0.0161,"top1":"206/206"},{"positions":"0-269","klSum":35.68,"klMean":0.1321,"top1":"252/270"}]
+ANE vs exact q1 270: compare: n=34560000 maxAbs=2.8806858 rms=0.21800645 cos=0.99708766 top1=269/270 meanKL=0.00634
+ANE  nll: rows=269 mean_nll=0.6186 ppl=1.856 target_top1=248/269
+=== v2-all done 2026-11-11T21:35:15Z

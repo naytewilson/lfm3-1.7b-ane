@@ -1,0 +1,23 @@
+=== fit one-token, context 288 2026-11-11T22:02:02Z
+fit: state ioDelta, budget 450 MB -> 2 device segments, all ANE-eligible
+       seg01_dev: 445 MB, 1172 ops, ANE-supported 1172/1172, preferred 1172
+       seg02_dev: 346 MB, 620 ops, ANE-supported 619/620, preferred 619
+fit: state form ioDelta; chosen budget 450 MB; largest ANE-eligible segment measured 445 MB; smallest rejected none; compiled -> /Users/nayte/ane-hot/scratch/lfm3-release-20261111/p2/s1/final
+=== fit prefill 32, context 288 2026-11-11T22:04:08Z
+fit: state ioDelta, budget 450 MB -> 2 device segments, all ANE-eligible
+       seg01_dev: 445 MB, 1298 ops, ANE-supported 1298/1298, preferred 1298
+       seg02_dev: 346 MB, 676 ops, ANE-supported 675/676, preferred 675
+fit: state form ioDelta; chosen budget 450 MB; largest ANE-eligible segment measured 445 MB; smallest rejected none; compiled -> /Users/nayte/ane-hot/scratch/lfm3-release-20261111/p2/s32/final
+=== one-token function over 270 tokens 2026-11-11T22:06:41Z
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=104.7 | decode_ms_med=22.29 | tok_per_s_indicative=44.9 |
+=== with the prefill hand-off over the same 270 tokens 2026-11-11T22:07:16Z
+| prefill | tokens_per_call=32 | calls=8 | tokens=256 | total_ms=2071.7 | tok_per_s_indicative=123.6 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=743.1 | decode_ms_med=25.14 | tok_per_s_indicative=39.8 |
+ANE vs teacher, 270: compare: n=34560000 maxAbs=13.198033 rms=0.9807908 cos=0.94158643 top1=253/270 meanKL=0.11666
+ANE vs teacher, first 64: compare: n=8192000 maxAbs=13.198033 rms=1.1682479 cos=0.93001664 top1=47/64 meanKL=0.44575
+ANE vs the same program in exact arithmetic, 270: compare: n=34560000 maxAbs=0.6931858 rms=0.04892039 cos=0.9998572 top1=270/270 meanKL=0.00044
+with prefill vs teacher, 270: compare: n=34560000 maxAbs=13.198033 rms=0.9807197 cos=0.94159293 top1=253/270 meanKL=0.11655
+with vs without prefill, 270: compare: n=34560000 maxAbs=0.0703125 rms=0.0067545422 cos=0.9999972 top1=270/270 meanKL=0.00000
+ANE     nll: rows=269 mean_nll=0.5964 ppl=1.816 target_top1=248/269
+teacher nll: rows=269 mean_nll=0.4974 ppl=1.644 target_top1=250/269
+JOB_DONE

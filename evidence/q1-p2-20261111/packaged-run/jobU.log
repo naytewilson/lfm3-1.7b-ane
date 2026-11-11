@@ -1,0 +1,18 @@
+=== one prompt 22:30:21
+The capital of France is **Paris**. It is the largest city in France and the country's political, economic, and cultural center.
+[18 prompt tokens | first token 1049 ms | 28 new tokens | 43.2 tok/s | position 45 of 288]
+=== the 105-token note, as text 22:31:16
+The city council approved a six-month trial of new bike lanes on Main Street, after public comments and a debate between supporters and shop owners, with a decision to review data at the end.
+[105 prompt tokens | first token 1214 ms | 39 new tokens | 42.6 tok/s | position 143 of 288]
+tokenizer check long: same ids as the Node tokenizer 105 tokens; prefill tokens 96
+=== sampled reply, seed 7 22:31:20
+The sea flows with a rhythm that never stops, whispering secrets to those who listen.
+[18 prompt tokens | first token 564 ms | 19 new tokens | 41.9 tok/s | position 36 of 288]
+=== three-turn chat 22:31:22
+The capital of France is **Paris**. It is the largest city in France and the country's political, economic, and cultural center.
+[18 prompt tokens | first token 475 ms | 28 new tokens | 46.6 tok/s | position 45 of 288]
+> The River **Seine** (or the **Sena**) flows through Paris. It is one of the major rivers in France and historically played a key role in the city's development.
+[18 prompt tokens | first token 459 ms | 39 new tokens | 43.2 tok/s | position 102 of 288]
+> One museum in Paris is the **Louvre Museum** (Musée du Louvre). It is one of the world's most famous art museums.
+[16 prompt tokens | first token 423 ms | 32 new tokens | 39.1 tok/s | position 150 of 288]
+> JOB_DONE
