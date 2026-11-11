@@ -1,0 +1,16 @@
+=== v4-all-sigmoid compile 2026-11-11T21:47:04Z range=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/range.all.json
+  seg01_dev: 1103 ops, 445 MB weights, model b8f46732651f
+  seg02_dev: 584 ops, 346 MB weights, model 34e149dc3035
+hashing source tensors
+compiled: 3 segments, semantic hash 97fd18cca26d2548, certificate /Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/v4-all-sigmoid/s1/certificate.json
+ANVIL_ANE status=PASS profile=anec-lfm3num-v4-all-sigmoid capsule=91f6013fa0d9 seat_class=L perf_valid=false correctness_valid=false oracle_valid=true abort=none receipt=/Users/nayte/ane-hot/scratch/a
+SEAT_RUN=/Users/nayte/ane-hot/scratch/anec/seat/lfm3num-v4-all-sigmoid-20261111T214830Z
+placement seg01_dev: "summary":{"ane":1103,"aneFraction":1,"aneSupported":1103,"aneUnsupportedTypes":{},"assigned":1103,"cpu":0,"gpu":0,"none":2326}
+placement seg02_dev: "summary":{"ane":583,"aneFraction":0.99828767123287676,"aneSupported":583,"aneUnsupportedTypes":{"ios18.reshape":1},"assigned":584,"cpu":1,"gpu":0,"none":1218}
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=382.8 | decode_ms_med=23.62 | tok_per_s_indicative=42.3 |
+ANE vs teacher 270: compare: n=34560000 maxAbs=13.979283 rms=1.0105402 cos=0.9380592 top1=252/270 meanKL=0.13213
+position ranges: [{"positions":"0-28","klSum":28,"klMean":0.9654,"top1":"11/29"},{"positions":"29-63","klSum":4.36,"klMean":0.1245,"top1":"35/35"},{"positions":"64-269","klSum":3.32,"klMean":0.0161,"top1":"206/206"},{"positions":"0-269","klSum":35.68,"klMean":0.1321,"top1":"252/270"}]
+ANE vs exact q1 270: compare: n=34560000 maxAbs=2.8806858 rms=0.21800645 cos=0.99708766 top1=269/270 meanKL=0.00634
+ANE vs exact, position ranges: [{"positions":"0-28","klSum":1.42,"klMean":0.049,"top1":"28/29"},{"positions":"29-63","klSum":0.14,"klMean":0.0039,"top1":"35/35"},{"positions":"64-269","klSum":0.16,"klMean":0.0008,"top1":"206/206"},{"positions":"0-269","klSum":1.71,"klMean":0.0063,"top1":"269/270"}]
+ANE  nll: rows=269 mean_nll=0.6186 ppl=1.856 target_top1=248/269
+=== v4-all-sigmoid done 2026-11-11T21:50:07Z

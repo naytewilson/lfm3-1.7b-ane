@@ -1,0 +1,421 @@
+{
+  "liftedCap" : 2048,
+  "maxGain" : 4096,
+  "sites" : {
+    "L0.ffn" : {
+      "gain" : 2,
+      "liftedMax" : 9.42715,
+      "scaledMax" : 10.786976,
+      "scaledMaxAfterFirst" : 10.786976,
+      "scaledRMS" : 0.18305549
+    },
+    "L0.op" : {
+      "gain" : 32,
+      "liftedMax" : 0.66717595,
+      "scaledMax" : 0.551344,
+      "scaledMaxAfterFirst" : 0.551344,
+      "scaledRMS" : 0.0091929315
+    },
+    "L1.ffn" : {
+      "gain" : 1,
+      "liftedMax" : 28.403797,
+      "scaledMax" : 24.88967,
+      "scaledMaxAfterFirst" : 24.88967,
+      "scaledRMS" : 0.41695574
+    },
+    "L1.op" : {
+      "gain" : 64,
+      "liftedMax" : 0.4924431,
+      "scaledMax" : 0.39379078,
+      "scaledMaxAfterFirst" : 0.39379078,
+      "scaledRMS" : 0.007036375
+    },
+    "L10.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 2.306116,
+      "scaledMax" : 2.2349782,
+      "scaledMaxAfterFirst" : 2.2349782,
+      "scaledRMS" : 0.05465571
+    },
+    "L10.op" : {
+      "gain" : 4,
+      "liftedMax" : 3.4637406,
+      "scaledMax" : 4.5322795,
+      "scaledMaxAfterFirst" : 3.2751844,
+      "scaledRMS" : 0.05451043
+    },
+    "L10.qk" : {
+      "gain" : 16,
+      "liftedMax" : 15.211345,
+      "scaledMax" : 1.981453,
+      "scaledMaxAfterFirst" : 1.970019,
+      "scaledRMS" : 0.12408008
+    },
+    "L11.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 1.7048666,
+      "scaledMax" : 2.4644537,
+      "scaledMaxAfterFirst" : 2.4644537,
+      "scaledRMS" : 0.057825513
+    },
+    "L11.op" : {
+      "gain" : 64,
+      "liftedMax" : 0.15078418,
+      "scaledMax" : 0.27641875,
+      "scaledMaxAfterFirst" : 0.27641875,
+      "scaledRMS" : 0.0040747826
+    },
+    "L12.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 3.1273935,
+      "scaledMax" : 2.7802062,
+      "scaledMaxAfterFirst" : 2.7802062,
+      "scaledRMS" : 0.06399509
+    },
+    "L12.op" : {
+      "gain" : 64,
+      "liftedMax" : 0.39856943,
+      "scaledMax" : 0.49823892,
+      "scaledMaxAfterFirst" : 0.49823892,
+      "scaledRMS" : 0.03070912
+    },
+    "L12.qk" : {
+      "gain" : 16,
+      "liftedMax" : 3.0189502,
+      "scaledMax" : 1.3619707,
+      "scaledMaxAfterFirst" : 1.3619707,
+      "scaledRMS" : 0.10744169
+    },
+    "L13.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 2.2630768,
+      "scaledMax" : 2.7459795,
+      "scaledMaxAfterFirst" : 2.7459795,
+      "scaledRMS" : 0.052293252
+    },
+    "L13.op" : {
+      "gain" : 32,
+      "liftedMax" : 0.20736672,
+      "scaledMax" : 0.6729908,
+      "scaledMaxAfterFirst" : 0.6729908,
+      "scaledRMS" : 0.006374027
+    },
+    "L14.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 2.7309837,
+      "scaledMax" : 3.536008,
+      "scaledMaxAfterFirst" : 3.536008,
+      "scaledRMS" : 0.054976095
+    },
+    "L14.op" : {
+      "gain" : 64,
+      "liftedMax" : 0.46822596,
+      "scaledMax" : 0.46017587,
+      "scaledMaxAfterFirst" : 0.46017587,
+      "scaledRMS" : 0.023602674
+    },
+    "L14.qk" : {
+      "gain" : 16,
+      "liftedMax" : 1.8149958,
+      "scaledMax" : 1.4245934,
+      "scaledMaxAfterFirst" : 1.4245934,
+      "scaledRMS" : 0.10974078
+    },
+    "L15.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 3.7708273,
+      "scaledMax" : 3.248663,
+      "scaledMaxAfterFirst" : 3.248663,
+      "scaledRMS" : 0.09765908
+    },
+    "L15.op" : {
+      "gain" : 128,
+      "liftedMax" : 0.15493041,
+      "scaledMax" : 0.19436738,
+      "scaledMaxAfterFirst" : 0.19436738,
+      "scaledRMS" : 0.0022248996
+    },
+    "L16.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 1.9625783,
+      "scaledMax" : 2.2832856,
+      "scaledMaxAfterFirst" : 2.2832856,
+      "scaledRMS" : 0.057930008
+    },
+    "L16.op" : {
+      "gain" : 16,
+      "liftedMax" : 0.38675886,
+      "scaledMax" : 1.2263913,
+      "scaledMaxAfterFirst" : 1.2263913,
+      "scaledRMS" : 0.030439936
+    },
+    "L16.qk" : {
+      "gain" : 16,
+      "liftedMax" : 2.3908098,
+      "scaledMax" : 1.3921866,
+      "scaledMaxAfterFirst" : 1.3921866,
+      "scaledRMS" : 0.10886382
+    },
+    "L17.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 2.8533669,
+      "scaledMax" : 2.666767,
+      "scaledMaxAfterFirst" : 2.666767,
+      "scaledRMS" : 0.06843521
+    },
+    "L17.op" : {
+      "gain" : 128,
+      "liftedMax" : 0.13245432,
+      "scaledMax" : 0.13421838,
+      "scaledMaxAfterFirst" : 0.13421838,
+      "scaledRMS" : 0.0028549465
+    },
+    "L18.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 4.275713,
+      "scaledMax" : 3.3527286,
+      "scaledMaxAfterFirst" : 3.3527286,
+      "scaledRMS" : 0.093505725
+    },
+    "L18.op" : {
+      "gain" : 16,
+      "liftedMax" : 0.09866687,
+      "scaledMax" : 1.2406081,
+      "scaledMaxAfterFirst" : 1.2406081,
+      "scaledRMS" : 0.022899047
+    },
+    "L18.qk" : {
+      "gain" : 32,
+      "liftedMax" : 1.7634841,
+      "scaledMax" : 0.50029975,
+      "scaledMaxAfterFirst" : 0.50029975,
+      "scaledRMS" : 0.0425333
+    },
+    "L19.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 5.089143,
+      "scaledMax" : 2.928958,
+      "scaledMaxAfterFirst" : 2.928958,
+      "scaledRMS" : 0.1016089
+    },
+    "L19.op" : {
+      "gain" : 128,
+      "liftedMax" : 0.1536189,
+      "scaledMax" : 0.22650366,
+      "scaledMaxAfterFirst" : 0.22650366,
+      "scaledRMS" : 0.003465272
+    },
+    "L2.ffn" : {
+      "gain" : 2,
+      "liftedMax" : 15.276639,
+      "scaledMax" : 12.294617,
+      "scaledMaxAfterFirst" : 12.294617,
+      "scaledRMS" : 0.2857478
+    },
+    "L2.op" : {
+      "gain" : 64,
+      "liftedMax" : 0.37764606,
+      "scaledMax" : 0.44163567,
+      "scaledMaxAfterFirst" : 0.44163567,
+      "scaledRMS" : 0.017157035
+    },
+    "L2.qk" : {
+      "gain" : 32,
+      "liftedMax" : 1.323041,
+      "scaledMax" : 0.9245039,
+      "scaledMaxAfterFirst" : 0.9245039,
+      "scaledRMS" : 0.074901626
+    },
+    "L20.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 2.7579947,
+      "scaledMax" : 2.0944738,
+      "scaledMaxAfterFirst" : 2.0944738,
+      "scaledRMS" : 0.06111051
+    },
+    "L20.op" : {
+      "gain" : 32,
+      "liftedMax" : 0.39980638,
+      "scaledMax" : 0.60197407,
+      "scaledMaxAfterFirst" : 0.60197407,
+      "scaledRMS" : 0.016306307
+    },
+    "L20.qk" : {
+      "gain" : 32,
+      "liftedMax" : 1.6238356,
+      "scaledMax" : 0.68005145,
+      "scaledMaxAfterFirst" : 0.68005145,
+      "scaledRMS" : 0.071881816
+    },
+    "L21.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 2.7692657,
+      "scaledMax" : 2.3177295,
+      "scaledMaxAfterFirst" : 2.3177295,
+      "scaledRMS" : 0.07081242
+    },
+    "L21.op" : {
+      "gain" : 128,
+      "liftedMax" : 0.45909837,
+      "scaledMax" : 0.20036669,
+      "scaledMaxAfterFirst" : 0.20036669,
+      "scaledRMS" : 0.0031975885
+    },
+    "L22.ffn" : {
+      "gain" : 2,
+      "liftedMax" : 34.729427,
+      "scaledMax" : 10.947268,
+      "scaledMaxAfterFirst" : 10.947268,
+      "scaledRMS" : 0.37968442
+    },
+    "L22.op" : {
+      "gain" : 64,
+      "liftedMax" : 0.19066648,
+      "scaledMax" : 0.44738325,
+      "scaledMaxAfterFirst" : 0.4149868,
+      "scaledRMS" : 0.016340593
+    },
+    "L22.qk" : {
+      "gain" : 32,
+      "liftedMax" : 1.2804787,
+      "scaledMax" : 0.5653862,
+      "scaledMaxAfterFirst" : 0.5653862,
+      "scaledRMS" : 0.058453374
+    },
+    "L23.ffn" : {
+      "gain" : 2,
+      "liftedMax" : 20.890968,
+      "scaledMax" : 12.229839,
+      "scaledMaxAfterFirst" : 12.229839,
+      "scaledRMS" : 0.48396048
+    },
+    "L23.op" : {
+      "gain" : 128,
+      "liftedMax" : 0.19441988,
+      "scaledMax" : 0.21898973,
+      "scaledMaxAfterFirst" : 0.21898973,
+      "scaledRMS" : 0.005852798
+    },
+    "L3.ffn" : {
+      "gain" : 4,
+      "liftedMax" : 9.115318,
+      "scaledMax" : 7.9263434,
+      "scaledMaxAfterFirst" : 7.9263434,
+      "scaledRMS" : 0.13889325
+    },
+    "L3.op" : {
+      "gain" : 128,
+      "liftedMax" : 0.090787984,
+      "scaledMax" : 0.20676267,
+      "scaledMaxAfterFirst" : 0.20676267,
+      "scaledRMS" : 0.0042656274
+    },
+    "L4.ffn" : {
+      "gain" : 4,
+      "liftedMax" : 14.14058,
+      "scaledMax" : 5.517423,
+      "scaledMaxAfterFirst" : 5.517423,
+      "scaledRMS" : 0.19059974
+    },
+    "L4.op" : {
+      "gain" : 32,
+      "liftedMax" : 0.26313564,
+      "scaledMax" : 0.56913316,
+      "scaledMaxAfterFirst" : 0.56913316,
+      "scaledRMS" : 0.017937042
+    },
+    "L4.qk" : {
+      "gain" : 8,
+      "liftedMax" : 1.764471,
+      "scaledMax" : 2.0731134,
+      "scaledMaxAfterFirst" : 2.0731134,
+      "scaledRMS" : 0.08854467
+    },
+    "L5.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 13.887641,
+      "scaledMax" : 3.53125,
+      "scaledMaxAfterFirst" : 3.53125,
+      "scaledRMS" : 0.109630086
+    },
+    "L5.op" : {
+      "gain" : 64,
+      "liftedMax" : 0.86487037,
+      "scaledMax" : 0.33639747,
+      "scaledMaxAfterFirst" : 0.1987006,
+      "scaledRMS" : 0.0027445378
+    },
+    "L6.ffn" : {
+      "gain" : 8,
+      "liftedMax" : 2.6369312,
+      "scaledMax" : 3.269301,
+      "scaledMaxAfterFirst" : 2.4632936,
+      "scaledRMS" : 0.065431975
+    },
+    "L6.op" : {
+      "gain" : 16,
+      "liftedMax" : 0.76209843,
+      "scaledMax" : 1.0364407,
+      "scaledMaxAfterFirst" : 1.0364407,
+      "scaledRMS" : 0.028908398
+    },
+    "L6.qk" : {
+      "gain" : 16,
+      "liftedMax" : 4.2108564,
+      "scaledMax" : 1.420126,
+      "scaledMaxAfterFirst" : 1.420126,
+      "scaledRMS" : 0.10315117
+    },
+    "L7.ffn" : {
+      "gain" : 4,
+      "liftedMax" : 2.9267945,
+      "scaledMax" : 4.6132097,
+      "scaledMaxAfterFirst" : 2.5398846,
+      "scaledRMS" : 0.06247015
+    },
+    "L7.op" : {
+      "gain" : 128,
+      "liftedMax" : 0.047325246,
+      "scaledMax" : 0.13290307,
+      "scaledMaxAfterFirst" : 0.13290307,
+      "scaledRMS" : 0.0027799478
+    },
+    "L8.ffn" : {
+      "gain" : 4,
+      "liftedMax" : 4.510207,
+      "scaledMax" : 5.055631,
+      "scaledMaxAfterFirst" : 2.1843147,
+      "scaledRMS" : 0.06973321
+    },
+    "L8.op" : {
+      "gain" : 64,
+      "liftedMax" : 0.23195721,
+      "scaledMax" : 0.3353864,
+      "scaledMaxAfterFirst" : 0.3353864,
+      "scaledRMS" : 0.018569987
+    },
+    "L8.qk" : {
+      "gain" : 8,
+      "liftedMax" : 2.175986,
+      "scaledMax" : 3.4027896,
+      "scaledMaxAfterFirst" : 3.4027896,
+      "scaledRMS" : 0.08551137
+    },
+    "L9.ffn" : {
+      "gain" : 2,
+      "liftedMax" : 5.502934,
+      "scaledMax" : 8.550576,
+      "scaledMaxAfterFirst" : 4.4351673,
+      "scaledRMS" : 0.036573328
+    },
+    "L9.op" : {
+      "gain" : 128,
+      "liftedMax" : 0.07767139,
+      "scaledMax" : 0.224372,
+      "scaledMaxAfterFirst" : 0.224372,
+      "scaledRMS" : 0.0031467187
+    }
+  },
+  "target" : 32,
+  "tokens" : 513
+}

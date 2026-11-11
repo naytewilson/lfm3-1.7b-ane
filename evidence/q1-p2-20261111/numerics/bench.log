@@ -1,0 +1,49 @@
+load_check_1=17.82 21:50:26
+load_check_2=15.39 21:50:46
+load_check_3=15.21 21:51:06
+load_check_4=15.05 21:51:26
+load_check_5=16.48 21:51:46
+load_check_6=13.22 21:52:06
+load_check_7=11.13 21:52:26
+load_check_8=10.35 21:52:46
+load_check_9=9.90 21:53:06
+settled=no thermal=1
+idle_start=1794434006
+arm_start variant=v0-none round=1 t=1794434018 load={ 8.20 11.64 14.12 }
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=61.7 | decode_ms_med=23.80 | tok_per_s_indicative=42.0 |
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=72.4 | decode_ms_med=23.17 | tok_per_s_indicative=43.2 |
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=62.2 | decode_ms_med=23.97 | tok_per_s_indicative=41.7 |
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=61.7 | decode_ms_med=23.80 | tok_per_s_indicative=42.0 |	33	4.350	208	311216
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=72.4 | decode_ms_med=23.17 | tok_per_s_indicative=43.2 |	33	4.160	730	323504
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=62.2 | decode_ms_med=23.97 | tok_per_s_indicative=41.7 |	34	4.450	714	330064
+BENCH_EVIDENCE=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/v0-none/s1/bench-20261111T215338Z
+arm_end variant=v0-none round=1 t=1794434126 load={ 18.20 14.29 14.86 }
+arm_start variant=v3-all-tanh round=1 t=1794434126 load={ 18.20 14.29 14.86 }
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=72.5 | decode_ms_med=23.66 | tok_per_s_indicative=42.3 |
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=86.6 | decode_ms_med=24.62 | tok_per_s_indicative=40.6 |
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=88.2 | decode_ms_med=23.77 | tok_per_s_indicative=42.1 |
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=72.5 | decode_ms_med=23.66 | tok_per_s_indicative=42.3 |	33	4.400	702	321120
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=86.6 | decode_ms_med=24.62 | tok_per_s_indicative=40.6 |	35	4.890	867	303744
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=88.2 | decode_ms_med=23.77 | tok_per_s_indicative=42.1 |	33	4.460	776	302656
+BENCH_EVIDENCE=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/v3-all-tanh/s1/bench-20261111T215526Z
+arm_end variant=v3-all-tanh round=1 t=1794434235 load={ 41.96 21.90 17.61 }
+arm_start variant=v0-none round=2 t=1794434235 load={ 41.96 21.90 17.61 }
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=60.5 | decode_ms_med=23.41 | tok_per_s_indicative=42.7 |
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=94.2 | decode_ms_med=23.93 | tok_per_s_indicative=41.8 |
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=68.4 | decode_ms_med=23.68 | tok_per_s_indicative=42.2 |
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=60.5 | decode_ms_med=23.41 | tok_per_s_indicative=42.7 |	33	4.200	722	334928
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=94.2 | decode_ms_med=23.93 | tok_per_s_indicative=41.8 |	33	4.430	867	302320
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=68.4 | decode_ms_med=23.68 | tok_per_s_indicative=42.2 |	33	4.370	813	332272
+BENCH_EVIDENCE=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/v0-none/s1/bench-20261111T215715Z
+arm_end variant=v0-none round=2 t=1794434343 load={ 23.05 21.91 18.16 }
+arm_start variant=v3-all-tanh round=2 t=1794434343 load={ 23.05 21.91 18.16 }
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=65.6 | decode_ms_med=23.16 | tok_per_s_indicative=43.2 |
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=67.3 | decode_ms_med=24.14 | tok_per_s_indicative=41.4 |
+[guard]   | stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=65.2 | decode_ms_med=23.08 | tok_per_s_indicative=43.3 |
+ane-sustained-1	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=65.6 | decode_ms_med=23.16 | tok_per_s_indicative=43.2 |	33	4.270	699	325440
+ane-sustained-2	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=67.3 | decode_ms_med=24.14 | tok_per_s_indicative=41.4 |	34	4.610	684	303408
+ane-sustained-3	VALID	| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=270 | first_ms=65.2 | decode_ms_med=23.08 | tok_per_s_indicative=43.3 |	32	4.200	927	303440
+BENCH_EVIDENCE=/Users/nayte/ane-hot/scratch/lfm3-release-20261111/num/v3-all-tanh/s1/bench-20261111T215903Z
+arm_end variant=v3-all-tanh round=2 t=1794434450 load={ 11.88 18.44 17.27 }
+idle_end=1794434460
+JOB_DONE

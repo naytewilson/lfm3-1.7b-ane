@@ -1,0 +1,24 @@
+=== france 22:08:58
+The capital of France is **Paris**. It is the largest city in France and the country's political, economic, and cultural center.[18 prompt tokens | first token 637 ms | 28 new tokens | 43.9 tok/s | position 45 of 288]
+
+=== sky 22:09:01
+The sky is blue because it scatters incoming sunlight, with shorter wavelengths (like blue) being preferentially redirected by the atmosphere, making the sky appear blue.[21 prompt tokens | first token 616 ms | 34 new tokens | 40.4 tok/s | position 54 of 288]
+
+=== rope 22:09:03
+RoPE (Rotating Weighted Exponential smoothing) is a technique used in neural network training, particularly in the context of **ResNet** or **LSTM** models, where it applies a **time-averaged exponential moving average** with a specific weighting factor to the input features. It helps to **normalize the input data** by shifting the data in a way that makes the network's learning more stable and efficient, especially in recurrent networks.
+
+In essence, RoPE is a **preprocessing step** that rotates the data (e.g., in the input of a recurrent network) and applies a weighted average of[17 prompt tokens | first token 543 ms | 128 new tokens | 41.4 tok/s | position 144 of 288]
+
+| prefill | tokens_per_call=32 | calls=3 | tokens=96 | total_ms=759.3 | tok_per_s_indicative=126.4 |
+| stateful decode | segments=3 | units=cpuAndNeuralEngine | steps=168 | first_ms=74.8 | decode_ms_med=23.72 | tok_per_s_indicative=42.2 |
+tokenizer check france: same ids as the Node tokenizer 18 tokens
+tokenizer check sky: same ids as the Node tokenizer 21 tokens
+tokenizer check rope: same ids as the Node tokenizer 17 tokens
+=== three-turn chat 22:09:12
+The capital of France is **Paris**. It is the largest city in France and the country's political, economic, and cultural center.[18 prompt tokens | first token 571 ms | 28 new tokens | 40.5 tok/s | position 45 of 288]
+> 
+The River **Seine** (or the **Sena**) flows through Paris. It is one of the major rivers in France and historically played a key role in the city's development.[18 prompt tokens | first token 452 ms | 39 new tokens | 42.6 tok/s | position 102 of 288]
+> 
+One museum in Paris is the **Louvre Museum** (Musée du Louvre). It is one of the world's most famous art museums.[16 prompt tokens | first token 410 ms | 32 new tokens | 40.1 tok/s | position 150 of 288]
+> 
+JOB_DONE

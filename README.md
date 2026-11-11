@@ -5,7 +5,7 @@ on the Apple Neural Engine (ANE), with the measurements, hardware evidence and h
 back every number on this page.
 
 **Status: early release (v0.1.0).** Placement, decode and prefill speed, ANE power and
-three real chat turns are measured. Output quality is measurably below the unquantized model (numbers below), the
+real chat turns are measured. Output quality is measurably below the unquantized model (numbers below), the
 runtime is a prebuilt binary without source, and several things a production deployment
 needs have not been measured. Read [What is not established](#what-is-not-established)
 before relying on it.
@@ -13,20 +13,118 @@ before relying on it.
 Not affiliated with or endorsed by Liquid AI. LFM3 is Liquid AI's model; this is a derivative
 distributed under the [LFM Open License v1.0](LICENSE).
 
-## Current weights: q1 (added 2026-11-11)
+## Current build: q1 weights, program revision 2 (added 2026-11-11)
+
+Same weights as the q1 bundle below, byte for byte (both `weight.bin` files have the same
+SHA-256). What changed is the program around them, in two places, and the runner:
+
+1. **Range lifts.** At 58 places a value is multiplied by a power of two (4 to 128 on the
+   operators' output projections, 2 to 8 on the MLPs' output projections, 8 to 32 on the
+   attention q/k projections) before a projection, and the norm that follows takes its
+   epsilon times the square of that factor. `RMSNorm(g·y, g²·eps) = RMSNorm(y, eps)`, so the
+   function is the same in exact arithmetic. On the device the projection's wide sum and
+   the norm's mean of squares then work on values well inside the 16-bit normal range.
+2. **SiLU and sigmoid written with `tanh`**: `sigmoid(v) = (1 + tanh(v/2)) / 2` and
+   `silu(v) = v · sigmoid(v)`, as ordinary operations instead of the ANE's own kernels.
+3. **Runner r3 takes text.** A native tokenizer, the chat layout, sampling and a multi-turn
+   chat are in the runner; Node is no longer needed to run a prompt.
+
+With those two program changes the ANE gives almost exactly what exact arithmetic gives:
+
+| On the ANE, 270-token teacher passage | Revision 2 | q1, first program | First (k-means) weights |
+|---|---|---|---|
+| Same top-1 token as the teacher | **253** | 252 | 251 |
+| Mean KL from the teacher | **0.117** | 0.188 | 0.240 |
+| Logit cosine with the teacher | **0.942** | 0.924 | 0.859 |
+| First 64 positions | 47 of 64, KL 0.446 | 46 of 64, KL 0.711 | 45 of 64, KL 0.955 |
+| Perplexity on the passage (teacher 1.644) | 1.816 | 1.911 | 1.983 |
+| The same weights in exact arithmetic (reference interpreter) | 253 of 270, KL 0.1125 | the same | not run |
+| ANE against that exact program: same top-1, mean KL | **270 of 270, 0.0004** | 261 of 270, 0.054 | not run |
+| With the prefill hand-off, against the teacher | 253 of 270, KL 0.117 | 251 of 270, KL 0.189 | not run |
+| With against without prefill, same top-1 | 270 of 270 | 269 of 270 | not run |
+| Operations planned on the ANE (plan level, both functions of the bundle) | 1791 of 1792; prefill 1973 of 1974 | 1582 of 1583; prefill 1764 of 1765 | as q1 |
+| Decode, three guarded runs of 63–64 s (mean step) | 43.1 / 42.1 / 42.6 tok/s, one-minute load average 9–10 | 40.2 / 40.9 / 42.0 tok/s, load average 8–17 | 34.0 / 32.4 / 29.7 tok/s, load average 35–56 |
+| ANE power in those runs | 1.45 / 1.33 / 1.32 W, 31–34 mJ per token | 1.31 / 1.28 / 1.30 W, 31–33 mJ per token | 1.13 / 1.07 / 0.93 W, 31–33 mJ per token |
+
+What stands behind the revision 2 column (`evidence/q1-p2-20261111/`):
+
+- **Where the device lost accuracy was measured, value by value.** Every intermediate value
+  of a layer was made a program output and compared on the ANE and on CPU against a 32-bit
+  reference (8 probe tokens, layers 0 to 5; `numerics/base.table.txt` and
+  `numerics/lift.table.txt`). Relative error, layer 0:
+
+  | Value | ANE before | ANE with lifts | CPU-only |
+  |---|---|---|---|
+  | Input of the operator's output projection | 0.1–0.2 % | 0.1–0.2 % | 0.3–0.8 % |
+  | Output of that projection | 1.9–7.2 % | 0.2–0.3 % | 0.3–0.6 % |
+  | MLP gate, before SiLU | 2.5–5.4 % | 0.1–0.4 % | 0.5–0.7 % |
+  | After SiLU | 4.6–7.4 % | 4.0–5.2 % | 0.5–0.8 % |
+  | Stream after the layer | 4.3–7.8 % | 2.8–3.6 % | 0.8–1.1 % |
+
+  After six layers the stream was 21–35 % off before, 7–9 % with lifts, 2–3 % on CPU. The
+  first jump is a 2048-wide sum of small 16-bit products feeding a norm whose epsilon
+  (1e-5) is below the 16-bit normal range. The second is the ANE's SiLU kernel.
+- **Each change was then measured on the whole model** (same passage, single runs,
+  `numerics/evals.log`, `eval3.log`): mean KL of the ANE from the exact program 0.054 with
+  neither, 0.0069 with lifts on the operator outputs only, 0.0063 with all lifts, 0.0004
+  with all lifts and the `tanh` form. Writing SiLU as `v · sigmoid(v)` with the ANE's
+  sigmoid gave output bit-identical to its SiLU and was dropped (`eval4.log`).
+- **The factors come from data, not from this passage.** One 32-bit reference pass over 513
+  tokens of chat text (the four chat records already in this repository) recorded each
+  value's peak; a factor is the largest power of two that keeps the value the norm sees at
+  or below 32 and the lifted value at or below 2048 (`range.json`).
+- **Speed is unchanged, measured side by side.** Six guarded 30-second runs each,
+  alternating between the two programs in blocks of three: the median step time, averaged
+  over the six runs, is 23.66 ms for the first program and 23.74 ms for revision 2, at
+  one-minute load average 8–42 (`numerics/bench.log`). That is 42.3 and 42.1 tokens per
+  second; the difference is inside the spread between runs (23.2–24.0 and 23.1–24.6 ms).
+- **The verifier accepts both functions**: 11 checks pass, 0 fail, 1 skipped, including
+  "artifact equals source program bit for bit" and 143 palettes recomputed with zero error.
+  Its first run failed that bit-for-bit check: the artifact computes SiLU by the `tanh`
+  formula and the source program says SiLU. The verifier was then given its own rule for
+  the identity, and the same package files (unchanged hashes) pass.
+- **The host interface is unchanged.** `plan.json` of both functions is the same file as
+  in the q1 bundle (same SHA-256): same carried states, same step inputs.
+- **This is still agreement with a teacher on one passage, not a quality verdict**, and no
+  run was on a settled machine, so the speeds are observations.
+
+Chat turns with revision 2, run from the packaged files with runner r3 (single runs,
+reasoning block closed, greedy unless noted; `evidence/q1-p2-20261111/packaged-run/`):
+
+| Prompt | Prompt tokens | Time to first new token | Rate | Reply |
+|---|---|---|---|---|
+| What is the capital of France? | 18 | 1.05 s in the first run of the session, 0.48 s later | 43–47 tok/s | The capital of France is **Paris**. It is the largest city in France and the country's political, economic, and cultural center. |
+| The 105-token note to summarize (96 tokens read by the prefill function) | 105 | 1.21 s | 42.6 tok/s | The city council approved a six-month trial of new bike lanes on Main Street, after public comments and a debate between supporters and shop owners, with a decision to review data at the end. |
+| Write one sentence about the sea. (temperature 0.8, top-k 40, seed 7) | 18 | 0.56 s | 41.9 tok/s | The sea flows with a rhythm that never stops, whispering secrets to those who listen. |
+| Second turn of a chat: And what river runs through it? | 18 more | 0.46 s | 43.2 tok/s | The River **Seine** (or the **Sena**) flows through Paris. It is one of the major rivers in France and historically played a key role in the city's development. |
+| Third turn: Name one museum there. | 16 more | 0.42 s | 39.1 tok/s | One museum in Paris is the **Louvre Museum** (Musée du Louvre). It is one of the world's most famous art museums. |
+
+"Explain RoPE in two sentences" is still answered wrongly (it invents an expansion of the
+acronym), as with every earlier build. The runner's tokenizer and chat layout produce the
+same token ids as the Hugging Face tokenizer used before for all four prompts checked (18,
+21, 17 and 105 tokens).
+
+## q1 weights, first program (2026-11-11)
 
 The bundles named `q1` carry a second set of 4-bit weights for the same pruned model:
 palettes made with an error-compensating method (GPTQ) for this project's earlier per-layer
 build, moved into this two-function build unchanged. The first bundles on this page use
 plain k-means palettes and stay as the baseline. Both sets compile to the same programs, so
-placement, size and structure are identical; only the weight values differ. Use q1.
+placement, size and structure are identical; only the weight values differ. The q1 bundle
+is still what you download for the weights; run it with the revision 2 programs above.
+
+**Correction (2026-11-11).** This table first gave "47 of 64, KL 0.315" for q1's first 64
+positions. That figure came from a comparison run with the wrong row width and was wrong.
+The value below is from a rerun of the same bundle (`evidence/q1-p2-20261111/numerics/evals.log`,
+variant `v0-none`, which reproduces the 270-position figures exactly; the first 64 positions
+are its first two position ranges together).
 
 | | q1 weights | First (k-means) weights |
 |---|---|---|
 | Same top-1 token as the teacher over 270 positions, on the ANE | 252 | 251 |
 | Mean KL from the teacher, on the ANE | 0.188 | 0.240 |
 | Logit cosine with the teacher, on the ANE | 0.924 | 0.859 |
-| First 64 positions, on the ANE | 47 of 64, KL 0.315 | 45 of 64, KL 0.955 |
+| First 64 positions, on the ANE | 46 of 64, KL 0.711 | 45 of 64, KL 0.955 |
 | Perplexity on the passage (teacher 1.644) | 1.911 | 1.983 |
 | The same program in exact arithmetic (reference interpreter) | 253 of 270, KL 0.1125 | not run |
 | Operations planned on the ANE | 1582 of 1583; prefill 1764 of 1765 | the same |
@@ -41,11 +139,12 @@ What stands behind the q1 column (`evidence/q1-combined-20261111/`):
 - **It is the same model as in the earlier build.** In exact arithmetic the q1 program
   scores 253 of 270 and KL 0.1125; the earlier build's own record for q1 is 253 of 270 and
   KL 0.113.
-- **The ANE costs q1 accuracy in this build:** KL 0.1125 in exact arithmetic, 0.188 on the
-  device. The earlier build holds 0.113 on the device by scaling weights so that 16-bit
-  products stay out of the subnormal range. That scaling is not in this compiler yet. A
-  first attempt that kept the scales without adjusting the norms' epsilon made the model
-  worse (KL 0.207 in exact arithmetic) and was dropped.
+- **The ANE costs q1 accuracy with this first program:** KL 0.1125 in exact arithmetic,
+  0.188 on the device. The earlier build holds 0.113 on the device by scaling weights so
+  that 16-bit products stay out of the subnormal range. Program revision 2 (above) closes
+  the gap in this build a different way, without touching the weights: 0.117 on the device.
+  A first attempt that kept the earlier build's weight scales without adjusting the norms'
+  epsilon made the model worse (KL 0.207 in exact arithmetic) and was dropped.
 - **With the prefill hand-off:** 251 of 270 and KL 0.189 against the teacher; 269 of 270
   against the run without prefill.
 - **The two speed cells are not a comparison.** They come from different sessions under
@@ -316,10 +415,14 @@ Read plainly:
   ids and the per-position picks were removed from the current files on 2026-11-11 (they
   remain in the git history), so that the passage can still be used blind elsewhere. Only
   aggregates are kept.
-- **The device costs q1 accuracy** (KL 0.1125 in exact arithmetic, 0.188 on the ANE). The
-  weight scaling that avoids this is not built in this compiler.
-- **No task or chat evaluation.** Next-token agreement on one 270-token passage, and three
-  chat prompts, one of which it answered wrongly.
+- **Revision 2's device accuracy rests on 59 fitted factors.** They were fitted on 513
+  tokens of chat text. Text whose values peak higher than in that sample runs closer to the
+  16-bit limit; the bound leaves about a factor of 8 in amplitude before a square
+  overflows, and what happens beyond it was not tested. Larger factors were not tried on
+  hardware either. With the first program (no factors) the device costs q1 KL 0.188
+  against 0.1125 in exact arithmetic.
+- **No task or chat evaluation.** Next-token agreement on one 270-token passage, and a
+  handful of chat prompts, one of which every build answers wrongly.
 - **No long-run or thermal measurement.** The 2026-11-10 speed runs repeat a 28-step decode
   (13 prompt tokens, then generation) from an empty cache for about 24 seconds; the
   2026-11-11 runs repeat 270-token passes for about 64 seconds. Nothing was run for
@@ -330,13 +433,15 @@ Read plainly:
   differ on other chips or OS versions.
 - **Fixed context.** A bundle holds at most 64 or 288 positions including the prompt; it
   does not slide or extend. The upstream model's 256K context is not available here.
-- **Prefill changes the reply.** With `--prefill` the reply can differ in wording from the
-  one produced without it (shown above). Which of the two is closer to the unquantized
-  model was not measured.
-- **The runtime is a binary only.** `anec-run` is published without source. It takes token
-  ids and returns token ids, decodes greedily, and has no sampling, streaming or server.
-  It was run only on the machine above. The r2 build comes from a change that was still
-  under review in its private repository when it was published.
+- **Prefill can change the reply with the first programs.** There, with `--prefill` the
+  reply can differ in wording from the one produced without it (shown in the prefill
+  section). With revision 2 the two paths picked the same top-1 token at all 270 positions
+  of the test passage; a chat reply with and without it was not compared.
+- **The runtime is a binary only.** `anec-run` is published without source. Runner r3
+  takes text, prints the reply as it is produced, can sample with a seed and keeps a
+  multi-turn chat; it has no server, and a chat ends when the 288 positions are used up.
+  It was run only on the machine above. r3 was built from changes that were still under
+  review in their private repository when it was published.
 
 ## What is in this release
 
@@ -350,6 +455,7 @@ In this repository:
 | `evidence/prefill-20261111/` | The prefill function: its fit record, certificate, plan and per-operation placement evidence, the two comparison runs, the 60-second benchmark runs, the raw power samples, the verifier log, the job script and log, and the script that computes the table |
 | `evidence/prefill-chain-20261111/` | Prefill joined to generation: the three 270-token comparison records, the six chat records and their token ids, the job script and log, and the script that computes the tables |
 | `evidence/q1-combined-20261111/` | The q1 bundle: fit records, certificates, plans and placement evidence for both functions, the verifier log, the carry report (palette hashes and the scale found for every tensor), the exact-arithmetic comparison by position range, the benchmark runs with power samples, four chat records, and the job scripts and logs |
+| `evidence/q1-p2-20261111/` | Program revision 2: fit records, certificates, plans and placement evidence for both functions, the two verifier logs, the fitted factors (`range.json`), the comparison with the teacher (`jobA.log`), the 60-second benchmark runs with power samples, the chat records made with the text front end, the run from the packaged files (`packaged-run/`), and under `numerics/` the value-by-value device comparison, the per-variant results, the side-by-side timing and the scripts that produced them |
 | `evidence/PRUNING_RECEIPT.json` | What the pruning changed |
 | `tokenizer/` | Tokenizer, chat template and model configuration from the upstream release |
 | `tools/tok.mjs` | Turns a chat message into token ids and token ids back into text |
@@ -360,13 +466,15 @@ As release assets:
 
 | Asset | Contents |
 |---|---|
-| `lfm3-1.7b-pruned7168-q1-c288.tar` | The current bundle: q1 weights, 288-position context, same contents as the bundles below. Unpacks to `lfm3_q1_C288` |
+| `lfm3-1.7b-pruned7168-q1-p2-c288.tar` | Program revision 2, programs only (3.3 MB): the one-token function (`lfm3_q1p2_C288`) and the 32-token prefill function (`lfm3_q1p2_C288_prefill32`), each with `plan.json`, `certificate.json`, `semantic.json`; `link-weights.sh` links in the q1 bundle's weight files and checks their SHA-256; `range.json` holds the fitted factors |
+| `lfm3-ane-runner-r3-macos-arm64.tar` | The current runner: the same package as r2 with an `anec-run` that takes text (`--prompt`, `--tokenizer`, `--chat`, sampling options). Use this one |
+| `lfm3-1.7b-pruned7168-q1-c288.tar` | The q1 weights with the first program, 288-position context, same contents as the bundles below. Unpacks to `lfm3_q1_C288`. Revision 2 needs it for the weight files |
 | `lfm3-1.7b-pruned7168-q1-c288-prefill32.tar` | The 32-token prefill function for the q1 bundle (1.7 MB; `link-weights.sh` links in the q1 bundle's weight files). Unpacks to `lfm3_q1_C288_prefill32` |
 | `lfm3-1.7b-pruned7168-lut4-c64.tar` | First (k-means) weights. `seg01_dev.mlpackage`, `seg02_dev.mlpackage`, `plan.json`, `certificate.json`, `semantic.json` for a 64-position context |
 | `lfm3-1.7b-pruned7168-lut4-c288.tar` | The same for a 288-position context |
 | `embed_tokens.bf16.bin` | The token-embedding table for the host-side lookup: 128,000 × 2,048, little-endian bfloat16, row-major, 524,288,000 bytes |
 | `lfm3-1.7b-pruned7168-lut4-c288-prefill32.tar` | The 32-token prefill function for the 288-position context: the two compiled programs, `plan.json`, `certificate.json`, `semantic.json`, and `link-weights.sh`, which links in the weight files from the unpacked 288-position bundle and checks their SHA-256 |
-| `lfm3-ane-runner-r2-macos-arm64.tar` | The current runner: the same package as below with an `anec-run` that accepts `--prefill`. Use this one |
+| `lfm3-ane-runner-r2-macos-arm64.tar` | The second runner: the same package as below with an `anec-run` that accepts `--prefill` (token ids in, token ids out). Kept because the prefill hand-off and q1 runs used it |
 | `lfm3-ane-runner-macos-arm64.tar` | The first runner, kept because the 2026-11-11 chat and power runs used it. The `anec-run` binary (arm64, built for macOS 15 or later, ad-hoc signed, not notarized), `model/config.json`, and `setup.sh` with the 112-byte header that turns the embedding table into the one-tensor `model.safetensors` the runner reads |
 
 The packages published here were rebuilt from the pruned checkpoint on 2026-11-11 and are
@@ -388,49 +496,57 @@ recorded for it. The verifier was not run on the 288-position bundle today.
 ## Running it
 
 You need an Apple-silicon Mac, this repository cloned, and four assets downloaded into it:
-`lfm3-1.7b-pruned7168-q1-c288.tar`, `lfm3-1.7b-pruned7168-q1-c288-prefill32.tar`,
-`embed_tokens.bf16.bin` and `lfm3-ane-runner-r2-macos-arm64.tar`. (For the first weights,
-use the `lut4` assets and the folder names `lfm3_lut4_C288` and `lfm3_lut4_C288_prefill32`
-instead.)
+`lfm3-1.7b-pruned7168-q1-c288.tar` (the weights), `lfm3-1.7b-pruned7168-q1-p2-c288.tar`
+(the current programs), `embed_tokens.bf16.bin` and `lfm3-ane-runner-r3-macos-arm64.tar`.
 
 ```sh
-# 1. unpack, link the prefill function to the bundle's weights, assemble the model folder
+# 1. unpack, link the programs to the weights, assemble the model folder
 tar -xf lfm3-1.7b-pruned7168-q1-c288.tar
-tar -xf lfm3-1.7b-pruned7168-q1-c288-prefill32.tar
-tar -xf lfm3-ane-runner-r2-macos-arm64.tar
-./lfm3_q1_C288_prefill32/link-weights.sh lfm3_q1_C288
+tar -xf lfm3-1.7b-pruned7168-q1-p2-c288.tar
+tar -xf lfm3-ane-runner-r3-macos-arm64.tar
+./lfm3_q1p2_C288/link-weights.sh lfm3_q1_C288
 ./lfm3-ane-runner/setup.sh embed_tokens.bf16.bin
 xattr -d com.apple.quarantine lfm3-ane-runner/anec-run 2>/dev/null || true   # needed if a browser downloaded it
 
-# 2. text -> token ids
-npm install @huggingface/tokenizers @huggingface/jinja
-IDS=$(node tools/tok.mjs encode "What is the capital of France?")
+# 2. one prompt, on the Neural Engine
+./lfm3-ane-runner/anec-run lfm3_q1p2_C288 --model lfm3-ane-runner/model \
+    --prefill lfm3_q1p2_C288_prefill32 --tokenizer tokenizer/tokenizer.json \
+    --prompt "What is the capital of France?"
 
-# 3. run on the Neural Engine
-./lfm3-ane-runner/anec-run lfm3_q1_C288 --model lfm3-ane-runner/model \
-    --prefill lfm3_q1_C288_prefill32 \
-    --tokens "$IDS" --generate 128 --units ane --out reply.json
-
-# 4. token ids -> text
-node tools/tok.mjs reply reply.json
+# 3. a chat: the first turn on the command line, further turns typed in (/exit or Ctrl-D ends it)
+./lfm3-ane-runner/anec-run lfm3_q1p2_C288 --model lfm3-ane-runner/model \
+    --prefill lfm3_q1p2_C288_prefill32 --tokenizer tokenizer/tokenizer.json \
+    --prompt "What is the capital of France?" --chat 1
 ```
 
 What to expect:
 
-- The first run on a machine compiles the model for the ANE and took 32 s here; later runs
-  load in under a second.
-- `anec-run` prints the step timings and writes the full record to `reply.json`. It always
-  produces the number of tokens asked for; `tok.mjs reply` cuts the text at the end-of-turn
-  token.
-- Prompt plus reply must fit the bundle's context (288 positions, or 64 with the other
-  bundle).
-- `--prefill` only helps a prompt longer than 32 tokens; leave it out and the prompt is read
-  one token at a time. With it, the wording of the reply can differ (see the prefill
-  section).
+- The first run on a machine compiles the four programs for the ANE and took about 55 s
+  here; later runs load in under a second.
+- The reply is printed as it is produced and stops at the end-of-turn token or after
+  `--max-tokens` (default 256). A line on stderr then gives the prompt tokens, the time to
+  the first new token, the rate and the position reached in the context.
+- Options: `--system "text"` adds a system message; `--temperature T --top-k K --seed S`
+  sample instead of taking the most likely token; `--repetition-penalty P`; `--think 1`
+  leaves the model's reasoning block open; `--raw 1` feeds the text as given, without the
+  chat layout; `--stats 1` also prints the step tables; `--out reply.json` writes the full
+  record, including the token ids and the reply text.
+- Prompt, replies and all chat turns together must fit the 288 positions. The runner says
+  so and ends the chat when the next turn would not fit.
+- `--prefill` is used for whole blocks of 32 prompt tokens of the first turn; shorter
+  prompts and later turns are read one token at a time. It can be left out.
 - `--units cpu` runs the same functions without the ANE.
-- Steps 1 and 3 were run on the machine above with the packaged q1 files and the downloaded
-  runner and embedding table. `tools/tok.mjs` was run with Node 22 on Linux, where it
-  reproduces the test passage's token ids; it was not run on macOS.
+- Token ids still work: `--tokens "1,2,3" --generate 128` instead of `--prompt`, as with
+  the earlier runners, and `tools/tok.mjs` still converts between text and ids.
+- Steps 1 to 3 were run on the machine above from the two new archives and the downloaded
+  embedding table (`evidence/q1-p2-20261111/packaged-run/`), with two differences: the q1
+  folder was the local copy the published archive was made from (`link-weights.sh` checked
+  its weight files against the published SHA-256), and the chat turns were piped in rather
+  than typed. Nothing was run on another machine.
+
+For the earlier builds use their assets and folder names (`lfm3_q1_C288` with
+`lfm3_q1_C288_prefill32` from `…-q1-c288-prefill32.tar`, or the `lut4` ones); runner r2 or
+r3 runs them.
 
 To time the prefill function on its own:
 
