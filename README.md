@@ -640,7 +640,11 @@ load of each function on a machine includes on-device compilation and took 17.6 
 
 ## Reproducing the checks
 
-- `shasum -a 256 -c SHA256SUMS` after unpacking confirms the assets.
+- `shasum -a 256 -c --ignore-missing SHA256SUMS` after unpacking confirms the assets you
+  downloaded; files from assets you did not download are skipped. The unlabelled
+  `lfm3-ane-runner/anec-run` line is runner r4. Every runner unpacks to that same path, so
+  the earlier ones are listed as `(r1)`, `(r2)` and `(r3)` for reference, and with one of
+  those unpacked the unlabelled line reports a mismatch.
 - `evidence/*/seg0*_dev.oracle.json` → `artifact.modelSHA256` / `weightSHA256` bind the
   placement evidence to the exact package files; `plan.summary` holds the counts quoted
   above and `plan.ops` the per-operation rows.

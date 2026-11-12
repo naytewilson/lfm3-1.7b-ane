@@ -10,6 +10,8 @@ The following files are modified from the upstream work:
 | File | Change |
 |---|---|
 | `seg01_dev.mlpackage`, `seg02_dev.mlpackage` (both bundles, and the programs in the prefill package, which reuse the 288-position bundle's weight files) | Model weights with the feed-forward width pruned from 7,680 to 7,168 in all 24 layers; 143 tensors palettized to 4-bit lookup tables (one table per 8 rows, deterministic k-means); all weights and constants rounded to IEEE binary16; converted to Core ML `mlprogram` format and split into two functions; causal mask value −10000.0 in place of −∞ |
+| `seg01_dev.mlpackage`, `seg02_dev.mlpackage` in the `q1` bundles (`lfm3_q1_C288`, `lfm3_q1_C288_prefill32`) | The same changes, except that the 4-bit palettes were made with an error-compensating method (GPTQ) in place of plain k-means; the programs, sizes and structure are the same |
+| `seg01_dev.mlpackage`, `seg02_dev.mlpackage` in the program revision 2 packages (`lfm3_q1p2_C288`, `lfm3_q1p2_C288_prefill32`, `lfm3_q1p2_C1024`, `lfm3_q1p2_C2048`) | The `q1` weight files unchanged, with the program around them changed in two places: at 58 places a value is multiplied by a power of two before a projection and the norm that follows takes its epsilon times the square of that factor; and SiLU and sigmoid are computed with `tanh`. Compiled for 288, 1024 and 2048 positions, with a 32-token prefill function for 288 |
 | `tokenizer/config.json` | `intermediate_size` changed from 7680 to 7168 |
 
 The following files are unmodified copies of upstream files:
@@ -20,7 +22,7 @@ The following files are unmodified copies of upstream files:
 | `tokenizer/tokenizer.json`, `tokenizer/tokenizer_config.json`, `tokenizer/special_tokens_map.json`, `tokenizer/chat_template.jinja`, `tokenizer/generation_config.json` | |
 | `LICENSE` | |
 
-Each runner package (`lfm3-ane-runner-macos-arm64.tar`, `lfm3-ane-runner-r2-macos-arm64.tar`) contains `model/config.json`, the
+Each runner package (`lfm3-ane-runner-macos-arm64.tar` and its `-r2-`, `-r3-` and `-r4-` successors) contains `model/config.json`, the
 modified configuration listed above, and `model.safetensors` once `setup.sh` has built it,
 which is `embed_tokens.bf16.bin` behind a 112-byte safetensors header. The `anec-run`
 binary in that package is not derived from the upstream work.
