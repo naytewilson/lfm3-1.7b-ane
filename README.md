@@ -13,6 +13,44 @@ before relying on it.
 Not affiliated with or endorsed by Liquid AI. LFM3 is Liquid AI's model; this is a derivative
 distributed under the [LFM Open License v1.0](LICENSE).
 
+## Strict-LUT4 one-segment build (measured 2026-11-24, not a release asset)
+
+A second build was compiled as a single ANE segment in which every large weight is a 4-bit
+lookup table and nothing else: 143 LUT4 operations, no 6- or 8-bit tables, no affine or
+dense weight matrices. It uses one table per 4 rows on the 13 convolution input
+projections and the 24 `w2` projections and one per 8 rows elsewhere, with refitted tables.
+It is not in the release. The numbers come from the lab's qualification receipt and are
+recorded here so the comparison with the current build is public.
+
+| Strict-LUT4 build, Mac17,5, macOS 27.3 (`26C5047e`) | Result |
+|---|---|
+| Weights on the device | 831 MB (weight-byte ratio 0.251 in the encoding audit) |
+| Operations planned on the ANE | **1769 of 1769**; no CPU operations. The token embedding lookup stays on the host |
+| Sustained decode, 256 positions (5 runs) | **33.6 tok/s median**; mean 33.5, 95% CI 32.8–34.2; p50 step 30.1 ms, p95 36.3 ms |
+| Sustained decode, 512 / 1024 positions (3 runs each) | 31.8 / 30.6 tok/s median |
+| ANE rail during decode (256 positions) | 1.48 W ANE, 3.70 W package, 40.3 GB/s DRAM, ANE DMA active 97.6% of the time |
+| Compiler certificate | 10 pass, 0 fail; bit-identical over 256,000 output elements and 35 states |
+
+What it shows:
+
+- **Full placement does not make it faster.** With every operation on the ANE, DRAM
+  traffic at about 40 GB/s and the ANE's DMA busy 97.6% of the time, decode on this build
+  appears limited by how fast weights stream from memory (inferred from the rail
+  telemetry, not from a per-operation trace).
+- **Heat matters on a fanless machine.** Earlier the same day, on a cooler machine, a
+  one-segment build of the q1 weights with one table per 8 rows reached 46.2 tok/s median
+  and 49.0 tok/s peak. The sustained runs above came later, under a heavier thermal and
+  CPU state. Neither figure uses the same harness as the 42–43 tok/s guarded runs in the
+  next section, so they are not directly comparable.
+- **Answer quality is the same story as before.** On the lab's fixed 39-prompt scorecard,
+  the q1 and v2 weights (one table per 8 rows) pass 32 of 39 and a 4-row variant passes
+  31 of 39. Two questions about what RoPE stands for fail on every build tested, answered with an
+  invented expansion. On a synthetic prompt, greedy decoding on the ANE and on the CPU
+  agree for the first 8 generated tokens and then diverge.
+- **50 tok/s sustained is not reached** for LFM3-1.7B on this machine. Verifying several
+  drafted tokens per ANE call (speculative decoding) is being investigated; there is no
+  result to report yet.
+
 ## Current build: q1 weights, program revision 2 (added 2026-11-11)
 
 Same weights as the q1 bundle below, byte for byte (both `weight.bin` files have the same
