@@ -42,14 +42,14 @@ the rebuilt files:
 | Chat check, every context | "What is the capital of France?" → "The capital of France is Paris, which has been the capital for centuries." |
 | Run from the packed archives, every context | Same reply as above, with runner r5 and the released embedding table (see [Running it](#running-it)) |
 
-Decode speed of the rebuilt packages, three guarded runs of 36 steps per context. Other
+Decode speed of the rebuilt packages, guarded sessions of three 36-step runs. Other
 jobs were loading the machine for most of the day (load average up to about 190), so
 these are indicative; the 4096-position runs were taken just after a restart, at a load
 average of about 2 to 3.
 
 | Context | Median step, per run | Indicative rate | Machine load |
 |---|---|---|---|
-| 256 | 29.2–33.7 ms (best runs) | about 30–34 tok/s | busy |
+| 256 | 25.7–33.3 ms (9 runs, 2026-11-26) | about 30–39 tok/s; 6 of 9 runs between 33 and 37 | light to busy (load 7 to 59) |
 | 1024 | 28.4–31.4 ms | about 32 tok/s | moderate |
 | 2048 | 33.8–37.6 ms (last session) | about 27–30 tok/s | busy |
 | 4096 | 36.9–40.9 ms | about 25–27 tok/s | idle |
