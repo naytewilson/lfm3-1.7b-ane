@@ -655,9 +655,8 @@ the prompt is read one token at a time. The other options below work the same wa
 These steps were run on the machine above on 2026-11-25 for each of the five archives,
 from the packed files: the runner and embedding table as released, the tokenizer from this
 repository, `--units ane` and `--max-tokens 32`. Every context gave the same reply, "The
-capital of France is Paris, which has been the capital for centuries." The first run of each
-context on a machine compiles its program for the ANE; the time to the first new token
-afterwards was 0.6 s at 256 positions and 3.0 s at 4096.
+capital of France is Paris, which has been the capital for centuries." The time to the first
+new token was 0.6 s at 256 positions and 3.0 s at 4096.
 
 ### Program revision 2 (v0.1.0)
 
