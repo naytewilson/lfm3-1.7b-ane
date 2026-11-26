@@ -1,0 +1,73 @@
+{
+  "checks" : [
+    {
+      "claim" : "config.json is the certified source",
+      "detail" : "sha256 4804e0d97e2727fd…",
+      "id" : "S1",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "every consumed source tensor matches its certified hash",
+      "detail" : "287 tensors",
+      "id" : "S2",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "semantic.json / plan.json match certified hashes",
+      "detail" : "file hashes",
+      "id" : "G1",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "source program is well typed and has the certified structural hash",
+      "detail" : "1555 nodes, hash d63147e0191575fe…",
+      "id" : "G2",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "the source program reads only certified source tensors",
+      "detail" : "ok",
+      "id" : "G3",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "artifact files match certified hashes",
+      "detail" : "all packages",
+      "id" : "A1",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "every package re-parses and is well typed (types re-derived per op)",
+      "detail" : "1 packages, 119 norm idioms lifted, 35 tanh-form activations lifted",
+      "id" : "A2",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "every weight blob is the declared function of a certified source tensor",
+      "detail" : "286 blob refs, 792 MB, 0 constant tables checked by E1 instead, 143 palettized (worst relL2 0.0, recomputed)",
+      "id" : "W1",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "strict per-tensor palette profile matches source and emitted LUT4 geometry",
+      "detail" : "profile 'cand1_g4conv_w2_g8': 143 tensors verified",
+      "id" : "W2",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "lifted artifact pipeline == source program, bit for bit, on verifier-chosen inputs",
+      "detail" : "2 trials, 256000 output elements bit-identical, 35 persistent states identical after 2 chained calls (nonce dab706108b899f88)",
+      "id" : "E1",
+      "status" : "PASS"
+    },
+    {
+      "claim" : "hardware evidence",
+      "detail" : "no evidence directory supplied; placement and execution are NOT verified",
+      "id" : "H1",
+      "status" : "SKIP"
+    }
+  ],
+  "nonce" : "dab706108b899f88",
+  "schema" : "anec.verify.v1",
+  "verifierVersion" : "0.2"
+}

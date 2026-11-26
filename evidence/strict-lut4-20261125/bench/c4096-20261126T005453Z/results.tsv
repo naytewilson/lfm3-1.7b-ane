@@ -1,0 +1,4 @@
+arm	status	result	wall_s	cpu_s	major_faults	maxrss_kb
+ane-sustained-1	VALID	| stateful decode | segments=2 | units=cpuAndNeuralEngine | steps=36 | first_ms=362.4 | decode_ms_med=37.45 | tok_per_s_indicative=26.7 | 26.13 tok/s |	26	6.300	86	432320
+ane-sustained-2	VALID	| stateful decode | segments=2 | units=cpuAndNeuralEngine | steps=36 | first_ms=472.8 | decode_ms_med=40.37 | tok_per_s_indicative=24.8 | 22.33 tok/s |	29	7.580	718	416032
+ane-sustained-3	VALID	| stateful decode | segments=2 | units=cpuAndNeuralEngine | steps=36 | first_ms=449.6 | decode_ms_med=59.37 | tok_per_s_indicative=16.8 | 3.77 tok/s |	25	3.970	1428	408608

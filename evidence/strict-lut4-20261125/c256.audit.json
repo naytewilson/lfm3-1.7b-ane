@@ -1,0 +1,1851 @@
+{
+  "computePlan" : {
+    "anePreferredRuntimeShare" : 1,
+    "computeUnits" : "cpuAndNeuralEngine",
+    "functions" : [
+      {
+        "aneOpHistogram" : {
+          "add" : 138,
+          "concat" : 154,
+          "conv" : 154,
+          "layer_norm" : 119,
+          "matmul" : 44,
+          "mul" : 563,
+          "reduce_sum" : 13,
+          "reshape" : 268,
+          "slice_by_index" : 202,
+          "softmax" : 11,
+          "tanh" : 35,
+          "transpose" : 55
+        },
+        "anePreferredOps" : 1756,
+        "aneSupportedOps" : 1756,
+        "bundleName" : "seg01_dev.mlpackage",
+        "compileTimeOps" : 3511,
+        "cpuOpHistogram" : {
+
+        },
+        "cpuPreferredOps" : 0,
+        "functionName" : "main",
+        "gpuPreferredOps" : 0,
+        "readStateAneOps" : 0,
+        "readStateCpuOps" : 0,
+        "runtimeOps" : 1756,
+        "sliceUpdateAneOps" : 0,
+        "sliceUpdateCpuOps" : 0,
+        "totalOps" : 5267,
+        "unassignedPreferredOps" : 0,
+        "writeStateAneOps" : 0,
+        "writeStateCpuOps" : 0
+      }
+    ],
+    "hostKvMarshallingRisk" : false,
+    "stateCpuFallbackCount" : 0,
+    "totalAnePreferredOps" : 1756,
+    "totalCpuPreferredOps" : 0,
+    "totalGpuPreferredOps" : 0,
+    "totalRuntimeOps" : 1756,
+    "totalUnassignedOps" : 0,
+    "verdict" : "PASS"
+  },
+  "encoding" : {
+    "bundles" : [
+      {
+        "bundleKind" : "mlpackage",
+        "bundleName" : "seg01_dev.mlpackage",
+        "functions" : [
+          {
+            "compileTimeOps" : 3511,
+            "constOps" : 3368,
+            "constexprAffineDequantizeOps" : 0,
+            "constexprBlockwiseShiftScaleOps" : 0,
+            "constexprLutToDenseOps" : 143,
+            "constexprOtherOps" : 0,
+            "denseMatrixConstNames" : [
+
+            ],
+            "denseMatrixConstOps" : 0,
+            "lut1Ops" : 0,
+            "lut2Ops" : 0,
+            "lut3Ops" : 0,
+            "lut4Ops" : 143,
+            "lut6Ops" : 0,
+            "lut8Ops" : 0,
+            "lutOpDetails" : [
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L0_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L0_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L0_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L0_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L0_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L1_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L1_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L1_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L1_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L1_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L2_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L2_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L2_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L2_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L2_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L2_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L2_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L3_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L3_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L3_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L3_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L3_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L4_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L4_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L4_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L4_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L4_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L4_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L4_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L5_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L5_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L5_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L5_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L5_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L6_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L6_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L6_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L6_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L6_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L6_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L6_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L7_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L7_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L7_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L7_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L7_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L8_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L8_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L8_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L8_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L8_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L8_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L8_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L9_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L9_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L9_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L9_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L9_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L10_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L10_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L10_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L10_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L10_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L10_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L10_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L11_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L11_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L11_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L11_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L11_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L12_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L12_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L12_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L12_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L12_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L12_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L12_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L13_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L13_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L13_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L13_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L13_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L14_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L14_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L14_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L14_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L14_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L14_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L14_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L15_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L15_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L15_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L15_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L15_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L16_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L16_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L16_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L16_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L16_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L16_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L16_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L17_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L17_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L17_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L17_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L17_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L18_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L18_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L18_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L18_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L18_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L18_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L18_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L19_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L19_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L19_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L19_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L19_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L20_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L20_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L20_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L20_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L20_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L20_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L20_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L21_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L21_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L21_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L21_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L21_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L22_q_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L22_k_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 64,
+                "name" : "L22_v_w_k",
+                "shape" : [
+                  512,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L22_o_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L22_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L22_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L22_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 1536,
+                "name" : "L23_inproj_w_k",
+                "shape" : [
+                  6144,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 256,
+                "name" : "L23_outproj_w_k",
+                "shape" : [
+                  2048,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L23_gate_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 896,
+                "name" : "L23_up_w_k",
+                "shape" : [
+                  7168,
+                  2048,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 4,
+                "groups" : 512,
+                "name" : "L23_down_w_k",
+                "shape" : [
+                  2048,
+                  7168,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bits" : 4,
+                "groupRows" : 8,
+                "groups" : 16000,
+                "name" : "lm_head_w_k",
+                "shape" : [
+                  128000,
+                  2048,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "lutOtherOps" : 0,
+            "name" : "main",
+            "opset" : "CoreML8",
+            "readStateOps" : 0,
+            "runtimeOps" : 1756,
+            "sliceUpdateOps" : 0,
+            "stateInputCount" : 0,
+            "totalOps" : 5267,
+            "writeStateOps" : 0
+          }
+        ],
+        "inferredDenseFp16Bytes" : 3306608128,
+        "treeSha256" : "a36743454751ec47b8d406b5246c07604d7fce93d432e9a3fe01387e5cde3449",
+        "weightBytes" : 831054208
+      }
+    ],
+    "compileTimeOps" : 3511,
+    "constexprAffineDequantizeOps" : 0,
+    "constexprBlockwiseShiftScaleOps" : 0,
+    "constexprLutToDenseOps" : 143,
+    "denseFp16Bytes" : 3306608128,
+    "denseFp16BytesSource" : "inferred_from_palettes_and_consts",
+    "denseMatrixConstNames" : [
+
+    ],
+    "denseMatrixConstOps" : 0,
+    "expectation" : {
+      "allowAffineOps" : 0,
+      "allowMixedLut" : false,
+      "expectedEncoding" : "lut4",
+      "maxDenseMatrixConstElements" : 32768,
+      "maxLut4ByteRatio" : 0.32
+    },
+    "failures" : [
+
+    ],
+    "lut4Ops" : 143,
+    "lut6Ops" : 0,
+    "lut8Ops" : 0,
+    "lutSub4Ops" : 0,
+    "readStateOps" : 0,
+    "runtimeOps" : 1756,
+    "schema" : "ane.verify.encoding.v1",
+    "sliceUpdateOps" : 0,
+    "stateInputCount" : 0,
+    "targetPath" : "./lfm3_cand1_lut4_C256/seg01_dev.mlpackage",
+    "totalOps" : 5267,
+    "totalWeightBytes" : 831054208,
+    "treeSha256" : "a36743454751ec47b8d406b5246c07604d7fce93d432e9a3fe01387e5cde3449",
+    "verdict" : "PASS",
+    "weightByteRatio" : 0.2513313267945853,
+    "writeStateOps" : 0
+  },
+  "host" : "<redacted>",
+  "hwModel" : "Mac17,5",
+  "osBuild" : "26C5047e",
+  "schema" : "ane.verify.audit.v1",
+  "timestampUTC" : "2026-11-25T21:07:27Z",
+  "verdict" : "PASS"
+}
