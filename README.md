@@ -551,11 +551,13 @@ Read plainly:
   model.
 - **One device, one OS build.** ANE placement is decided by the OS at load time and can
   differ on other chips or OS versions.
-- **Context up to 2048 positions, not beyond, and not tested full.** With `--grow` a run
+- **Context up to 2048 positions, not beyond, and not tested full — in the v0.1.0 revision-2 `--grow` path.** With `--grow` a run
   can move from 288 to 1024 to 2048 positions; it does not slide past that, and the
   upstream model's 256K context is not available here. The longest run made reached
   position 1542; nothing was run with 2048 positions completely used. Accuracy past
-  position 270 is checked against exact arithmetic on one 513-token sequence only.
+  position 270 is checked against exact arithmetic on one 513-token sequence only. The
+  v0.2.0 build is separate: it is published at 256, 512, 1024, 2048 and 4096 positions
+  and was chat-checked at every context, but its cache was never run completely full.
 - **Prefill can change the reply with the first programs.** There, with `--prefill` the
   reply can differ in wording from the one produced without it (shown in the prefill
   section). With revision 2 the two paths picked the same top-1 token at all 270 positions
