@@ -4,7 +4,7 @@ Core ML packages of a width-pruned, 4-bit palettized LFM3-1.7B that decode one t
 on the Apple Neural Engine (ANE), with the measurements, hardware evidence and hashes that
 back every number on this page.
 
-**Status: early release (v0.1.0).** Placement, decode and prefill speed, ANE power and
+**Status: early release (v0.1.0; v0.2.0 adds the strict-LUT4 build).** Placement, decode and prefill speed, ANE power and
 real chat turns are measured. Output quality is measurably below the unquantized model (numbers below), the
 runtime is a prebuilt binary without source, and several things a production deployment
 needs have not been measured. Read [What is not established](#what-is-not-established)
@@ -13,14 +13,53 @@ before relying on it.
 Not affiliated with or endorsed by Liquid AI. LFM3 is Liquid AI's model; this is a derivative
 distributed under the [LFM Open License v1.0](LICENSE).
 
-## Strict-LUT4 one-segment build (measured 2026-11-24, not a release asset)
+## Strict-LUT4 one-segment build (release v0.2.0, 2026-11-25)
 
-A second build was compiled as a single ANE segment in which every large weight is a 4-bit
+A second build is compiled as a single ANE segment in which every large weight is a 4-bit
 lookup table and nothing else: 143 LUT4 operations, no 6- or 8-bit tables, no affine or
 dense weight matrices. It uses one table per 4 rows on the 13 convolution input
 projections and the 24 `w2` projections and one per 8 rows elsewhere, with refitted tables.
-It is not in the release. The numbers come from the lab's qualification receipt and are
-recorded here so the comparison with the current build is public.
+**It is downloadable as release v0.2.0 at 256, 512, 1024, 2048 and 4096 positions**; see
+[What is in this release](#what-is-in-this-release) and [Running it](#running-it).
+
+### What was published, and how it was checked (2026-11-25)
+
+The v0.2.0 packages were rebuilt on 2026-11-25 from the same qualified inputs as the
+2026-11-24 build: the same pruned checkpoint, the same palette profile
+(`cand1_g4conv_w2_g8`) and the same range file. They were compiled with a newer revision of
+the compiler, which emits 1756 operations where the 2026-11-24 build had 1769; the
+compiled files of the 2026-11-24 build were not hashed at the time, so **these packages are
+not shown to be byte-identical to the build measured on 2026-11-24**. What was checked on
+the rebuilt files:
+
+| Rebuilt packages, Mac17,5, macOS 27.3 (`26C5047e`) | Result |
+|---|---|
+| Operations planned on the ANE | **1756 of 1756** at every context (256, 512, 1024, 2048, 4096); the token embedding lookup stays on the host |
+| Weights | `weight.bin` is 831,054,208 bytes, the same size as the 2026-11-24 build, and the same file (same SHA-256) at all five contexts; 143 LUT4 operations |
+| Encoding audit (256 positions) | PASS; table rows per group match the profile (4 on the convolution input projections and `w2`, 8 elsewhere) |
+| Compiler verifier (256 positions) | 10 pass, 0 fail, 1 skipped (the device-versus-CPU output comparison); bit-identical over 256,000 output elements; profile verified on all 143 tensors |
+| Embedding table | The checkpoint's embedding tensor equals the published `embed_tokens.bf16.bin` (same SHA-256) |
+| Chat check, every context | "What is the capital of France?" → "The capital of France is Paris, which has been the capital for centuries." |
+| Run from the packed archives, every context | Same reply as above, with runner r5 and the released embedding table (see [Running it](#running-it)) |
+
+Decode speed of the rebuilt packages, three guarded runs of 36 steps per context. Other
+jobs were loading the machine for most of the day (load average up to about 190), so
+these are indicative; the 4096-position runs were taken just after a restart, at a load
+average of about 2 to 3.
+
+| Context | Median step, per run | Indicative rate | Machine load |
+|---|---|---|---|
+| 256 | 29.2–33.7 ms (best runs) | about 30–34 tok/s | busy |
+| 1024 | 28.4–31.4 ms | about 32 tok/s | moderate |
+| 2048 | 33.8–37.6 ms (last session) | about 27–30 tok/s | busy |
+| 4096 | 36.9–40.9 ms | about 25–27 tok/s | idle |
+
+The 512-position runs were all taken at a load average near 80 and are not shown.
+
+### The 2026-11-24 qualification (the original build)
+
+These numbers come from the lab's qualification receipt for the 2026-11-24 build, not from
+the published v0.2.0 files.
 
 | Strict-LUT4 build, Mac17,5, macOS 27.3 (`26C5047e`) | Result |
 |---|---|
@@ -548,7 +587,17 @@ In this repository:
 | `SHA256SUMS` | SHA-256 of every release asset and of the files inside the bundles |
 | `LICENSE`, `NOTICE.md` | LFM Open License v1.0 and the statement of changes it requires |
 
-As release assets:
+As release assets of **v0.2.0** (the strict-LUT4 build; each archive is self-contained, about 833 MB):
+
+| Asset | Contents |
+|---|---|
+| `lfm3-1.7b-pruned7168-strict-lut4-c256.tar` | One-segment strict-LUT4 function for 256 positions. Unpacks to `lfm3_cand1_lut4_C256`: `seg01_dev.mlpackage`, `plan.json`, `certificate.json`, `semantic.json` |
+| `lfm3-1.7b-pruned7168-strict-lut4-c512.tar`, `…-c1024.tar`, `…-c2048.tar`, `…-c4096.tar` | The same for 512, 1024, 2048 and 4096 positions (`lfm3_cand1_lut4_C512` … `lfm3_cand1_lut4_C4096`). All five share the same `weight.bin`; only the compiled program differs |
+| `lfm3-ane-runner-r5-macos-arm64.tar` | Runner r5, for the strict-LUT4 build: a newer `anec-run` (arm64, ad-hoc signed, not notarized) with r4's `setup.sh`, embedding header and `model/config.json` |
+| `embed_tokens.bf16.bin` | The same token-embedding table as in v0.1.0 |
+| `SHA256SUMS` | SHA-256 of the v0.2.0 assets |
+
+As release assets of **v0.1.0**:
 
 | Asset | Contents |
 |---|---|
@@ -582,6 +631,35 @@ check is "the device executed every segment": no ANE-versus-CPU output compariso
 recorded for it. The verifier was not run on the 288-position bundle today.
 
 ## Running it
+
+### Strict-LUT4 build (v0.2.0)
+
+Download from release v0.2.0 `lfm3-ane-runner-r5-macos-arm64.tar`, `embed_tokens.bf16.bin`
+and one or more of the `lfm3-1.7b-pruned7168-strict-lut4-c*.tar` archives into a clone of
+this repository.
+
+```sh
+tar -xf lfm3-ane-runner-r5-macos-arm64.tar
+./lfm3-ane-runner-r5/setup.sh embed_tokens.bf16.bin
+tar -xf lfm3-1.7b-pruned7168-strict-lut4-c256.tar
+xattr -d com.apple.quarantine lfm3-ane-runner-r5/anec-run 2>/dev/null || true   # needed if a browser downloaded it
+
+./lfm3-ane-runner-r5/anec-run lfm3_cand1_lut4_C256 --model lfm3-ane-runner-r5/model \
+    --tokenizer tokenizer/tokenizer.json --chat 1 --prompt "What is the capital of France?"
+```
+
+Use `lfm3_cand1_lut4_C4096` (or another context) in place of `lfm3_cand1_lut4_C256` for a
+longer conversation. This build has no prefill function and is not set up for `--grow`;
+the prompt is read one token at a time. The other options below work the same way.
+
+These steps were run on the machine above on 2026-11-25 for each of the five archives,
+from the packed files: the runner and embedding table as released, the tokenizer from this
+repository, `--units ane` and `--max-tokens 32`. Every context gave the same reply, "The
+capital of France is Paris, which has been the capital for centuries." The first run of each
+context on a machine compiles its program for the ANE; the time to the first new token
+afterwards was 0.6 s at 256 positions and 3.0 s at 4096.
+
+### Program revision 2 (v0.1.0)
 
 You need an Apple-silicon Mac, this repository cloned, and five assets downloaded into it:
 `lfm3-1.7b-pruned7168-q1-c288.tar` (the weights), `lfm3-1.7b-pruned7168-q1-p2-c288.tar`
